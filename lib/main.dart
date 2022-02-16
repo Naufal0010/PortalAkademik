@@ -1,9 +1,12 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: MyApp(),
-  ));
+  runApp(
+    MaterialApp(
+      home: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -11,14 +14,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp>  {
+
+  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Portal Akademik',
-        ),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -26,6 +27,36 @@ class _MyAppState extends State<MyApp>  {
             Text('Hello World')
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavyBar(
+        curve: Curves.easeInOutCirc,
+        backgroundColor: Colors.deepOrange,
+        selectedIndex: currentIndex,
+        onItemSelected: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+            activeColor: Colors.white70,
+            inactiveColor: Colors.white
+          ),
+          BottomNavyBarItem(
+              icon: Icon(Icons.people_rounded),
+              title: Text('Presensi'),
+              activeColor: Colors.white70,
+              inactiveColor: Colors.white
+          ),
+          BottomNavyBarItem(
+              icon: Icon(Icons.account_circle_rounded),
+              title: Text('Profile'),
+              activeColor: Colors.white70,
+              inactiveColor: Colors.white
+          ),
+        ],
       ),
     );
   }
