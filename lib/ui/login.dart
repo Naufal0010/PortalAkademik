@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/ui/dashboard.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -111,7 +112,9 @@ class _LoginState extends State<Login> {
                                 style: TextStyle(fontSize: 20),
                               ),
                               onPressed: () {
-                                // some code for login
+                                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                  return Dashboard();
+                                }));
                               },
                               style: ElevatedButton.styleFrom(
                                   fixedSize: Size(330, 50),

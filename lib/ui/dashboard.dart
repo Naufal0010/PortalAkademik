@@ -82,17 +82,36 @@ class _DashboardState extends State<Dashboard> {
                       width: 12.0,
                       height: 12.0,
                       margin:
-                      EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: (Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.black)
-                            .withOpacity(_currentIndexSlider == entry.key ? 0.9 : 0.4),
+                                ? Colors.white
+                                : Colors.black)
+                            .withOpacity(
+                                _currentIndexSlider == entry.key ? 0.9 : 0.4),
                       ),
                     ),
                   );
-                }).toList())
+                }).toList()),
+            SizedBox(
+              height: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  'Akademik',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // some function navigator
+                  },
+                  child: Text('Lihat Semua'),
+                ),
+              ],
+            )
           ],
         ),
       ),
