@@ -1,5 +1,4 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -97,21 +96,27 @@ class _DashboardState extends State<Dashboard> {
             SizedBox(
               height: 16,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'Akademik',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // some function navigator
-                  },
-                  child: Text('Lihat Semua'),
-                ),
-              ],
-            )
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Akademik',
+                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          // some function navigator
+                        },
+                        child: Text('Lihat Semua'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
