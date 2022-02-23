@@ -1,6 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:portal_akademik/util/button_grid.dart';
 
 final List<String> imgList = [
@@ -55,192 +56,199 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0),
-        child: Column(
-          children: [
-            CarouselSlider(
-              items: imageSliders,
-              carouselController: _controller,
-              options: CarouselOptions(
-                  autoPlay: true,
-                  enlargeCenterPage: true,
-                  aspectRatio: 2.0,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _currentIndexSlider = index;
-                    });
-                  }),
-            ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: imgList.asMap().entries.map((entry) {
-                  return GestureDetector(
-                    onTap: () => _controller.animateToPage(entry.key),
-                    child: Container(
-                      width: 12.0,
-                      height: 12.0,
-                      margin:
-                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: (Theme.of(context).brightness == Brightness.dark
-                                ? Colors.white
-                                : Colors.black)
-                            .withOpacity(
-                                _currentIndexSlider == entry.key ? 0.9 : 0.4),
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Theme.of(context).brightness == Brightness.dark
+            ? Brightness.light
+            : Brightness.dark));
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0, bottom: 16.0),
+          child: Column(
+            children: [
+              CarouselSlider(
+                items: imageSliders,
+                carouselController: _controller,
+                options: CarouselOptions(
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    aspectRatio: 2.0,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _currentIndexSlider = index;
+                      });
+                    }),
+              ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: imgList.asMap().entries.map((entry) {
+                    return GestureDetector(
+                      onTap: () => _controller.animateToPage(entry.key),
+                      child: Container(
+                        width: 12.0,
+                        height: 12.0,
+                        margin:
+                            EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: (Theme.of(context).brightness == Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black)
+                              .withOpacity(
+                                  _currentIndexSlider == entry.key ? 0.9 : 0.4),
+                        ),
                       ),
-                    ),
-                  );
-                }).toList()),
-            SizedBox(
-              height: 16,
-            ),
-            Expanded(
-                child: ListView(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Akademik',
-                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 16.0,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: GridView(
-                            physics: NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.only(bottom: 16.0),
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 10,
-                                mainAxisSpacing: 10,
-                                childAspectRatio: 1
-                            ),
-                            shrinkWrap: true,
-                            primary: true,
-                            children: [
-                              ButtonGrid(buttonName: 'Rencana Studi', icon: Icons.school),
-                              ButtonGrid(buttonName: 'Hasil Studi', icon: Icons.trending_up),
-                              ButtonGrid(buttonName: 'Rekap Hasil Studi', icon: Icons.assignment),
-                              ButtonGrid(buttonName: 'Riwayat Registrasi', icon: Icons.access_time),
-                            ],
+                    );
+                  }).toList()),
+              SizedBox(
+                height: 16,
+              ),
+              Expanded(
+                  child: ListView(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Akademik',
+                            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Jadwal',
-                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 16.0,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: GridView(
-                            physics: NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.only(bottom: 16.0),
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 10,
-                                mainAxisSpacing: 10,
-                                childAspectRatio: 1
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16.0,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: GridView(
+                              physics: NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.only(bottom: 16.0),
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  childAspectRatio: 1
+                              ),
+                              shrinkWrap: true,
+                              primary: true,
+                              children: [
+                                ButtonGrid(buttonName: 'Rencana Studi', icon: Icons.school),
+                                ButtonGrid(buttonName: 'Hasil Studi', icon: Icons.trending_up),
+                                ButtonGrid(buttonName: 'Rekap Hasil Studi', icon: Icons.assignment),
+                                ButtonGrid(buttonName: 'Riwayat Registrasi', icon: Icons.access_time),
+                              ],
                             ),
-                            shrinkWrap: true,
-                            primary: true,
-                            children: [
-                              ButtonGrid(buttonName: 'Kalender Akademik', icon: Icons.school),
-                              ButtonGrid(buttonName: 'Jadwal Penting', icon: Icons.trending_up),
-                              ButtonGrid(buttonName: 'Perkuliahan', icon: Icons.assignment),
-                              ButtonGrid(buttonName: 'Ujian Akhir', icon: Icons.access_time),
-                            ],
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Jadwal',
+                            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Kuesioner',
-                          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 16.0,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: GridView(
-                            physics: NeverScrollableScrollPhysics(),
-                            padding: EdgeInsets.only(bottom: 16.0),
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 10,
-                                mainAxisSpacing: 10,
-                                childAspectRatio: 1
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16.0,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: GridView(
+                              physics: NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.only(bottom: 16.0),
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  childAspectRatio: 1
+                              ),
+                              shrinkWrap: true,
+                              primary: true,
+                              children: [
+                                ButtonGrid(buttonName: 'Kalender Akademik', icon: Icons.school),
+                                ButtonGrid(buttonName: 'Jadwal Penting', icon: Icons.trending_up),
+                                ButtonGrid(buttonName: 'Perkuliahan', icon: Icons.assignment),
+                                ButtonGrid(buttonName: 'Ujian Akhir', icon: Icons.access_time),
+                              ],
                             ),
-                            shrinkWrap: true,
-                            primary: true,
-                            children: [
-                              ButtonGrid(buttonName: 'Evaluasi Dosen', icon: Icons.school),
-                              ButtonGrid(buttonName: 'Pelayanan', icon: Icons.trending_up),
-                            ],
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Kuesioner',
+                            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                           ),
-                        )
-                      ],
-                    ),
-                  ],
-                )
-            )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16.0,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: GridView(
+                              physics: NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.only(bottom: 16.0),
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  childAspectRatio: 1
+                              ),
+                              shrinkWrap: true,
+                              primary: true,
+                              children: [
+                                ButtonGrid(buttonName: 'Evaluasi Dosen', icon: Icons.school),
+                                ButtonGrid(buttonName: 'Pelayanan', icon: Icons.trending_up),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  )
+              )
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavyBar(
+          curve: Curves.easeInOutCirc,
+          backgroundColor: Colors.deepOrange,
+          selectedIndex: currentIndex,
+          onItemSelected: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          items: <BottomNavyBarItem>[
+            BottomNavyBarItem(
+                icon: Icon(Icons.home),
+                title: Text('Home'),
+                activeColor: Colors.white70,
+                inactiveColor: Colors.white),
+            BottomNavyBarItem(
+                icon: Icon(Icons.people_rounded),
+                title: Text('Presensi'),
+                activeColor: Colors.white70,
+                inactiveColor: Colors.white),
+            BottomNavyBarItem(
+                icon: Icon(Icons.account_circle_rounded),
+                title: Text('Profile'),
+                activeColor: Colors.white70,
+                inactiveColor: Colors.white),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavyBar(
-        curve: Curves.easeInOutCirc,
-        backgroundColor: Colors.deepOrange,
-        selectedIndex: currentIndex,
-        onItemSelected: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
-              activeColor: Colors.white70,
-              inactiveColor: Colors.white),
-          BottomNavyBarItem(
-              icon: Icon(Icons.people_rounded),
-              title: Text('Presensi'),
-              activeColor: Colors.white70,
-              inactiveColor: Colors.white),
-          BottomNavyBarItem(
-              icon: Icon(Icons.account_circle_rounded),
-              title: Text('Profile'),
-              activeColor: Colors.white70,
-              inactiveColor: Colors.white),
-        ],
       ),
     );
   }

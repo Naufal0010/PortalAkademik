@@ -44,7 +44,8 @@ class ButtonGrid extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: TextStyle(
-                          color: ColorPallete.primary
+                          color: ColorPallete.primary,
+                          fontSize: 12.0
                         )),
                     height: 30,
                   )
