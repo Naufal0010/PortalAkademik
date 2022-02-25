@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portal_akademik/ui/dashboard.dart';
 import 'package:portal_akademik/ui/login.dart';
 
 void main() {

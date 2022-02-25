@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portal_akademik/ui/dashboard.dart';
+import 'package:portal_akademik/ui/home_page.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -70,7 +70,7 @@ class _LoginState extends State<Login> {
                                     ),
                                     filled: true,
                                     fillColor: Color(0xFFFFFFFF),
-                                    hintText: 'NIM',
+                                    hintText: 'Username',
                                   ),
                                 ),
                                 SizedBox(
@@ -114,7 +114,7 @@ class _LoginState extends State<Login> {
                                 ),
                                 onPressed: () {
                                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    return Dashboard();
+                                    return HomePage();
                                   }));
                                 },
                                 style: ElevatedButton.styleFrom(
