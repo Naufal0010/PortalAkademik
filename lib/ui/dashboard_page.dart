@@ -129,7 +129,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               primary: true,
                               children: [
                                 ButtonGrid(buttonName: 'Rencana Studi', icon: Icons.school),
-                                ButtonGrid(buttonName: 'Hasil Studi', icon: Icons.trending_up),
+                                ButtonGrid(buttonName: 'Hasil Studi', icon: Icons.insert_chart),
                                 ButtonGrid(buttonName: 'Rekap Hasil Studi', icon: Icons.assignment),
                                 ButtonGrid(buttonName: 'Riwayat Registrasi', icon: Icons.access_time),
                               ],
@@ -202,7 +202,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               shrinkWrap: true,
                               primary: true,
                               children: [
-                                ButtonGrid(buttonName: 'Evaluasi Dosen', icon: Icons.school),
+                                ButtonGrid(buttonName: 'Evaluasi Dosen', icon: Icons.help_outline),
                                 ButtonGrid(buttonName: 'Pelayanan', icon: Icons.trending_up),
                               ],
                             ),

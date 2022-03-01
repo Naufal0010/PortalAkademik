@@ -2,7 +2,6 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/ui/presensi_page.dart';
 import 'package:portal_akademik/ui/profile_page.dart';
-
 import 'dashboard_page.dart';
 
 final List<String> imgList = [
@@ -40,10 +39,10 @@ final List<Widget> imageSliders = imgList
                       ),
                     ),
                   ],
-                )),
+                ),
+            ),
           ),
-        ))
-    .toList();
+        )).toList();
 
 final List listOfPage = [
   DashboardPage(),

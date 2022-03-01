@@ -42,7 +42,6 @@ class ButtonGrid extends StatelessWidget {
                     child: Text(buttonName,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
                         style: TextStyle(
                           color: ColorPallete.primary,
                           fontSize: 12.0
