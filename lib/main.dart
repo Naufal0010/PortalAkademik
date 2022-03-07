@@ -1,22 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:portal_akademik/ui/login.dart';
+import 'package:portal_akademik/app.dart';
+import 'package:portal_akademik/config/application.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: Login(),
-  ));
-}
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Application.preferences = await SharedPreferences.getInstance();
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  runApp(App());
 }

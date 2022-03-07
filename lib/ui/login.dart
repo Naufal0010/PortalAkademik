@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/states/state_auth.dart';
 import 'package:portal_akademik/ui/home_page.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -8,9 +10,21 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _isObscure = true;
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    AuthState authState = Provider.of<AuthState>(context, listen: true);
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -62,6 +76,7 @@ class _LoginState extends State<Login> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 TextField(
+                                  controller: usernameController,
                                   keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
@@ -77,11 +92,13 @@ class _LoginState extends State<Login> {
                                   height: 16.0,
                                 ),
                                 TextField(
+                                  controller: passwordController,
                                   keyboardType: TextInputType.text,
                                   obscureText: _isObscure,
                                   decoration: InputDecoration(
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8.0),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                         borderSide: BorderSide.none,
                                       ),
                                       filled: true,
@@ -113,9 +130,7 @@ class _LoginState extends State<Login> {
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 onPressed: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    return HomePage();
-                                  }));
+                                  authState.auth(usernameController.text, passwordController.text);
                                 },
                                 style: ElevatedButton.styleFrom(
                                     fixedSize: Size(330, 50),
