@@ -4,8 +4,9 @@ import 'package:portal_akademik/util/color_pallete.dart';
 class ButtonGrid extends StatelessWidget {
   final String buttonName;
   final IconData icon;
+  final Function() onTap;
 
-  const ButtonGrid({required this.buttonName, required this.icon});
+  const ButtonGrid({required this.buttonName, required this.icon, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class ButtonGrid extends StatelessWidget {
       child: Material(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10.0),
-        elevation: 4,
+        elevation: 2,
         child: InkWell(
           onTap: () {},
           child: Ink(

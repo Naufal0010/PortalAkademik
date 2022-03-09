@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/ui/hasil_studi_page.dart';
 import 'package:portal_akademik/ui/presensi_page.dart';
 import 'package:portal_akademik/ui/profile_page.dart';
 import 'dashboard_page.dart';
@@ -46,6 +47,7 @@ final List<Widget> imageSliders = imgList
 
 final List listOfPage = [
   DashboardPage(),
+  HasilStudiPage(),
   PresensiPage(),
   ProfilePage()
 ];
@@ -80,6 +82,11 @@ class _HomePage extends State<HomePage> {
           BottomNavyBarItem(
               icon: Icon(Icons.home),
               title: Text('Home'),
+              activeColor: Colors.white70,
+              inactiveColor: Colors.white),
+          BottomNavyBarItem(
+              icon: const Icon(Icons.bar_chart),
+              title: const Text('Hasil Studi'),
               activeColor: Colors.white70,
               inactiveColor: Colors.white),
           BottomNavyBarItem(

@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:portal_akademik/util/button_grid.dart';
+import 'package:portal_akademik/util/icon_button.dart';
+import 'package:portal_akademik/util/jadwal_item.dart';
+import 'package:portal_akademik/util/label_sub_header.dart';
 
 final List<String> imgList = [
   'assets/images/berakhlak.png',
@@ -43,6 +45,7 @@ final List<Widget> imageSliders = imgList
     .toList();
 
 class DashboardPage extends StatefulWidget {
+  const DashboardPage({Key? key}) : super(key: key);
 
   @override
   _DashboardPageState createState() => _DashboardPageState();
@@ -55,165 +58,159 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0, bottom: 16.0),
-          child: Column(
-            children: [
-              CarouselSlider(
-                items: imageSliders,
-                carouselController: _controller,
-                options: CarouselOptions(
-                    autoPlay: true,
-                    enlargeCenterPage: true,
-                    aspectRatio: 2.0,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _currentIndexSlider = index;
-                      });
-                    }),
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 80.0,
+              padding: EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Color(0xFFFF9F43),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: imgList.asMap().entries.map((entry) {
-                    return GestureDetector(
-                      onTap: () => _controller.animateToPage(entry.key),
-                      child: Container(
-                        width: 12.0,
-                        height: 12.0,
-                        margin:
-                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: (Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black)
-                              .withOpacity(
-                              _currentIndexSlider == entry.key ? 0.9 : 0.4),
-                        ),
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Hai, Naufal Abiyyu Mayusuf',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            '1911016310014 - Ilmu Komputer',
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xffFFE8D1),
+                            ),
+                          ),
+                        ],
                       ),
-                    );
-                  }).toList()),
-              SizedBox(
-                height: 16,
+                    ),
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Color(0xff0073AC),
+                      child: CircleAvatar(
+                        radius: 27,
+                        backgroundImage:
+                        AssetImage('assets/images/image_profile.jpg'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              Expanded(
-                  child: ListView(
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 24, bottom: 10),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Akademik',
-                            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 16.0,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: GridView(
-                              physics: NeverScrollableScrollPhysics(),
-                              padding: EdgeInsets.only(bottom: 16.0),
-                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  childAspectRatio: 1
-                              ),
-                              shrinkWrap: true,
-                              primary: true,
-                              children: [
-                                ButtonGrid(buttonName: 'Rencana Studi', icon: Icons.school),
-                                ButtonGrid(buttonName: 'Hasil Studi', icon: Icons.insert_chart),
-                                ButtonGrid(buttonName: 'Rekap Hasil Studi', icon: Icons.assignment),
-                                ButtonGrid(buttonName: 'Riwayat Registrasi', icon: Icons.access_time),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Jadwal',
-                            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 16.0,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: GridView(
-                              physics: NeverScrollableScrollPhysics(),
-                              padding: EdgeInsets.only(bottom: 16.0),
-                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  childAspectRatio: 1
-                              ),
-                              shrinkWrap: true,
-                              primary: true,
-                              children: [
-                                ButtonGrid(buttonName: 'Kalender Akademik', icon: Icons.school),
-                                ButtonGrid(buttonName: 'Jadwal Penting', icon: Icons.trending_up),
-                                ButtonGrid(buttonName: 'Perkuliahan', icon: Icons.assignment),
-                                ButtonGrid(buttonName: 'Ujian Akhir', icon: Icons.access_time),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Kuesioner',
-                            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 16.0,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: GridView(
-                              physics: NeverScrollableScrollPhysics(),
-                              padding: EdgeInsets.only(bottom: 16.0),
-                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  childAspectRatio: 1
-                              ),
-                              shrinkWrap: true,
-                              primary: true,
-                              children: [
-                                ButtonGrid(buttonName: 'Evaluasi Dosen', icon: Icons.help_outline),
-                                ButtonGrid(buttonName: 'Pelayanan', icon: Icons.trending_up),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                      IconButtonCustom('Rencana', Icons.school),
+                      IconButtonCustom('Rekap ', Icons.insert_chart),
+                      IconButtonCustom('Riwayat', Icons.assignment),
+                      IconButtonCustom('Kalender', Icons.calendar_today)
                     ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButtonCustom('Jadwal', Icons.schedule),
+                      IconButtonCustom('Perkuliahan ', Icons.class_),
+                      IconButtonCustom('Ujian', Icons.task),
+                      IconButtonCustom('Kuesioner', Icons.star)
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            LabelSubHeader('Jadwal Hari Ini'),
+            Container(
+              child: SizedBox(
+                height: 150,
+                child: ListView(
+                  children: [
+                    CarouselSlider(
+                      items: [
+                        JadwalItem(
+                            'JFH63',
+                            'Manajemen Proyek',
+                            'Ruang Kuliah II.3.1',
+                            'Mohammad Reza Faisal',
+                            'Rudy Herteno',
+                            '08:00'),
+                        JadwalItem(
+                            'JFH63',
+                            'Manajemen Proyek',
+                            'Ruang Kuliah II.3.1',
+                            'Mohammad Reza Faisal',
+                            'Rudy Herteno',
+                            '08:00'),
+                        JadwalItem(
+                            'JFH63',
+                            'Manajemen Proyek',
+                            'Ruang Kuliah II.3.1',
+                            'Mohammad Reza Faisal',
+                            'Rudy Herteno',
+                            '08:00'),
+                      ],
+                      options: CarouselOptions(
+                        height: 150.0,
+                        enlargeCenterPage: true,
+                        autoPlay: false,
+                        aspectRatio: 16 / 9,
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        enableInfiniteScroll: false,
+                        autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
+                        viewportFraction: 0.8,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            LabelSubHeader('Informasi'),
+            Container(
+              child: Column(
+                children: [
+                  CarouselSlider(
+                    items: imageSliders,
+                    carouselController: _controller,
+                    options: CarouselOptions(
+                        autoPlay: false,
+                        enlargeCenterPage: true,
+                        aspectRatio: 2.0,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _currentIndexSlider = index;
+                          });
+                        }),
                   )
-              )
-            ],
-          ),
+                ],
+              ),
+            )
+
+          ],
         ),
       ),
     );

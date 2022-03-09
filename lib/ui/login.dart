@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/states/state_auth.dart';
-import 'package:portal_akademik/ui/home_page.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
