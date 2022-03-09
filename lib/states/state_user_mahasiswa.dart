@@ -7,7 +7,7 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   UserModelMahasiswa? data;
   Map<String, dynamic>? error;
 
-  EventState() {
+  UserMahasiswaState() {
     initData();
   }
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/ui/dashboard_page.dart';
 import 'package:portal_akademik/ui/home_page.dart';
 import 'package:portal_akademik/ui/login.dart';
 

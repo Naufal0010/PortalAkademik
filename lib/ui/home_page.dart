@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portal_akademik/ui/hasil_studi_page.dart';
 import 'package:portal_akademik/ui/presensi_page.dart';
 import 'package:portal_akademik/ui/profile_page.dart';
+import 'package:portal_akademik/util/color_pallete.dart';
 import 'dashboard_page.dart';
 
 final List<String> imgList = [
@@ -71,7 +72,7 @@ class _HomePage extends State<HomePage> {
       body: listOfPage[currentIndex],
       bottomNavigationBar: BottomNavyBar(
         curve: Curves.easeInOutCirc,
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: ColorPallete.primary,
         selectedIndex: currentIndex,
         onItemSelected: (index) {
           setState(() {

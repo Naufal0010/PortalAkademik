@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/util/icon_button.dart';
 import 'package:portal_akademik/util/jadwal_item.dart';
 import 'package:portal_akademik/util/label_sub_header.dart';
@@ -57,6 +58,9 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    UserMahasiswaState userMahasiswa = Provider.of<UserMahasiswaState>(context, listen: true);
+
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -81,7 +85,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text(
-                            'Hai, Naufal Abiyyu Mayusuf',
+                            userMahasiswa.data == null ? '' : userMahasiswa.data!.nama!.value,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextStyle(
@@ -91,7 +95,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             ),
                           ),
                           Text(
-                            '1911016310014 - Ilmu Komputer',
+                            '${userMahasiswa.data!.nim!.value}',
                             maxLines: 1,
                             style: TextStyle(
                               fontSize: 12,
@@ -107,8 +111,8 @@ class _DashboardPageState extends State<DashboardPage> {
                       backgroundColor: Color(0xff0073AC),
                       child: CircleAvatar(
                         radius: 27,
-                        backgroundImage:
-                        AssetImage('assets/images/image_profile.jpg'),
+                        // backgroundImage:
+                        // AssetImage('assets/images/image_profile.jpg'),
                       ),
                     ),
                   ],
