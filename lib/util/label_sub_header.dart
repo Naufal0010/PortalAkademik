@@ -8,7 +8,7 @@ class LabelSubHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: EdgeInsets.only(bottom: 10, top: 10),
       child: Text(
         nameHeader,
         style: TextStyle(
