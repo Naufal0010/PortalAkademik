@@ -6,6 +6,7 @@ import 'package:portal_akademik/util/icon_button.dart';
 import 'package:portal_akademik/util/jadwal_item.dart';
 import 'package:portal_akademik/util/label_sub_header.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 final List<String> imgList = [
   'assets/images/berakhlak.png',
@@ -97,35 +98,15 @@ class _DashboardPageState extends State<DashboardPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             userMahasiswa.isLoading ? ShimmerWidget(height: 25,) :
-                            Text(
-                               '${userMahasiswa.data!.nama!.value}',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
+                            getErrorName(context, userMahasiswa),
                             userMahasiswa.isLoading ? ShimmerWidget(height: 15,) :
-                            Text(
-                              '${userMahasiswa.data!.nim!.value}',
-                              maxLines: 1,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xffFFE8D1),
-                              ),
-                            ),
+                            getErrorNim(context, userMahasiswa),
                           ],
                         ),
                       ),
                       SizedBox(width: 30,),
                       userMahasiswaPhoto.isLoading ? ShimmerWidget(borderRadius: BorderRadius.circular(30.0), height: 50, width: 50,) :
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage: NetworkImage('https://portal.ulm.ac.id/uploads/${userMahasiswaPhoto.data!.foto}'),
-                      ),
+                      getErrorPhoto(context, userMahasiswaPhoto)
                     ],
                   ),
                 ),
@@ -231,4 +212,82 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
     );
   }
+
+  Widget getErrorName(BuildContext context, UserMahasiswaState state) {
+    if (state.error != null) {
+      Fluttertoast.showToast(
+          msg: "${state.error!['content']}",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+
+      return Text('Loading');
+    }
+
+    return Text(
+      '${state.data!.nama!.value}',
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  Widget getErrorNim(BuildContext context, UserMahasiswaState state) {
+    if (state.error != null) {
+      Fluttertoast.showToast(
+          msg: "${state.error!['content']}",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+
+      return Text('Loading');
+    }
+
+    return Text(
+      '${state.data!.nim!.value}',
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+    );
+  }
+}
+
+Widget getErrorPhoto(BuildContext context, UserMahasiswaPhotoState state) {
+  if (state.error != null) {
+    Fluttertoast.showToast(
+        msg: "${state.error!['content']}",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+
+    return CircleAvatar(
+      radius: 30,
+      backgroundColor: Colors.grey,
+    );
+  }
+
+  return CircleAvatar(
+    radius: 30,
+    backgroundImage: NetworkImage('https://portal.ulm.ac.id/uploads/${state.data!.foto}'),
+  );
 }
