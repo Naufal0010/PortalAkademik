@@ -6,6 +6,7 @@ import 'package:portal_akademik/model/model_user_mahasiswa.dart';
 class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   UserModelMahasiswa? data;
   Map<String, dynamic>? error;
+  bool isLoading = true;
 
   UserMahasiswaState() {
     initData();
@@ -15,8 +16,10 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
     final res = await LoginRepository().getUser();
     if (res.code == CODE.SUCCESS) {
       data = UserModelMahasiswa.fromMap(res.data);
+      isLoading = false;
       notifyListeners();
     } else {
+      isLoading = false;
       error = res.message;
       notifyListeners();
     }
@@ -25,6 +28,7 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   Future<void> refreshData() async {
     error = null;
     data = null;
+    isLoading = true;
     notifyListeners();
     initData();
   }

@@ -5,6 +5,7 @@ import 'package:portal_akademik/states/state_user_mahasiswa_photo.dart';
 import 'package:portal_akademik/util/icon_button.dart';
 import 'package:portal_akademik/util/jadwal_item.dart';
 import 'package:portal_akademik/util/label_sub_header.dart';
+import 'package:portal_akademik/widget/shimmer_widget.dart';
 
 final List<String> imgList = [
   'assets/images/berakhlak.png',
@@ -55,6 +56,8 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int _currentIndexSlider = 0;
+  bool isLoading = false;
+
   final CarouselController _controller = CarouselController();
 
   @override
@@ -63,155 +66,167 @@ class _DashboardPageState extends State<DashboardPage> {
     UserMahasiswaState userMahasiswa = Provider.of<UserMahasiswaState>(context, listen: true);
     UserMahasiswaPhotoState userMahasiswaPhoto = Provider.of<UserMahasiswaPhotoState>(context, listen: true);
 
+    Future<void> refresh() {
+      userMahasiswa.refreshData();
+      return userMahasiswaPhoto.refreshData();
+    }
+
     return SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 80.0,
-              padding: EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Color(0xFFFF9F43),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Flexible(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            userMahasiswa.data == null ? '' : userMahasiswa.data!.nama!.value,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+      child: RefreshIndicator(
+        onRefresh: refresh,
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 80.0,
+                padding: EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Color(0xFFFF9F43),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Flexible(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            userMahasiswa.isLoading ? ShimmerWidget(height: 25,) :
+                            Text(
+                               '${userMahasiswa.data!.nama!.value}',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                          Text(
-                            '${userMahasiswa.data!.nim!.value}',
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xffFFE8D1),
+                            userMahasiswa.isLoading ? ShimmerWidget(height: 15,) :
+                            Text(
+                              '${userMahasiswa.data!.nim!.value}',
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xffFFE8D1),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      SizedBox(width: 30,),
+                      userMahasiswaPhoto.isLoading ? ShimmerWidget(borderRadius: BorderRadius.circular(30.0), height: 50, width: 50,) :
+                      CircleAvatar(
+                        radius: 30,
+                        backgroundImage: NetworkImage('https://portal.ulm.ac.id/uploads/${userMahasiswaPhoto.data!.foto}'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 24, bottom: 10),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButtonCustom('Rencana', Icons.school),
+                        IconButtonCustom('Rekap ', Icons.insert_chart),
+                        IconButtonCustom('Riwayat', Icons.assignment),
+                        IconButtonCustom('Kalender', Icons.calendar_today)
+                      ],
                     ),
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage('https://portal.ulm.ac.id/uploads/${userMahasiswaPhoto.data!.foto}'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButtonCustom('Jadwal', Icons.schedule),
+                        IconButtonCustom('Perkuliahan ', Icons.class_),
+                        IconButtonCustom('Ujian', Icons.task),
+                        IconButtonCustom('Kuesioner', Icons.star)
+                      ],
                     ),
                   ],
                 ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: 24, bottom: 10),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              LabelSubHeader('Jadwal Hari Ini'),
+              Container(
+                child: SizedBox(
+                  height: 150,
+                  child: ListView(
                     children: [
-                      IconButtonCustom('Rencana', Icons.school),
-                      IconButtonCustom('Rekap ', Icons.insert_chart),
-                      IconButtonCustom('Riwayat', Icons.assignment),
-                      IconButtonCustom('Kalender', Icons.calendar_today)
+                      CarouselSlider(
+                        items: [
+                          JadwalItem(
+                              'JFH63',
+                              'Manajemen Proyek',
+                              'Ruang Kuliah II.3.1',
+                              'Mohammad Reza Faisal',
+                              'Rudy Herteno',
+                              '08:00'),
+                          JadwalItem(
+                              'JFH63',
+                              'Manajemen Proyek',
+                              'Ruang Kuliah II.3.1',
+                              'Mohammad Reza Faisal',
+                              'Rudy Herteno',
+                              '08:00'),
+                          JadwalItem(
+                              'JFH63',
+                              'Manajemen Proyek',
+                              'Ruang Kuliah II.3.1',
+                              'Mohammad Reza Faisal',
+                              'Rudy Herteno',
+                              '08:00'),
+                        ],
+                        options: CarouselOptions(
+                          height: 150.0,
+                          enlargeCenterPage: true,
+                          autoPlay: false,
+                          aspectRatio: 16 / 9,
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enableInfiniteScroll: false,
+                          autoPlayAnimationDuration:
+                          const Duration(milliseconds: 800),
+                          viewportFraction: 0.8,
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButtonCustom('Jadwal', Icons.schedule),
-                      IconButtonCustom('Perkuliahan ', Icons.class_),
-                      IconButtonCustom('Ujian', Icons.task),
-                      IconButtonCustom('Kuesioner', Icons.star)
-                    ],
-                  ),
-                ],
+                ),
               ),
-            ),
-            LabelSubHeader('Jadwal Hari Ini'),
-            Container(
-              child: SizedBox(
-                height: 150,
-                child: ListView(
+              LabelSubHeader('Informasi'),
+              Container(
+                child: Column(
                   children: [
                     CarouselSlider(
-                      items: [
-                        JadwalItem(
-                            'JFH63',
-                            'Manajemen Proyek',
-                            'Ruang Kuliah II.3.1',
-                            'Mohammad Reza Faisal',
-                            'Rudy Herteno',
-                            '08:00'),
-                        JadwalItem(
-                            'JFH63',
-                            'Manajemen Proyek',
-                            'Ruang Kuliah II.3.1',
-                            'Mohammad Reza Faisal',
-                            'Rudy Herteno',
-                            '08:00'),
-                        JadwalItem(
-                            'JFH63',
-                            'Manajemen Proyek',
-                            'Ruang Kuliah II.3.1',
-                            'Mohammad Reza Faisal',
-                            'Rudy Herteno',
-                            '08:00'),
-                      ],
+                      items: imageSliders,
+                      carouselController: _controller,
                       options: CarouselOptions(
-                        height: 150.0,
-                        enlargeCenterPage: true,
-                        autoPlay: false,
-                        aspectRatio: 16 / 9,
-                        autoPlayCurve: Curves.fastOutSlowIn,
-                        enableInfiniteScroll: false,
-                        autoPlayAnimationDuration:
-                        const Duration(milliseconds: 800),
-                        viewportFraction: 0.8,
-                      ),
-                    ),
+                          autoPlay: false,
+                          enlargeCenterPage: true,
+                          aspectRatio: 2.0,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              _currentIndexSlider = index;
+                            });
+                          }),
+                    )
                   ],
                 ),
-              ),
-            ),
-            LabelSubHeader('Informasi'),
-            Container(
-              child: Column(
-                children: [
-                  CarouselSlider(
-                    items: imageSliders,
-                    carouselController: _controller,
-                    options: CarouselOptions(
-                        autoPlay: false,
-                        enlargeCenterPage: true,
-                        aspectRatio: 2.0,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _currentIndexSlider = index;
-                          });
-                        }),
-                  )
-                ],
-              ),
-            )
+              )
 
-          ],
+            ],
+          ),
         ),
       ),
     );

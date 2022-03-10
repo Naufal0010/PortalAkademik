@@ -6,6 +6,7 @@ import 'package:portal_akademik/model/model_user_photo.dart';
 class UserMahasiswaPhotoState with ChangeNotifier, DiagnosticableTreeMixin {
   UserPhotoMahasiswa? data;
   Map<String, dynamic>? error;
+  bool isLoading = true;
 
   UserMahasiswaPhotoState() {
     initData();
@@ -15,8 +16,10 @@ class UserMahasiswaPhotoState with ChangeNotifier, DiagnosticableTreeMixin {
     final res = await LoginRepository().getUserPhoto();
     if (res.code == CODE.SUCCESS) {
       data = UserPhotoMahasiswa.fromMap(res.data);
+      isLoading = false;
       notifyListeners();
     } else {
+      isLoading = false;
       error = res.message;
       notifyListeners();
     }
@@ -25,6 +28,7 @@ class UserMahasiswaPhotoState with ChangeNotifier, DiagnosticableTreeMixin {
   Future<void> refreshData() async {
     error = null;
     data = null;
+    isLoading = true;
     notifyListeners();
     initData();
   }
