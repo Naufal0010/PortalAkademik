@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/states/state.dart';
+import 'package:portal_akademik/states/state_user_mahasiswa_photo.dart';
 import 'package:portal_akademik/util/icon_button.dart';
 import 'package:portal_akademik/util/jadwal_item.dart';
 import 'package:portal_akademik/util/label_sub_header.dart';
@@ -60,6 +61,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
 
     UserMahasiswaState userMahasiswa = Provider.of<UserMahasiswaState>(context, listen: true);
+    UserMahasiswaPhotoState userMahasiswaPhoto = Provider.of<UserMahasiswaPhotoState>(context, listen: true);
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -108,12 +110,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                     CircleAvatar(
                       radius: 30,
-                      backgroundColor: Color(0xff0073AC),
-                      child: CircleAvatar(
-                        radius: 27,
-                        // backgroundImage:
-                        // AssetImage('assets/images/image_profile.jpg'),
-                      ),
+                      backgroundImage: NetworkImage('https://portal.ulm.ac.id/uploads/${userMahasiswaPhoto.data!.foto}'),
                     ),
                   ],
                 ),

@@ -11,7 +11,6 @@ class AuthState with ChangeNotifier {
   bool isLogged = false;
   bool isLoading = false;
   bool showPassword = false;
-  // UserIntegrasiModel userIntegrasi;
   Map<String, dynamic>? error;
 
   AuthState() {
@@ -29,11 +28,11 @@ class AuthState with ChangeNotifier {
         isLogged = false;
       }
 
-      UtilLogger.log('LOGGIN ?', isLogged);
+      UtilLogger.log('Login: ', isLogged);
 
       notifyListeners();
     } catch (e) {
-      UtilLogger.log('ADA ERROR CUY', e);
+      UtilLogger.log('Error: ', e);
       notifyListeners();
     }
   }

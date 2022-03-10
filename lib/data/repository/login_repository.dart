@@ -6,7 +6,6 @@ import 'package:portal_akademik/util/api/consumer.dart';
 import 'package:portal_akademik/util/service/util_preference.dart';
 
 class LoginRepository {
-
   String? username = UtilPreferences.getString('username');
 
   static ApiConsumer consumer = ApiConsumer(
@@ -19,10 +18,11 @@ class LoginRepository {
       apiTimeout: 20);
 
   Future<ApiModel> getUser() async {
+    return await consumer.execute(url: '/akademik/mahasiswa/profil/$username');
+  }
 
-    return await consumer
-        .limit(20)
-        .orderBy({'tanggal': 'DESC'}).execute(url: '/akademik/mahasiswa/profil/$username');
+  Future<ApiModel> getUserPhoto() async {
+    return await consumer.execute(url: '/mahasiswa/$username');
   }
 
   /*
