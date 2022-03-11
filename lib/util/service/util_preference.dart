@@ -86,7 +86,7 @@ class UtilPreferences {
     if (accessToken != null) {
       Application.preferences?.setString(Preferences.accessToken, accessToken);
       UtilLogger.log(
-          'Acess token', UtilPreferences.getString(Preferences.accessToken));
+          'Access token', UtilPreferences.getString(Preferences.accessToken));
     }
 
     if (refreshToken != null) {

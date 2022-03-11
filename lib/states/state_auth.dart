@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:portal_akademik/config/preference.dart';
-import 'package:portal_akademik/data/repository/login_repository.dart';
+import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
 import 'package:portal_akademik/model/model_token.dart';
 import 'package:portal_akademik/util/api/jwt_decode.dart';
@@ -38,7 +38,7 @@ class AuthState with ChangeNotifier {
   }
 
   auth(String? username, String? password) async {
-    final auth = await LoginRepository().auth(username, password);
+    final auth = await NetworkRepository().auth(username, password);
 
     if (auth.code == CODE.SUCCESS) {
       Token token = Token.fromJson(parseJwt(auth.data['accessToken']));

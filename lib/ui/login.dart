@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
 
-    AuthState authState = Provider.of<AuthState>(context, listen: true);
+      AuthState authState = Provider.of<AuthState>(context, listen: true);
 
     return SafeArea(
       child: Scaffold(

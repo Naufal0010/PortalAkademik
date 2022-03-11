@@ -5,7 +5,7 @@ import 'package:portal_akademik/model/model_api.dart';
 import 'package:portal_akademik/util/api/consumer.dart';
 import 'package:portal_akademik/util/service/util_preference.dart';
 
-class LoginRepository {
+class NetworkRepository {
   String? username = UtilPreferences.getString('username');
 
   static ApiConsumer consumer = ApiConsumer(
@@ -17,12 +17,12 @@ class LoginRepository {
       // apiToken: UtilPreferences.getString(Preferences.accessToken),
       apiTimeout: 20);
 
-  Future<ApiModel> getUser() async {
+  Future<ApiModel> getUserEditable() async {
     return await consumer.execute(url: '/akademik/mahasiswa/profil/$username');
   }
 
-  Future<ApiModel> getUserPhoto() async {
-    return await consumer.execute(url: '/mahasiswa/$username');
+  Future<ApiModel> getUser() async {
+    return await consumer.execute(url: '/mahasiswa/$username?with[]=prodi');
   }
 
   /*
@@ -48,11 +48,11 @@ class LoginRepository {
   }
 
   ///Singleton factory
-  static final LoginRepository _instance = LoginRepository._internal();
+  static final NetworkRepository _instance = NetworkRepository._internal();
 
-  factory LoginRepository() {
+  factory NetworkRepository() {
     return _instance;
   }
 
-  LoginRepository._internal();
+  NetworkRepository._internal();
 }

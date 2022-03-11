@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:path/path.dart' as p;
 
 class MultipartFileExtended extends MultipartFile {
   final String filePath; //this one!
@@ -29,7 +28,6 @@ MultipartFileExtended multipartFileFromPathSync(
       required String filename,
       required MediaType contentType,
     }) {
-  filename ??= p.basename(filePath);
   var file = File(filePath);
   var length = file.lengthSync();
   var stream = file.openRead();

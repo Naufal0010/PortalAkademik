@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:portal_akademik/data/repository/login_repository.dart';
+import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/util/service/util_preference.dart';
 
 
@@ -9,7 +9,7 @@ class CustomInterceptors extends Interceptor {
 
   Future _refreshMethod(
       Response response, ResponseInterceptorHandler handler) async {
-    var token = await LoginRepository().refreshToken();
+    var token = await NetworkRepository().refreshToken();
     String newAccessToken = token;
 
     // Break jika refresh token expired

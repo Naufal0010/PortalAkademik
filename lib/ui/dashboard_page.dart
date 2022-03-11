@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_photo.dart';
 import 'package:portal_akademik/util/icon_button.dart';
 import 'package:portal_akademik/util/jadwal_item.dart';
 import 'package:portal_akademik/util/label_sub_header.dart';
@@ -65,12 +64,10 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     UserMahasiswaState userMahasiswa =
         Provider.of<UserMahasiswaState>(context, listen: true);
-    UserMahasiswaPhotoState userMahasiswaPhoto =
-        Provider.of<UserMahasiswaPhotoState>(context, listen: true);
 
     Future<void> refresh() {
       userMahasiswa.refreshData();
-      return userMahasiswaPhoto.refreshData();
+      return userMahasiswa.refreshData();
     }
 
     return SafeArea(
@@ -115,13 +112,13 @@ class _DashboardPageState extends State<DashboardPage> {
                       SizedBox(
                         width: 30,
                       ),
-                      userMahasiswaPhoto.isLoading
+                      userMahasiswa.isLoading
                           ? ShimmerWidget(
                               borderRadius: BorderRadius.circular(30.0),
                               height: 50,
                               width: 50,
                             )
-                          : getErrorPhoto(context, userMahasiswaPhoto)
+                          : getErrorPhoto(context, userMahasiswa)
                     ],
                   ),
                 ),

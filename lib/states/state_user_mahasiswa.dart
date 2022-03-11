@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:portal_akademik/data/repository/login_repository.dart';
+import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
 import 'package:portal_akademik/model/model_user_mahasiswa.dart';
 
@@ -13,7 +13,7 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   Future<void> initData() async {
-    final res = await LoginRepository().getUser();
+    final res = await NetworkRepository().getUser();
     if (res.code == CODE.SUCCESS) {
       data = UserModelMahasiswa.fromMap(res.data);
       isLoading = false;

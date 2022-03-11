@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_photo.dart';
 
 Widget getErrorName(BuildContext context, UserMahasiswaState state) {
   if (state.error != null) {
@@ -19,7 +18,7 @@ Widget getErrorName(BuildContext context, UserMahasiswaState state) {
   }
 
   return Text(
-    '${state.data!.nama!.value}',
+    '${state.data!.nama}',
     overflow: TextOverflow.ellipsis,
     maxLines: 1,
     style: TextStyle(
@@ -46,7 +45,7 @@ Widget getErrorNim(BuildContext context, UserMahasiswaState state) {
   }
 
   return Text(
-    '${state.data!.nim!.value}',
+    '${state.data!.nim} - ${state.data!.prodi!.jenjang} ${state.data!.prodi!.nama}',
     overflow: TextOverflow.ellipsis,
     maxLines: 1,
     style: TextStyle(
@@ -57,7 +56,7 @@ Widget getErrorNim(BuildContext context, UserMahasiswaState state) {
   );
 }
 
-Widget getErrorPhoto(BuildContext context, UserMahasiswaPhotoState state) {
+Widget getErrorPhoto(BuildContext context, UserMahasiswaState state) {
   if (state.error != null) {
     Fluttertoast.showToast(
         msg: "${state.error!['content']}",
