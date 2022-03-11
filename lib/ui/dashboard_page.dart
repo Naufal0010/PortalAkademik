@@ -5,8 +5,8 @@ import 'package:portal_akademik/states/state_user_mahasiswa_photo.dart';
 import 'package:portal_akademik/util/icon_button.dart';
 import 'package:portal_akademik/util/jadwal_item.dart';
 import 'package:portal_akademik/util/label_sub_header.dart';
+import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 final List<String> imgList = [
   'assets/images/berakhlak.png',
@@ -16,36 +16,36 @@ final List<String> imgList = [
 
 final List<Widget> imageSliders = imgList
     .map((item) => Container(
-  child: Container(
-    margin: EdgeInsets.all(5.0),
-    child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-        child: Stack(
-          children: <Widget>[
-            Image.asset(item, fit: BoxFit.cover, width: 1000.0),
-            Positioned(
-              bottom: 0.0,
-              left: 0.0,
-              right: 0.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(200, 0, 0, 0),
-                      Color.fromARGB(0, 0, 0, 0)
-                    ],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                  ),
-                ),
-                padding: EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 20.0),
-              ),
-            ),
-          ],
-        )),
-  ),
-))
+          child: Container(
+            margin: EdgeInsets.all(5.0),
+            child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                child: Stack(
+                  children: <Widget>[
+                    Image.asset(item, fit: BoxFit.cover, width: 1000.0),
+                    Positioned(
+                      bottom: 0.0,
+                      left: 0.0,
+                      right: 0.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(200, 0, 0, 0),
+                              Color.fromARGB(0, 0, 0, 0)
+                            ],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                          ),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 20.0),
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        ))
     .toList();
 
 class DashboardPage extends StatefulWidget {
@@ -63,9 +63,10 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    UserMahasiswaState userMahasiswa = Provider.of<UserMahasiswaState>(context, listen: true);
-    UserMahasiswaPhotoState userMahasiswaPhoto = Provider.of<UserMahasiswaPhotoState>(context, listen: true);
+    UserMahasiswaState userMahasiswa =
+        Provider.of<UserMahasiswaState>(context, listen: true);
+    UserMahasiswaPhotoState userMahasiswaPhoto =
+        Provider.of<UserMahasiswaPhotoState>(context, listen: true);
 
     Future<void> refresh() {
       userMahasiswa.refreshData();
@@ -97,16 +98,29 @@ class _DashboardPageState extends State<DashboardPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            userMahasiswa.isLoading ? ShimmerWidget(height: 25,) :
-                            getErrorName(context, userMahasiswa),
-                            userMahasiswa.isLoading ? ShimmerWidget(height: 15,) :
-                            getErrorNim(context, userMahasiswa),
+                            userMahasiswa.isLoading
+                                ? ShimmerWidget(
+                                    height: 25,
+                                  )
+                                : getErrorName(context, userMahasiswa),
+                            userMahasiswa.isLoading
+                                ? ShimmerWidget(
+                                    height: 15,
+                                  )
+                                : getErrorNim(context, userMahasiswa),
                           ],
                         ),
                       ),
-                      SizedBox(width: 30,),
-                      userMahasiswaPhoto.isLoading ? ShimmerWidget(borderRadius: BorderRadius.circular(30.0), height: 50, width: 50,) :
-                      getErrorPhoto(context, userMahasiswaPhoto)
+                      SizedBox(
+                        width: 30,
+                      ),
+                      userMahasiswaPhoto.isLoading
+                          ? ShimmerWidget(
+                              borderRadius: BorderRadius.circular(30.0),
+                              height: 50,
+                              width: 50,
+                            )
+                          : getErrorPhoto(context, userMahasiswaPhoto)
                     ],
                   ),
                 ),
@@ -177,7 +191,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           autoPlayCurve: Curves.fastOutSlowIn,
                           enableInfiniteScroll: false,
                           autoPlayAnimationDuration:
-                          const Duration(milliseconds: 800),
+                              const Duration(milliseconds: 800),
                           viewportFraction: 0.8,
                         ),
                       ),
@@ -205,89 +219,10 @@ class _DashboardPageState extends State<DashboardPage> {
                   ],
                 ),
               )
-
             ],
           ),
         ),
       ),
     );
   }
-
-  Widget getErrorName(BuildContext context, UserMahasiswaState state) {
-    if (state.error != null) {
-      Fluttertoast.showToast(
-          msg: "${state.error!['content']}",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-
-      return Text('Loading');
-    }
-
-    return Text(
-      '${state.data!.nama!.value}',
-      overflow: TextOverflow.ellipsis,
-      maxLines: 1,
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-    );
-  }
-
-  Widget getErrorNim(BuildContext context, UserMahasiswaState state) {
-    if (state.error != null) {
-      Fluttertoast.showToast(
-          msg: "${state.error!['content']}",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-
-      return Text('Loading');
-    }
-
-    return Text(
-      '${state.data!.nim!.value}',
-      overflow: TextOverflow.ellipsis,
-      maxLines: 1,
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-    );
-  }
-}
-
-Widget getErrorPhoto(BuildContext context, UserMahasiswaPhotoState state) {
-  if (state.error != null) {
-    Fluttertoast.showToast(
-        msg: "${state.error!['content']}",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0
-    );
-
-    return CircleAvatar(
-      radius: 30,
-      backgroundColor: Colors.grey,
-    );
-  }
-
-  return CircleAvatar(
-    radius: 30,
-    backgroundImage: NetworkImage('https://portal.ulm.ac.id/uploads/${state.data!.foto}'),
-  );
 }
