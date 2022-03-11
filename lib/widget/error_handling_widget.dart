@@ -71,11 +71,12 @@ Widget getErrorPhoto(BuildContext context, UserMahasiswaState state) {
     return CircleAvatar(
       radius: 30,
       backgroundColor: Colors.grey,
+      foregroundColor: Colors.grey,
     );
   }
 
   return CircleAvatar(
-    radius: 30,
+    radius: 25,
     backgroundImage: NetworkImage('https://portal.ulm.ac.id/uploads/${state.data!.foto}'),
   );
 }
