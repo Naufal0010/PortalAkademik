@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:portal_akademik/config/preference.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
-import 'package:portal_akademik/model/model_token.dart';
-import 'package:portal_akademik/util/api/jwt_decode.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 import 'package:portal_akademik/util/service/util_preference.dart';
 
@@ -41,17 +41,30 @@ class AuthState with ChangeNotifier {
     final auth = await NetworkRepository().auth(username, password);
 
     if (auth.code == CODE.SUCCESS) {
-      Token token = Token.fromJson(parseJwt(auth.data['accessToken']));
-      
+
       UtilPreferences.setToken(
           accessToken: auth.data['accessToken'],
           refreshToken: auth.data['refreshToken']);
       
       UtilPreferences.setUser(
-        username: token.user?.username
+        username: username
       );
 
+      UtilLogger.log('Username', UtilPreferences.getString('username'));
+
       isLogged = true;
+      notifyListeners();
+    } else {
+      Fluttertoast.showToast(
+          msg: "Username atau password salah!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      error = auth;
       notifyListeners();
     }
   }

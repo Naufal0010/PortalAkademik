@@ -6,6 +6,7 @@ import 'package:portal_akademik/util/api/consumer.dart';
 import 'package:portal_akademik/util/service/util_preference.dart';
 
 class NetworkRepository {
+
   String? username = UtilPreferences.getString('username');
 
   static ApiConsumer consumer = ApiConsumer(
@@ -26,7 +27,7 @@ class NetworkRepository {
   }
 
   /*
-   * Refresh token jika acces token expired
+   * Refresh token jika access token expired
    */
   Future refreshToken() async {
     FormData formData = FormData.fromMap({
@@ -46,13 +47,4 @@ class NetworkRepository {
   Future auth(String? username, String? password) async {
     return await consumer.auth(username: username, password: password);
   }
-
-  ///Singleton factory
-  static final NetworkRepository _instance = NetworkRepository._internal();
-
-  factory NetworkRepository() {
-    return _instance;
-  }
-
-  NetworkRepository._internal();
 }

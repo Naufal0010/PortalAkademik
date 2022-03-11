@@ -26,7 +26,6 @@ class _LoginState extends State<Login> {
 
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Container(
             constraints: BoxConstraints(
@@ -97,7 +96,7 @@ class _LoginState extends State<Login> {
                                   decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius:
-                                            BorderRadius.circular(8.0),
+                                        BorderRadius.circular(8.0),
                                         borderSide: BorderSide.none,
                                       ),
                                       filled: true,
