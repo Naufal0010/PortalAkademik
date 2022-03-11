@@ -77,6 +77,7 @@ class _DashboardPageState extends State<DashboardPage> {
       child: RefreshIndicator(
         onRefresh: refresh,
         child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
