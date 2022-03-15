@@ -5,6 +5,7 @@ import 'package:portal_akademik/states/state_auth.dart';
 import 'package:portal_akademik/util/button_profile.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 import 'package:portal_akademik/util/label_sub_header.dart';
+import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -16,8 +17,21 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-
     AuthState authState = Provider.of<AuthState>(context, listen: true);
+
+    SimpleFontelicoProgressDialog _dialog =
+        SimpleFontelicoProgressDialog(context: context, barrierDimisable: true);
+
+    void logout() async {
+      _dialog.show(
+          message: 'Loading...',
+          type: SimpleFontelicoProgressDialogType.normal,
+          indicatorColor: ColorPallete.primary);
+      await Future.delayed(Duration(seconds: 1));
+      authState.logout();
+      Navigator.of(context).pop();
+      _dialog.hide();
+    }
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -30,22 +44,23 @@ class _ProfilePageState extends State<ProfilePage> {
             ButtonProfile('Pengaturan', Icons.settings, () {}),
             ButtonProfile('Bantuan', Icons.help_outline, () {}),
             ButtonProfile('Keluar', Icons.logout, () {
-              showAnimatedDialog(context: context, builder: (BuildContext context)  {
-                return ClassicGeneralDialogWidget(
-                  titleText: 'Keluar',
-                  contentText: 'Ingin keluar dari akun portal akademik?',
-                  negativeText: 'Tidak',
-                  positiveText: 'Ya',
-                  positiveTextStyle: TextStyle(color: ColorPallete.primary),
-                  onPositiveClick: () {
-                    authState.logout();
-                    Navigator.of(context).pop();
-                  },
-                  onNegativeClick: () {
-                    Navigator.of(context).pop();
-                  },
-                );
-              });
+              showAnimatedDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ClassicGeneralDialogWidget(
+                      titleText: 'Keluar',
+                      contentText: 'Ingin keluar dari akun portal akademik?',
+                      negativeText: 'Tidak',
+                      positiveText: 'Ya',
+                      positiveTextStyle: TextStyle(color: ColorPallete.primary),
+                      onPositiveClick: () {
+                        logout();
+                      },
+                      onNegativeClick: () {
+                        Navigator.of(context).pop();
+                      },
+                    );
+                  });
             }),
           ],
         ),
