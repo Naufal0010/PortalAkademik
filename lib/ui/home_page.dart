@@ -91,7 +91,7 @@ class _HomePage extends State<HomePage> {
               activeColor: Colors.white70,
               inactiveColor: Colors.white),
           BottomNavyBarItem(
-              icon: Icon(Icons.people_rounded),
+              icon: Icon(Icons.playlist_add_check),
               title: Text('Presensi'),
               activeColor: Colors.white70,
               inactiveColor: Colors.white),

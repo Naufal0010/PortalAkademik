@@ -1,41 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/states/state.dart';
+import 'package:portal_akademik/states/state_user_mahasiswa_khs_semester.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 import 'package:portal_akademik/util/label_sub_header.dart';
 import 'package:portal_akademik/util/line_chart_widget.dart';
 
 class HasilStudiPage extends StatefulWidget {
-
   @override
   _HasilStudiPageState createState() => _HasilStudiPageState();
 }
 
 class _HasilStudiPageState extends State<HasilStudiPage> {
-  String _valSemester = 'Semester 1';
+  String _valSemester = '20201';
 
-  List _listSemester = [
-    "Semester 1",
-    "Semester 2",
-    "Semester 3",
-    "Semester 4",
-    "Semester 5",
-    "Semester 6",
-    "Semester 7",
-    "Semester 8"
-  ];
-
-  final List<Map> _mataKuliah = [
-    {'nilai': 'A', 'nama': 'Bahasa Pemograman'},
-    {'nilai': 'A', 'nama': 'Statistika'},
-    {'nilai': 'A', 'nama': 'Matematika Diskret'},
-    {'nilai': 'A', 'nama': 'Riset Operasi'},
-    {'nilai': 'A', 'nama': 'Menejemen Resiko'},
-    {'nilai': 'A', 'nama': 'Strategi Sistem'},
-    {'nilai': 'A', 'nama': 'Big Data'},
-    {'nilai': 'A', 'nama': 'Keamanan Informasi'}
-  ];
+  // List _listSemester = [
+  //   {
+  //     "semId": "20201",
+  //     "semTahun": "2020",
+  //     "semNama": "Ganjil 2020/2021",
+  //     "semAktif": null
+  //   },
+  //   {
+  //     "semId": "20192",
+  //     "semTahun": "2019",
+  //     "semNama": "Genap 2019/2020 (Sedang berlangsung)",
+  //     "semAktif": "20192"
+  //   },
+  //   {
+  //     "semId": "20191",
+  //     "semTahun": "2019",
+  //     "semNama": "Ganjil 2019/2020",
+  //     "semAktif": null
+  //   }
+  // ];
 
   @override
   Widget build(BuildContext context) {
+    UserMahasiswaKhsSemesterState user =
+        Provider.of<UserMahasiswaKhsSemesterState>(context, listen: true);
+
     return SafeArea(
       child: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -43,7 +46,9 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             LabelSubHeader('Statistik Indeks Prestasi'),
-            SizedBox(height: 6,),
+            SizedBox(
+              height: 6,
+            ),
             Container(
               height: 150,
               width: MediaQuery.of(context).size.width,
@@ -63,24 +68,28 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                       color: Color(0xff020202),
                     ),
                   ),
-                  ButtonTheme(
-                    alignedDropdown: true,
-                    child: DropdownButton(
-                      hint: Text("Pilih Semester"),
-                      icon: Icon(Icons.keyboard_arrow_down),
-                      iconSize: 28,
-                      value: _valSemester,
-                      items: _listSemester.map((value) {
-                        return DropdownMenuItem(
-                          child: Text(value),
-                          value: value,
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          _valSemester = value.toString();
-                        });
-                      },
+                  SizedBox(
+                    width: 210,
+                    child: ButtonTheme(
+                      alignedDropdown: true,
+                      child: DropdownButton(
+                        isExpanded: true,
+                        hint: Text("Pilih Semester", ),
+                        icon: Icon(Icons.keyboard_arrow_down),
+                        iconSize: 28,
+                        value: _valSemester,
+                        items: user.data?.data?.map((value) {
+                          return DropdownMenuItem(
+                            child: Text(value.semNama!, overflow: TextOverflow.ellipsis,),
+                            value: value.semId,
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _valSemester = value.toString();
+                          });
+                        },
+                      ),
                     ),
                   )
                 ],
@@ -104,8 +113,8 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                   TableRow(
                     decoration: BoxDecoration(
                         color: ColorPallete.primary,
-                        border: Border.all(
-                            width: 1, color: ColorPallete.primary),
+                        border:
+                            Border.all(width: 1, color: ColorPallete.primary),
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10.0),
                             topRight: Radius.circular(10.0))),
@@ -317,7 +326,8 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
     );
   }
 
-  TableRow TableRowItem(String name, String nilai, String nilaiHuruf, String bobot) {
+  TableRow TableRowItem(
+      String name, String nilai, String nilaiHuruf, String bobot) {
     return TableRow(
       children: [
         Padding(

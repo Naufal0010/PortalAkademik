@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/states/state_auth.dart';
+import 'package:portal_akademik/util/color_pallete.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -21,8 +23,20 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    AuthState authState = Provider.of<AuthState>(context, listen: true);
 
-      AuthState authState = Provider.of<AuthState>(context, listen: true);
+    SimpleFontelicoProgressDialog _dialog =
+        SimpleFontelicoProgressDialog(context: context, barrierDimisable: true);
+
+    void login() async {
+      _dialog.show(
+          message: 'Loading...',
+          type: SimpleFontelicoProgressDialogType.normal,
+          indicatorColor: ColorPallete.primary);
+      await Future.delayed(Duration(seconds: 1));
+      authState.auth(usernameController.text, passwordController.text);
+      _dialog.hide();
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -96,7 +110,7 @@ class _LoginState extends State<Login> {
                                   decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius:
-                                        BorderRadius.circular(8.0),
+                                            BorderRadius.circular(8.0),
                                         borderSide: BorderSide.none,
                                       ),
                                       filled: true,
@@ -128,7 +142,7 @@ class _LoginState extends State<Login> {
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 onPressed: () {
-                                  authState.auth(usernameController.text, passwordController.text);
+                                  login();
                                 },
                                 style: ElevatedButton.styleFrom(
                                     fixedSize: Size(330, 50),

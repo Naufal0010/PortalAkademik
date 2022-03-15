@@ -9,7 +9,7 @@ import 'package:portal_akademik/util/service/util_preference.dart';
 
 class AuthState with ChangeNotifier {
   bool isLogged = false;
-  bool isLoading = false;
+  bool isLoading = true;
   bool showPassword = false;
   Map<String, dynamic>? error;
 
@@ -41,7 +41,6 @@ class AuthState with ChangeNotifier {
     final auth = await NetworkRepository().auth(username, password);
 
     if (auth.code == CODE.SUCCESS) {
-
       UtilPreferences.setToken(
           accessToken: auth.data['accessToken'],
           refreshToken: auth.data['refreshToken']);
@@ -53,6 +52,7 @@ class AuthState with ChangeNotifier {
       UtilLogger.log('Username', UtilPreferences.getString('username'));
 
       isLogged = true;
+      isLoading = false;
       notifyListeners();
     } else {
       Fluttertoast.showToast(
@@ -64,6 +64,7 @@ class AuthState with ChangeNotifier {
           textColor: Colors.white,
           fontSize: 16.0
       );
+      isLoading = true;
       error = auth;
       notifyListeners();
     }
