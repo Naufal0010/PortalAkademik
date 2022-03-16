@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_khs_semester.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
-import 'package:portal_akademik/util/label_sub_header.dart';
-import 'package:portal_akademik/util/line_chart_widget.dart';
+import 'package:portal_akademik/widget/label_sub_header_widget.dart';
+import 'package:portal_akademik/widget/line_chart_widget.dart';
 
 class HasilStudiPage extends StatefulWidget {
   @override
@@ -50,11 +50,14 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
               height: 6,
             ),
             Container(
-              height: 150,
-              width: MediaQuery.of(context).size.width,
-              // color: Colors.amber,
-              child: LineChartWidget(),
+              child: Container(
+                height: 150,
+                width: MediaQuery.of(context).size.width,
+                // color: Colors.amber,
+                child: LineChartWidget(),
+              ),
             ),
+            SizedBox(height: 70),
             Container(
               margin: EdgeInsets.only(bottom: 10),
               child: Row(

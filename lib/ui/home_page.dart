@@ -70,37 +70,39 @@ class _HomePage extends State<HomePage> {
     //         : Brightness.dark));
     return Scaffold(
       body: listOfPage[currentIndex],
-      bottomNavigationBar: BottomNavyBar(
-        curve: Curves.easeInOutCirc,
-        backgroundColor: ColorPallete.primary,
-        selectedIndex: currentIndex,
-        onItemSelected: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: <BottomNavyBarItem>[
-          BottomNavyBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
-              activeColor: Colors.white70,
-              inactiveColor: Colors.white),
-          BottomNavyBarItem(
-              icon: const Icon(Icons.bar_chart),
-              title: const Text('Hasil Studi'),
-              activeColor: Colors.white70,
-              inactiveColor: Colors.white),
-          BottomNavyBarItem(
-              icon: Icon(Icons.playlist_add_check),
-              title: Text('Presensi'),
-              activeColor: Colors.white70,
-              inactiveColor: Colors.white),
-          BottomNavyBarItem(
-              icon: Icon(Icons.account_circle_rounded),
-              title: Text('Profile'),
-              activeColor: Colors.white70,
-              inactiveColor: Colors.white),
-        ],
+      bottomNavigationBar: SafeArea(
+        child: BottomNavyBar(
+          curve: Curves.easeInOutCirc,
+          backgroundColor: ColorPallete.primary,
+          selectedIndex: currentIndex,
+          onItemSelected: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          items: <BottomNavyBarItem>[
+            BottomNavyBarItem(
+                icon: Icon(Icons.home),
+                title: Text('Home'),
+                activeColor: Colors.white70,
+                inactiveColor: Colors.white),
+            BottomNavyBarItem(
+                icon: const Icon(Icons.bar_chart),
+                title: const Text('Hasil Studi'),
+                activeColor: Colors.white70,
+                inactiveColor: Colors.white),
+            BottomNavyBarItem(
+                icon: Icon(Icons.playlist_add_check),
+                title: Text('Presensi'),
+                activeColor: Colors.white70,
+                inactiveColor: Colors.white),
+            BottomNavyBarItem(
+                icon: Icon(Icons.account_circle_rounded),
+                title: Text('Profile'),
+                activeColor: Colors.white70,
+                inactiveColor: Colors.white),
+          ],
+        ),
       ),
     );
   }

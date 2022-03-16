@@ -11,7 +11,7 @@ class ButtonProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: OutlinedButton(
         style: ElevatedButton.styleFrom(
             side: BorderSide(color: ColorPallete.primary),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_khs_semester.dart';
 import 'package:portal_akademik/ui/home_page.dart';
-import 'package:portal_akademik/ui/login.dart';
+import 'package:portal_akademik/ui/login_page.dart';
 
 class App extends StatelessWidget {
   App({Key? key}) : super(key: key);
@@ -29,6 +29,9 @@ class App extends StatelessWidget {
               },
             ),
             onWillPop: onWillPop,
+          ),
+          theme: ThemeData(
+            fontFamily: 'Poppins'
           ),
         ),
       ),

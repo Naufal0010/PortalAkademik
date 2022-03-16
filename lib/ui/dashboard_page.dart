@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/util/icon_button.dart';
-import 'package:portal_akademik/util/jadwal_item.dart';
-import 'package:portal_akademik/util/label_sub_header.dart';
+import 'package:portal_akademik/widget/icon_button_widget.dart';
+import 'package:portal_akademik/widget/jadwal_item_widget.dart';
+import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 
