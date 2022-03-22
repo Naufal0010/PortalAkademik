@@ -24,12 +24,13 @@ dependencies:
   fluttertoast: ^8.0.9
   flutter_animated_dialog: ^2.0.1
   simple_fontellico_progress_dialog: ^0.2.1
+  flutter_html: ^2.2.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^2.0.1+1
   flutter_launcher_icons: ^0.9.2
+  flutter_native_splash: ^2.1.1
 
 flutter_icons:
   image_path: "assets/images/ulm_logo.png"
@@ -37,14 +38,13 @@ flutter_icons:
   ios: true
 
 flutter_native_splash:
-
+  image: assets/images/splash.png
+  color: "#FFFFFF"
+  # background_image: assets/images/background.png
+  fullscreen: true
   android: true
   ios: true
   web: false
-
-  color: "#FFFFFF"
-  # background_image:
-  image: "assets/images/ulm_logo.png"
 
 flutter:
 

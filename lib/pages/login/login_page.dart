@@ -146,7 +146,7 @@ class _LoginState extends State<Login> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                     fixedSize: Size(330, 50),
-                                    primary: Color(0xFFFF9F43),
+                                    primary: ColorPallete.primary,
                                     onPrimary: Colors.white),
                               ),
                             )

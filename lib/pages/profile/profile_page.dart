@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_auth.dart';
-import 'package:portal_akademik/widget/button_profile_widget.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
+import 'package:portal_akademik/widget/button_profile_widget.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 
@@ -39,7 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LabelSubHeader('Profile'),
+            LabelSubHeader('Profile', 24),
             ButtonProfile('Biodata', Icons.account_circle_rounded, () {}),
             ButtonProfile('Pengaturan', Icons.settings, () {}),
             ButtonProfile('Bantuan', Icons.help_outline, () {}),

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 
-class PresensiPage extends StatefulWidget {
-  const PresensiPage({Key? key}) : super(key: key);
+class EmptyPage extends StatelessWidget {
+  final text;
 
-  @override
-  _PresensiPageState createState() => _PresensiPageState();
-}
+  EmptyPage({this.text});
 
-class _PresensiPageState extends State<PresensiPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,7 +19,7 @@ class _PresensiPageState extends State<PresensiPage> {
                   width: 200.0,
                   height: 200.0,
                 ),
-                Text('Belum Mengambil Mata Kuliah'),
+                Text('Belum Mengambil $text'),
               ],
             ),
           ),

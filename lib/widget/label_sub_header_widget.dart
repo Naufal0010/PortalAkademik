@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class LabelSubHeader extends StatelessWidget {
   final String nameHeader;
+  final double fontSizeText;
 
-  LabelSubHeader(this.nameHeader);
+  LabelSubHeader(this.nameHeader, this.fontSizeText);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class LabelSubHeader extends StatelessWidget {
       child: Text(
         nameHeader,
         style: TextStyle(
-          fontSize: 20,
+          fontSize: fontSizeText,
           fontWeight: FontWeight.bold,
           color: Color(0xff020202),
         ),

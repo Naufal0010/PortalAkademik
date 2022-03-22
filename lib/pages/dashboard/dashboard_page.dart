@@ -144,14 +144,14 @@ class _DashboardPageState extends State<DashboardPage> {
                       children: [
                         IconButtonCustom('Jadwal', Icons.schedule),
                         IconButtonCustom('Perkuliahan ', Icons.class_),
-                        IconButtonCustom('Ujian', Icons.task),
+                        IconButtonCustom('Ujian Akhir', Icons.task),
                         IconButtonCustom('Kuesioner', Icons.star)
                       ],
                     ),
                   ],
                 ),
               ),
-              LabelSubHeader('Jadwal Hari Ini'),
+              LabelSubHeader('Jadwal Hari Ini', 20),
               Container(
                 child: SizedBox(
                   height: 150,
@@ -197,7 +197,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                 ),
               ),
-              LabelSubHeader('Informasi'),
+              LabelSubHeader('Informasi', 20),
               Container(
                 child: Column(
                   children: [
