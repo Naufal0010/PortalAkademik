@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:portal_akademik/pages/empty_page.dart';
 import 'package:portal_akademik/pages/presensi/component/presensi_list_tile.dart';
+import 'package:portal_akademik/pages/presensi/presensi_detail_page.dart';
 import 'package:portal_akademik/pages/presensi/presensi_page.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_matakuliah.dart';
@@ -103,8 +104,7 @@ Widget getErrorListPresensi(
         },
         child: Text('Refresh'),
         style: ElevatedButton.styleFrom(
-            primary: ColorPallete.primary,
-            onPrimary: Colors.white),
+            primary: ColorPallete.primary, onPrimary: Colors.white),
       ),
     );
   }
@@ -119,7 +119,13 @@ Widget getErrorListPresensi(
           return EmptyPage();
         } else {
           return PresensiListTile(
-            color: colors[index % colors.length], data: state.data!.data![index],);
+              color: colors[index % colors.length],
+              data: state.data!.data![index],
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        PresensiDetailPage(state.data!.data![index])));
+              });
         }
       },
     ),

@@ -6,8 +6,9 @@ import 'package:portal_akademik/util/color_pallete.dart';
 class PresensiListTile extends StatelessWidget {
   final Color color;
   final Datum data;
+  final Function() onTap;
 
-  PresensiListTile({required this.color, required this.data});
+  PresensiListTile({required this.color, required this.data, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class PresensiListTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(16.0),
           highlightColor: ColorPallete.primary,
           splashColor: ColorPallete.primary,
-          onTap: () {},
+          onTap: onTap,
           child: Ink(
             child: Container(
               child: Row(
