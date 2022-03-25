@@ -33,12 +33,12 @@ dev_dependencies:
   flutter_native_splash: ^2.1.1
 
 flutter_icons:
-  image_path: "assets/images/ulm_logo.png"
+  image_path: "assets/images/ulm_logo_hd.png"
   android: true
   ios: true
 
 flutter_native_splash:
-  image: assets/images/splash.png
+  image: assets/images/ulm_logo_hd.png
   color: "#FFFFFF"
   # background_image: assets/images/background.png
   fullscreen: true

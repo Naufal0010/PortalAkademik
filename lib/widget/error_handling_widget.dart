@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:portal_akademik/pages/empty_page.dart';
+import 'package:portal_akademik/pages/presensi/component/presensi_list_detail_tile.dart';
 import 'package:portal_akademik/pages/presensi/component/presensi_list_tile.dart';
 import 'package:portal_akademik/pages/presensi/presensi_detail_page.dart';
 import 'package:portal_akademik/pages/presensi/presensi_page.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_matakuliah.dart';
+import 'package:portal_akademik/states/state_user_mahasiswa_list_mk_presensi.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 
 Widget getErrorName(BuildContext context, UserMahasiswaState state) {
@@ -126,6 +128,54 @@ Widget getErrorListPresensi(
                     builder: (context) =>
                         PresensiDetailPage(state.data!.data![index])));
               });
+        }
+      },
+    ),
+  );
+}
+
+Widget getErrorListDetailPresensi(
+    BuildContext context, UserMahasiswaListMkPresensiState state) {
+  if (state.error != null) {
+    Fluttertoast.showToast(
+        msg: "${state.error!['content']}",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0);
+
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          state.refreshData();
+        },
+        child: Text('Refresh'),
+        style: ElevatedButton.styleFrom(
+            primary: ColorPallete.primary, onPrimary: Colors.white),
+      ),
+    );
+  }
+
+  if (state.data?.data?.length == null) {
+    return EmptyPage();
+  } else {
+    return Column(
+      children: state.data!.data!.map((e) => PresensiListDetailTile(data: e)).toList(),
+    );
+  }
+
+  return Expanded(
+    child: ListView.builder(
+      physics: AlwaysScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: state.data?.data?.length,
+      itemBuilder: (context, index) {
+        if (state.data?.data?.length == null) {
+          return EmptyPage();
+        } else {
+          return PresensiListDetailTile(data: state.data!.data![index]);
         }
       },
     ),

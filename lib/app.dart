@@ -4,6 +4,7 @@ import 'package:portal_akademik/pages/login/login_page.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_matakuliah.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_khs_semester.dart';
+import 'package:portal_akademik/states/state_user_mahasiswa_list_mk_presensi.dart';
 
 
 class App extends StatelessWidget {
@@ -17,6 +18,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UserMahasiswaState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaKhsSemesterState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaJadwalMataKuliahState()),
+        ChangeNotifierProvider(create: (_) => UserMahasiswaListMkPresensiState()),
       ],
       child: GestureDetector(
         onTap: () {

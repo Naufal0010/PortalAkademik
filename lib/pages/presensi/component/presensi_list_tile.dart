@@ -5,7 +5,7 @@ import 'package:portal_akademik/util/color_pallete.dart';
 
 class PresensiListTile extends StatelessWidget {
   final Color color;
-  final Datum data;
+  final MataKuliah data;
   final Function() onTap;
 
   PresensiListTile({required this.color, required this.data, required this.onTap});

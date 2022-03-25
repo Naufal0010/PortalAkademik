@@ -4,7 +4,7 @@ class UserMhsJadwalMataKuliah {
   UserMhsJadwalMataKuliah({
     required this.data,
   });
-  final List<Datum>? data;
+  final List<MataKuliah>? data;
 
   factory UserMhsJadwalMataKuliah.fromJson(String str) =>
       UserMhsJadwalMataKuliah.fromMap(json.decode(str));
@@ -15,7 +15,7 @@ class UserMhsJadwalMataKuliah {
       UserMhsJadwalMataKuliah(
         data: json == null
             ? null
-            : List<Datum>.from(json.map((x) => Datum.fromMap(x))),
+            : List<MataKuliah>.from(json.map((x) => MataKuliah.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
@@ -25,8 +25,8 @@ class UserMhsJadwalMataKuliah {
       };
 }
 
-class Datum {
-  Datum({
+class MataKuliah {
+  MataKuliah({
     required this.idKelas,
     required this.mk,
     required this.linkZoom,
@@ -54,11 +54,11 @@ class Datum {
   final int urut2;
   final int urut;
 
-  factory Datum.fromJson(String str) => Datum.fromMap(json.decode(str));
+  factory MataKuliah.fromJson(String str) => MataKuliah.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Datum.fromMap(Map<String, dynamic> json) => Datum(
+  factory MataKuliah.fromMap(Map<String, dynamic> json) => MataKuliah(
         idKelas: json["id_kelas"] == null ? null : json["id_kelas"],
         mk: json["mk"] == null ? null : json["mk"],
         linkZoom: json["link_zoom"],

@@ -34,12 +34,21 @@ class NetworkRepository {
     return await consumer.execute(url: '/mahasiswa/$username?with[]=prodi');
   }
 
+  // getUserMahasiswaKhsSemester() untuk mengambil data KHS semester mahasiswa
   Future<ApiModel> getUserMahasiswaKhsSemester() async {
     return await consumer.execute(url: '/akademik/khs/riwayatSemester/$username');
   }
 
+  // getJadwalListMataKuliahMahasiswa() untuk mengambil list data mata
+  // kuliah mahasiswa
   Future<ApiModel> getJadwalListMataKuliahMahasiswa() async {
     return await consumer.execute(url: '/akademik/jadwal/mahasiswa/kuliah/$username');
+  }
+
+  // getUserMahasiswaListMkPresensi() untuk mengambil list presensi mahasiswa
+  // berdasarkan parameter kelasId per mata kuliah
+  Future<ApiModel> getUserMahasiswaListMkPresensi(String kelasId) async {
+    return await consumer.execute(url: '/akademik/presensiKelas/mahasiswa/$kelasId/$username');
   }
 
   // refreshToken() jika access token expired
