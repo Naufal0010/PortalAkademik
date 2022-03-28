@@ -162,7 +162,16 @@ Widget getErrorListDetailPresensi(
     return EmptyPage();
   } else {
     return Column(
-      children: state.data!.data!.map((e) => PresensiListDetailTile(data: e)).toList(),
+      children: state.data!.data!
+          .map(
+            (e) => PresensiListDetailTile(
+              data: e,
+              onTap: () {
+                state.aksiPresensi(e.kodePertemuan);
+              },
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -175,7 +184,7 @@ Widget getErrorListDetailPresensi(
         if (state.data?.data?.length == null) {
           return EmptyPage();
         } else {
-          return PresensiListDetailTile(data: state.data!.data![index]);
+          return PresensiListDetailTile(data: state.data!.data![index], onTap: () {  },);
         }
       },
     ),

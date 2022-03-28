@@ -25,6 +25,16 @@ class UserMahasiswaListMkPresensiState with ChangeNotifier, DiagnosticableTreeMi
     }
   }
 
+  Future<void> aksiPresensi(String presId) async {
+    final res = await NetworkRepository().getAksiPresensiMahasiswa(presId);
+    if (res.code == CODE.SUCCESS) {
+      refreshData();
+      UtilLogger.log('Data Aksi Presensi Mata Kuliah Mahasiswa', data);
+    } else {
+      notifyListeners();
+    }
+  }
+
   Future<void> refreshData() async {
     error = null;
     data = null;

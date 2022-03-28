@@ -4,6 +4,7 @@ class UserMhsJadwalMataKuliah {
   UserMhsJadwalMataKuliah({
     required this.data,
   });
+
   final List<MataKuliah>? data;
 
   factory UserMhsJadwalMataKuliah.fromJson(String str) =>
@@ -11,8 +12,7 @@ class UserMhsJadwalMataKuliah {
 
   String toJson() => json.encode(toMap());
 
-  factory UserMhsJadwalMataKuliah.fromMap(List json) =>
-      UserMhsJadwalMataKuliah(
+  factory UserMhsJadwalMataKuliah.fromMap(List json) => UserMhsJadwalMataKuliah(
         data: json == null
             ? null
             : List<MataKuliah>.from(json.map((x) => MataKuliah.fromMap(x))),
@@ -43,51 +43,49 @@ class MataKuliah {
 
   final String idKelas;
   final String mk;
-  final dynamic linkZoom;
+  final String linkZoom;
   final String dosen;
   final String hariKuliah;
   final String jamKuliah;
   final String ruangKuliah;
-  final DateTime? hariUas;
+  final String hariUas;
   final String jamUas;
   final String ruangUas;
-  final int urut2;
-  final int urut;
+  final dynamic urut2;
+  final dynamic urut;
 
-  factory MataKuliah.fromJson(String str) => MataKuliah.fromMap(json.decode(str));
+  factory MataKuliah.fromJson(String str) =>
+      MataKuliah.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
   factory MataKuliah.fromMap(Map<String, dynamic> json) => MataKuliah(
         idKelas: json["id_kelas"] == null ? null : json["id_kelas"],
         mk: json["mk"] == null ? null : json["mk"],
-        linkZoom: json["link_zoom"],
+        linkZoom: json["link_zoom"] == null ? null : json["link_zoom"],
         dosen: json["dosen"] == null ? null : json["dosen"],
         hariKuliah: json["hari_kuliah"] == null ? null : json["hari_kuliah"],
         jamKuliah: json["jam_kuliah"] == null ? null : json["jam_kuliah"],
         ruangKuliah: json["ruang_kuliah"] == null ? null : json["ruang_kuliah"],
-        hariUas:
-            json["hari_uas"] == null ? null : DateTime.parse(json["hari_uas"]),
+        hariUas: json["hari_uas"] == null ? null : json["hari_uas"],
         jamUas: json["jam_uas"] == null ? null : json["jam_uas"],
         ruangUas: json["ruang_uas"] == null ? null : json["ruang_uas"],
-        urut2: json["urut2"] == null ? null : json["urut2"],
-        urut: json["urut"] == null ? null : json["urut"],
+        urut2: json["urut2"],
+        urut: json["urut"],
       );
 
   Map<String, dynamic> toMap() => {
         "id_kelas": idKelas == null ? null : idKelas,
         "mk": mk == null ? null : mk,
-        "link_zoom": linkZoom,
+        "link_zoom": linkZoom == null ? null : linkZoom,
         "dosen": dosen == null ? null : dosen,
         "hari_kuliah": hariKuliah == null ? null : hariKuliah,
         "jam_kuliah": jamKuliah == null ? null : jamKuliah,
         "ruang_kuliah": ruangKuliah == null ? null : ruangKuliah,
-        "hari_uas": hariUas == null
-            ? null
-            : "${hariUas?.year.toString().padLeft(4, '0')}-${hariUas?.month.toString().padLeft(2, '0')}-${hariUas?.day.toString().padLeft(2, '0')}",
+        "hari_uas": hariUas == null ? null : hariUas,
         "jam_uas": jamUas == null ? null : jamUas,
         "ruang_uas": ruangUas == null ? null : ruangUas,
-        "urut2": urut2 == null ? null : urut2,
-        "urut": urut == null ? null : urut,
+        "urut2": urut2,
+        "urut": urut,
       };
 }

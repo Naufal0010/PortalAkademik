@@ -6,4 +6,6 @@ class ColorPallete {
   static Color secondPrimary = Color(0xFFFED136);
   static Color blackPastel = Color(0xFF3D3D3D);
   static Color greenPastel = Color(0xFF1AB961);
+  static Color redPastel = Color(0xFFE1564D);
+  static Color orangePastel = Color(0xFFFEB875);
 }
