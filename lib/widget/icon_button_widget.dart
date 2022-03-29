@@ -4,8 +4,10 @@ import 'package:portal_akademik/util/color_pallete.dart';
 class IconButtonCustom extends StatelessWidget {
   final String nameLabel;
   final IconData iconLabel;
+  final Function() onTap;
 
-  IconButtonCustom(this.nameLabel, this.iconLabel);
+  IconButtonCustom(
+      {required this.nameLabel, required this.iconLabel, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class IconButtonCustom extends StatelessWidget {
               borderRadius: const BorderRadius.all(
                 Radius.circular(15),
               ),
-              onTap: () {},
+              onTap: onTap,
               child: Container(
                 // margin: EdgeInsets.all(5),
                 height: 60,
@@ -68,6 +70,7 @@ class IconButtonCustom extends StatelessWidget {
 
 class LinearGradientMask extends StatelessWidget {
   LinearGradientMask({required this.child});
+
   final Widget child;
 
   @override

@@ -1,10 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/rencana_studi_page.dart';
 import 'package:portal_akademik/states/state.dart';
+import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:portal_akademik/widget/icon_button_widget.dart';
 import 'package:portal_akademik/widget/jadwal_item_widget.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
-import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 
 final List<String> imgList = [
@@ -130,10 +131,28 @@ class _DashboardPageState extends State<DashboardPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButtonCustom('Rencana', Icons.school),
-                        IconButtonCustom('Rekap ', Icons.insert_chart),
-                        IconButtonCustom('Riwayat', Icons.assignment),
-                        IconButtonCustom('Kalender', Icons.calendar_today)
+                        IconButtonCustom(
+                            nameLabel: 'Rencana',
+                            iconLabel: Icons.school,
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          RencanaStudiPage()));
+                            }),
+                        IconButtonCustom(
+                            nameLabel: 'Rekap ',
+                            iconLabel: Icons.insert_chart,
+                            onTap: () {}),
+                        IconButtonCustom(
+                            nameLabel: 'Riwayat',
+                            iconLabel: Icons.assignment,
+                            onTap: () {}),
+                        IconButtonCustom(
+                            nameLabel: 'Kalender',
+                            iconLabel: Icons.calendar_today,
+                            onTap: () {})
                       ],
                     ),
                     SizedBox(
@@ -142,10 +161,22 @@ class _DashboardPageState extends State<DashboardPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButtonCustom('Jadwal', Icons.schedule),
-                        IconButtonCustom('Perkuliahan ', Icons.class_),
-                        IconButtonCustom('Ujian Akhir', Icons.task),
-                        IconButtonCustom('Kuesioner', Icons.star)
+                        IconButtonCustom(
+                            nameLabel: 'Jadwal',
+                            iconLabel: Icons.schedule,
+                            onTap: () {}),
+                        IconButtonCustom(
+                            nameLabel: 'Perkuliahan ',
+                            iconLabel: Icons.class_,
+                            onTap: () {}),
+                        IconButtonCustom(
+                            nameLabel: 'Ujian Akhir',
+                            iconLabel: Icons.task,
+                            onTap: () {}),
+                        IconButtonCustom(
+                            nameLabel: 'Kuesioner',
+                            iconLabel: Icons.star,
+                            onTap: () {})
                       ],
                     ),
                   ],

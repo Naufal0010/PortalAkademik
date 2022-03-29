@@ -78,6 +78,11 @@ class NetworkRepository {
         method: MethodRequest.DELETE);
   }
 
+  // getHeaderKrsMahasiswa() untuk mengambil data KRS Mahasiswa
+  Future<ApiModel> getHeaderKrsMahasiswa() async {
+    return await consumer.execute(url: '/akademik/krs/header/mahasiswa');
+  }
+
   // refreshToken() jika access token expired
   Future refreshToken() async {
     FormData formData = FormData.fromMap({

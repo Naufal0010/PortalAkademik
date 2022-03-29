@@ -1,20 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
+import 'package:portal_akademik/util/service/logger.dart';
 
-class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
-  UserModelMahasiswa? data;
+import '../model/model_user_mahasiswa_krs_header.dart';
+
+class UserMahasiswaKrsHeaderState with ChangeNotifier, DiagnosticableTreeMixin {
+  UserMhsHeaderKrs? data;
   Map<String, dynamic>? error;
   bool isLoading = true;
 
-  UserMahasiswaState() {
+  UserMahasiswaKrsHeaderState() {
     initData();
   }
 
   Future<void> initData() async {
-    final res = await NetworkRepository().getUser();
+    final res = await NetworkRepository().getHeaderKrsMahasiswa();
     if (res.code == CODE.SUCCESS) {
-      data = UserModelMahasiswa.fromMap(res.data);
+      data = UserMhsHeaderKrs.fromMap(res.data);
+      UtilLogger.log('message', data?.toJson());
       isLoading = false;
       notifyListeners();
     } else {

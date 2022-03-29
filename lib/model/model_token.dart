@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:portal_akademik/util/api/jwt_decode.dart';
 
 Token tokenFromJson(String str) => Token.fromJson(json.decode(str));
