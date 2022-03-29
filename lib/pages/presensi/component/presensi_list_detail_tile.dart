@@ -104,16 +104,21 @@ class PresensiListDetailTile extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                Container(
-                  decoration: BoxDecoration(
-                      color: keteranganColor(data.aksi),
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20))),
-                  width: 100,
-                  height: 200,
-                  child: Center(
-                    child: aksiPresensiOnClick(data.aksi),
+                Ink(
+                  child: InkWell(
+                    onTap: onTap,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: keteranganColor(data.aksi),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomRight: Radius.circular(20))),
+                      width: 100,
+                      height: 200,
+                      child: Center(
+                        child: aksiPresensiOnClick(data.aksi),
+                      ),
+                    ),
                   ),
                 ),
               ],

@@ -97,8 +97,8 @@ class RencanaStudiPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: 20,
-                                  child: Text(e.tanggal, style: TextStyle(color: Colors.white, fontSize: 12.0),),
+                                  height: 16,
+                                  child: Text(e.tanggal, style: TextStyle(color: Colors.white, fontSize: 10),),
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   decoration: BoxDecoration(
                                       color: ColorPallete.primary,

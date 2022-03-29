@@ -83,6 +83,10 @@ class NetworkRepository {
     return await consumer.execute(url: '/akademik/krs/header/mahasiswa');
   }
 
+  Future<ApiModel> getRiwayatRegistrasiMahasiswa() async {
+    return await consumer.execute(url: '/akademik/statusBayar/riwayatRegistrasi/$username');
+  }
+
   // refreshToken() jika access token expired
   Future refreshToken() async {
     FormData formData = FormData.fromMap({
