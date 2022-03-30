@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/rencana_studi_page.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/riwayat_registrasi_page.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:portal_akademik/widget/icon_button_widget.dart';
@@ -148,7 +149,13 @@ class _DashboardPageState extends State<DashboardPage> {
                         IconButtonCustom(
                             nameLabel: 'Riwayat',
                             iconLabel: Icons.assignment,
-                            onTap: () {}),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          RiwayatRegistrasiPage()));
+                            }),
                         IconButtonCustom(
                             nameLabel: 'Kalender',
                             iconLabel: Icons.calendar_today,

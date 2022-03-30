@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_krs_header.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../util/color_pallete.dart';
 
 class RencanaStudiPage extends StatelessWidget {
@@ -42,7 +40,6 @@ class RencanaStudiPage extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(width: 1, color: ColorPallete.primary),
-                  // color: Colors.amber,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
