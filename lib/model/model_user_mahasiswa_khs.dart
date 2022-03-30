@@ -1,41 +1,21 @@
 import 'dart:convert';
 
-class UserKhsMahasiswa {
-  UserKhsMahasiswa({
-    required this.data,
-  });
-
-  final Data? data;
-
-  factory UserKhsMahasiswa.fromJson(String str) => UserKhsMahasiswa.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory UserKhsMahasiswa.fromMap(Map<String, dynamic> json) => UserKhsMahasiswa(
-    data: json["data"] == null ? null : Data.fromMap(json["data"]),
-  );
-
-  Map<String, dynamic> toMap() => {
-    "data": data == null ? null : data?.toMap(),
-  };
-}
-
-class Data {
-  Data({
+class UserModelKhsMahasiswa {
+  UserModelKhsMahasiswa({
     required this.khs,
     required this.khsMerdeka,
   });
 
   final Khs? khs;
-  final KhsMerdeka? khsMerdeka;
+  final Khs? khsMerdeka;
 
-  factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
+  factory UserModelKhsMahasiswa.fromJson(String str) => UserModelKhsMahasiswa.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Data.fromMap(Map<String, dynamic> json) => Data(
+  factory UserModelKhsMahasiswa.fromMap(Map<String, dynamic> json) => UserModelKhsMahasiswa(
     khs: json["khs"] == null ? null : Khs.fromMap(json["khs"]),
-    khsMerdeka: json["khs_merdeka"] == null ? null : KhsMerdeka.fromMap(json["khs_merdeka"]),
+    khsMerdeka: json["khs_merdeka"] == null ? null : Khs.fromMap(json["khs_merdeka"]),
   );
 
   Map<String, dynamic> toMap() => {
@@ -56,12 +36,12 @@ class Khs {
   });
 
   final List<Kh>? khs;
-  final int bobotSks;
-  final String ipk;
-  final int bobotKhs;
-  final String sksMaxDepan;
-  final int sksLulus;
-  final String pLulus;
+  final int? bobotSks;
+  final String? ipk;
+  final double? bobotKhs;
+  final String? sksMaxDepan;
+  final int? sksLulus;
+  final String? pLulus;
 
   factory Khs.fromJson(String str) => Khs.fromMap(json.decode(str));
 
@@ -71,7 +51,7 @@ class Khs {
     khs: json["khs"] == null ? null : List<Kh>.from(json["khs"].map((x) => Kh.fromMap(x))),
     bobotSks: json["bobot_sks"] == null ? null : json["bobot_sks"],
     ipk: json["ipk"] == null ? null : json["ipk"],
-    bobotKhs: json["bobot_khs"] == null ? null : json["bobot_khs"],
+    bobotKhs: json["bobot_khs"] == null ? null : json["bobot_khs"].toDouble(),
     sksMaxDepan: json["sks_max_depan"] == null ? null : json["sks_max_depan"],
     sksLulus: json["sks_lulus"] == null ? null : json["sks_lulus"],
     pLulus: json["p_lulus"] == null ? null : json["p_lulus"],
@@ -144,16 +124,16 @@ class Kh {
   });
 
   final int no;
-  final String klsId;
-  final String kode;
+  final String? klsId;
+  final String? kode;
   final String mk;
-  final String sks;
-  final String w;
-  final String tugas;
-  final String kurikulum;
-  final String uts;
-  final String uas;
-  final String prak;
+  final String? sks;
+  final String? w;
+  final String? tugas;
+  final String? kurikulum;
+  final String? uts;
+  final String? uas;
+  final String? prak;
   final dynamic prakLap;
   final dynamic presensi;
   final dynamic skill;
@@ -169,31 +149,31 @@ class Kh {
   final dynamic pengetahuan;
   final dynamic ketUmum;
   final dynamic ketKhusus;
-  final String btugas;
-  final String buts;
-  final String buas;
-  final dynamic bprak;
-  final String bprakLap;
-  final dynamic bpresensi;
-  final dynamic bskill;
-  final dynamic btutorial;
-  final dynamic bosce;
-  final dynamic bpresentasi;
-  final dynamic bpkpa;
-  final dynamic bakademisi;
-  final dynamic bdiseminasi;
-  final dynamic bujiankompre;
-  final dynamic btugaskhusus;
+  final String? btugas;
+  final String? buts;
+  final String? buas;
+  final String? bprak;
+  final String?  bprakLap;
+  final String?  bpresensi;
+  final String?  bskill;
+  final String?  btutorial;
+  final String?  bosce;
+  final String?  bpresentasi;
+  final String?  bpkpa;
+  final String?  bakademisi;
+  final String?  bdiseminasi;
+  final String?  bujiankompre;
+  final String?  btugaskhusus;
   final dynamic bsikap;
   final dynamic bpengetahuan;
   final dynamic bketUmum;
   final dynamic bketKhusus;
-  final String angka;
+  final String  angka;
   final String bobot;
   final int status;
-  final String huruf;
-  final String tampil;
-  final String validasi;
+  final String  huruf;
+  final String?  tampil;
+  final String?  validasi;
 
   factory Kh.fromJson(String str) => Kh.fromMap(json.decode(str));
 
@@ -229,24 +209,24 @@ class Kh {
     btugas: json["btugas"] == null ? null : json["btugas"],
     buts: json["buts"] == null ? null : json["buts"],
     buas: json["buas"] == null ? null : json["buas"],
-    bprak: json["bprak"],
+    bprak: json["bprak"] == null ? null : json["bprak"],
     bprakLap: json["bprak_lap"] == null ? null : json["bprak_lap"],
-    bpresensi: json["bpresensi"],
-    bskill: json["bskill"],
-    btutorial: json["btutorial"],
-    bosce: json["bosce"],
-    bpresentasi: json["bpresentasi"],
-    bpkpa: json["bpkpa"],
-    bakademisi: json["bakademisi"],
-    bdiseminasi: json["bdiseminasi"],
-    bujiankompre: json["bujiankompre"],
-    btugaskhusus: json["btugaskhusus"],
+    bpresensi: json["bpresensi"] == null ? null : json["bpresensi"],
+    bskill: json["bskill"] == null ? null : json["bskill"],
+    btutorial: json["btutorial"] == null ? null : json["btutorial"],
+    bosce: json["bosce"] == null ? null : json["bosce"],
+    bpresentasi: json["bpresentasi"] == null ? null : json["bpresentasi"],
+    bpkpa: json["bpkpa"] == null ? null : json["bpkpa"],
+    bakademisi: json["bakademisi"] == null ? null : json["bakademisi"],
+    bdiseminasi: json["bdiseminasi"] == null ? null : json["bdiseminasi"],
+    bujiankompre: json["bujiankompre"] == null ? null : json["bujiankompre"],
+    btugaskhusus: json["btugaskhusus"] == null ? null : json["btugaskhusus"],
     bsikap: json["bsikap"],
     bpengetahuan: json["bpengetahuan"],
     bketUmum: json["bket_umum"],
     bketKhusus: json["bket_khusus"],
     angka: json["angka"] == null ? null : json["angka"],
-    bobot: json["bobot"] == null ? null : json["bobot"],
+    bobot: json["bobot"].toString(),
     status: json["status"] == null ? null : json["status"],
     huruf: json["huruf"] == null ? null : json["huruf"],
     tampil: json["tampil"] == null ? null : json["tampil"],
@@ -283,61 +263,27 @@ class Kh {
     "btugas": btugas == null ? null : btugas,
     "buts": buts == null ? null : buts,
     "buas": buas == null ? null : buas,
-    "bprak": bprak,
+    "bprak": bprak == null ? null : bprak,
     "bprak_lap": bprakLap == null ? null : bprakLap,
-    "bpresensi": bpresensi,
-    "bskill": bskill,
-    "btutorial": btutorial,
-    "bosce": bosce,
-    "bpresentasi": bpresentasi,
-    "bpkpa": bpkpa,
-    "bakademisi": bakademisi,
-    "bdiseminasi": bdiseminasi,
-    "bujiankompre": bujiankompre,
-    "btugaskhusus": btugaskhusus,
+    "bpresensi": bpresensi == null ? null : bpresensi,
+    "bskill": bskill == null ? null : bskill,
+    "btutorial": btutorial == null ? null : btutorial,
+    "bosce": bosce == null ? null : bosce,
+    "bpresentasi": bpresentasi == null ? null : bpresentasi,
+    "bpkpa": bpkpa == null ? null : bpkpa,
+    "bakademisi": bakademisi == null ? null : bakademisi,
+    "bdiseminasi": bdiseminasi == null ? null : bdiseminasi,
+    "bujiankompre": bujiankompre == null ? null : bujiankompre,
+    "btugaskhusus": btugaskhusus == null ? null : btugaskhusus,
     "bsikap": bsikap,
     "bpengetahuan": bpengetahuan,
     "bket_umum": bketUmum,
     "bket_khusus": bketKhusus,
     "angka": angka == null ? null : angka,
-    "bobot": bobot == null ? null : bobot,
+    "bobot": bobot,
     "status": status == null ? null : status,
     "huruf": huruf == null ? null : huruf,
     "tampil": tampil == null ? null : tampil,
     "validasi": validasi == null ? null : validasi,
-  };
-}
-
-class KhsMerdeka {
-  KhsMerdeka({
-    required this.csp,
-  });
-
-  final Csp? csp;
-
-  factory KhsMerdeka.fromJson(String str) => KhsMerdeka.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory KhsMerdeka.fromMap(Map<String, dynamic> json) => KhsMerdeka(
-    csp: json["CSP"] == null ? null : Csp.fromMap(json["CSP"]),
-  );
-
-  Map<String, dynamic> toMap() => {
-    "CSP": csp == null ? null : csp?.toMap(),
-  };
-}
-
-class Csp {
-  Csp();
-
-  factory Csp.fromJson(String str) => Csp.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Csp.fromMap(Map<String, dynamic> json) => Csp(
-  );
-
-  Map<String, dynamic> toMap() => {
   };
 }

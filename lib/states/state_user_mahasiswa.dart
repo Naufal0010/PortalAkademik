@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
+import 'package:portal_akademik/util/api_local_store.dart';
 
 class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   UserModelMahasiswa? data;
@@ -16,6 +17,7 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
     if (res.code == CODE.SUCCESS) {
       data = UserModelMahasiswa.fromMap(res.data);
       isLoading = false;
+      ApiLocalStorage.userModelMahasiswa = data;
       notifyListeners();
     } else {
       isLoading = false;

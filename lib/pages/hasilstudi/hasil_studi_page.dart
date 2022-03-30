@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/pages/hasilstudi/component/hasil_studi_list.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_khs_semester.dart';
-import 'package:portal_akademik/util/color_pallete.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/line_chart_widget.dart';
+import 'package:portal_akademik/widget/shimmer_widget.dart';
+import '../../states/state_user_mahasiswa_khs.dart';
+
 
 class HasilStudiPage extends StatefulWidget {
   @override
@@ -11,6 +14,7 @@ class HasilStudiPage extends StatefulWidget {
 }
 
 class _HasilStudiPageState extends State<HasilStudiPage> {
+
   String _valSemester = '20201';
 
   // List _listSemester = [
@@ -39,6 +43,11 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
     UserMahasiswaKhsSemesterState user =
         Provider.of<UserMahasiswaKhsSemesterState>(context, listen: true);
 
+    UserMahasiswaKhsState userKhs =
+    Provider.of<UserMahasiswaKhsState>(context, listen: false);
+
+    userKhs.initData(_valSemester.toString());
+    
     return SafeArea(
       child: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -71,7 +80,7 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                       color: Color(0xff020202),
                     ),
                   ),
-                  SizedBox(
+                  user.isLoading ? ShimmerWidget(height: 20, width: 200,) : SizedBox(
                     width: 210,
                     child: ButtonTheme(
                       alignedDropdown: true,
@@ -80,7 +89,7 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                         hint: Text("Pilih Semester", ),
                         icon: Icon(Icons.keyboard_arrow_down),
                         iconSize: 28,
-                        value: _valSemester,
+                        value: user.data!.data![0].semId,
                         items: user.data?.data?.map((value) {
                           return DropdownMenuItem(
                             child: Text(value.semNama!, overflow: TextOverflow.ellipsis,),
@@ -89,6 +98,7 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                         }).toList(),
                         onChanged: (value) {
                           setState(() {
+                            userKhs.initData(value.toString());
                             _valSemester = value.toString();
                           });
                         },
@@ -98,81 +108,14 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                 ],
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(width: 1, color: Colors.grey.shade300),
-                // color: Colors.amber,
-              ),
-              child: Table(
-                columnWidths: const <int, TableColumnWidth>{
-                  0: FlexColumnWidth(),
-                  1: FixedColumnWidth(60),
-                  2: FixedColumnWidth(60),
-                  3: FixedColumnWidth(60),
-                },
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                children: [
-                  TableRow(
-                    decoration: BoxDecoration(
-                        color: ColorPallete.primary,
-                        border:
-                            Border.all(width: 1, color: ColorPallete.primary),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0),
-                            topRight: Radius.circular(10.0))),
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Mata Kuliah',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'NA',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'NH',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Bobot',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  TableRowItem('Data Mining', '79.90', 'A-', '15'),
-                  TableRowItem('Pemrograman Web Lanjut', '80.00', 'A', '16'),
-                  TableRowItem('Pengolahan Citra', '80.00', 'A', '16'),
-                  TableRowItem('Rekayasa Perangkat Lunak', '85.00', 'A', '16'),
-                  TableRowItem('Text Mining', '76.00', 'B+', '14'),
-                ],
-              ),
+            Consumer<UserMahasiswaKhsState>(
+              builder: (context, value, child) {
+                return value.isLoading
+                    ? ShimmerWidget(height: 150, width: double.infinity,)
+                    : HasilStudiList(khs: value.data?.khs?.khs);
+              },
             ),
+
             SizedBox(
               height: 20.0,
             ),
@@ -298,30 +241,6 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
           ],
         ),
       ),
-    );
-  }
-
-  TableRow TableRowItem(
-      String name, String nilai, String nilaiHuruf, String bobot) {
-    return TableRow(
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 2.0, 8.0, 2.0),
-          child: Text(name),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 2.0, 8.0, 2.0),
-          child: Text(nilai),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 2.0, 8.0, 2.0),
-          child: Text(nilaiHuruf),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 2.0, 8.0, 2.0),
-          child: Text(bobot),
-        ),
-      ],
     );
   }
 }

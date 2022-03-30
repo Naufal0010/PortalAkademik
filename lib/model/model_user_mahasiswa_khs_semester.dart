@@ -5,14 +5,14 @@ class UserKhsSemesterMahasiswa {
     required this.data,
   });
 
-  final List<Datum>? data;
+  final List<KhsSemester>? data;
 
   factory UserKhsSemesterMahasiswa.fromJson(String str) => UserKhsSemesterMahasiswa.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
   factory UserKhsSemesterMahasiswa.fromMap(List json) => UserKhsSemesterMahasiswa(
-    data: json == null ? null : List<Datum>.from(json.map((x) => Datum.fromMap(x))),
+    data: json == null ? null : List<KhsSemester>.from(json.map((x) => KhsSemester.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
@@ -20,8 +20,8 @@ class UserKhsSemesterMahasiswa {
   };
 }
 
-class Datum {
-  Datum({
+class KhsSemester {
+  KhsSemester({
     required this.semId,
     required this.semTahun,
     required this.semNama,
@@ -33,11 +33,11 @@ class Datum {
   final String? semNama;
   final String? semAktif;
 
-  factory Datum.fromJson(String str) => Datum.fromMap(json.decode(str));
+  factory KhsSemester.fromJson(String str) => KhsSemester.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Datum.fromMap(Map<String, dynamic> json) => Datum(
+  factory KhsSemester.fromMap(Map<String, dynamic> json) => KhsSemester(
     semId: json["semId"] == null ? null : json["semId"],
     semTahun: json["semTahun"] == null ? null : json["semTahun"],
     semNama: json["semNama"] == null ? null : json["semNama"],
