@@ -90,21 +90,29 @@ class RencanaStudiPage extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold)),
                     ...?user.data?.krs?.komentar
-                        ?.map((e) => Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 16,
-                                  child: Text(e.tanggal, style: TextStyle(color: Colors.white, fontSize: 10),),
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  decoration: BoxDecoration(
-                                      color: ColorPallete.primary,
-                                      borderRadius:
-                                          BorderRadius.circular(10.0)),
+                        ?.map(
+                          (e) => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 16,
+                                child: Text(
+                                  e.tanggal,
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 10),
                                 ),
-                                Text(e.teks, style: TextStyle(fontSize: 12.0),),
-                              ],
-                            ))
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                decoration: BoxDecoration(
+                                    color: ColorPallete.primary,
+                                    borderRadius: BorderRadius.circular(10.0)),
+                              ),
+                              Text(
+                                e.teks,
+                                style: TextStyle(fontSize: 12.0),
+                              ),
+                            ],
+                          ),
+                        )
                         .toList(),
                   ],
                 ),

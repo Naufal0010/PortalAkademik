@@ -74,7 +74,8 @@ class NetworkRepository {
   // atau tap pada tombol presensi
   Future<ApiModel> getAksiPresensiMahasiswa(String presId) async {
     return await consumer.execute(
-        url: '/akademik/presensiKelasDetil/deleteAbsen?presId[eq]=$presId&mhsNim[eq]=$username',
+        url:
+            '/akademik/presensiKelasDetil/deleteAbsen?presId[eq]=$presId&mhsNim[eq]=$username',
         method: MethodRequest.DELETE);
   }
 
@@ -83,8 +84,11 @@ class NetworkRepository {
     return await consumer.execute(url: '/akademik/krs/header/mahasiswa');
   }
 
+  // getRiwayatRegistrasiMahasiswa() untuk mengambil data Riwayat Registrasi
+  // mahasiswa
   Future<ApiModel> getRiwayatRegistrasiMahasiswa() async {
-    return await consumer.execute(url: '/akademik/statusBayar/riwayatRegistrasi/$username');
+    return await consumer.execute(
+        url: '/akademik/statusBayar/riwayatRegistrasi/$username');
   }
 
   // refreshToken() jika access token expired

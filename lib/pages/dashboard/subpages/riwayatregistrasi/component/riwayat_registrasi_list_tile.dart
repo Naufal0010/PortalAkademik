@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/component/widget_isi_krs.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/component/widget_krs_disetujui.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/component/widget_revisi_krs.dart';
 import '../../../../../model/model_user_mahasiswa_riwayat_registrasi.dart';
 import '../../../../../util/color_pallete.dart';
 
@@ -7,87 +9,6 @@ class RiwayatRegistrasiListTile extends StatelessWidget {
   final RiwayatRegistrasi data;
 
   RiwayatRegistrasiListTile(this.data);
-
-  Widget wIsiKrs(int isiKrs) {
-    if (isiKrs == 1) {
-      return Container(
-        height: 20,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-            color: ColorPallete.primary,
-            borderRadius: BorderRadius.circular(4.0)),
-        child: Text(
-          'Ya',
-          style: TextStyle(color: Colors.white),
-        ),
-      );
-    } else {
-      return Container(
-        height: 20,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-            color: Colors.red, borderRadius: BorderRadius.circular(4.0)),
-        child: Text(
-          'Tidak',
-          style: TextStyle(color: Colors.white),
-        ),
-      );
-    }
-  }
-
-  Widget wKrsDiSetujui(String isKrsDisetujui) {
-    if (isKrsDisetujui == "1") {
-      return Container(
-        height: 20,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-            color: ColorPallete.primary,
-            borderRadius: BorderRadius.circular(4.0)),
-        child: Text(
-          'Ya',
-          style: TextStyle(color: Colors.white),
-        ),
-      );
-    } else {
-      return Container(
-        height: 20,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-            color: Colors.red, borderRadius: BorderRadius.circular(4.0)),
-        child: Text(
-          'Tidak',
-          style: TextStyle(color: Colors.white),
-        ),
-      );
-    }
-  }
-
-  Widget wRevisiKrs(String isRevisiKrs) {
-    if (isRevisiKrs == "1") {
-      return Container(
-        height: 20,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-            color: ColorPallete.primary,
-            borderRadius: BorderRadius.circular(4.0)),
-        child: Text(
-          'Ya',
-          style: TextStyle(color: Colors.white),
-        ),
-      );
-    } else {
-      return Container(
-        height: 20,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
-            color: Colors.red, borderRadius: BorderRadius.circular(4.0)),
-        child: Text(
-          'Tidak',
-          style: TextStyle(color: Colors.white),
-        ),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
