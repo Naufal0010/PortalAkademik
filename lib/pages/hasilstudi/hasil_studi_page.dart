@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/hasilstudi/component/hasil_studi_list.dart';
+import 'package:portal_akademik/pages/hasilstudi/component/rekap_hasil_studi_list.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_khs_semester.dart';
+import 'package:portal_akademik/states/state_user_mahasiswa_rekap_hasil_studi.dart';
 import 'package:portal_akademik/util/api_local_store.dart';
+import 'package:portal_akademik/util/color_pallete.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/line_chart_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
-import '../../states/state_user_mahasiswa_khs.dart';
 
+import '../../states/state_user_mahasiswa_khs.dart';
 
 class HasilStudiPage extends StatefulWidget {
   @override
@@ -15,7 +18,6 @@ class HasilStudiPage extends StatefulWidget {
 }
 
 class _HasilStudiPageState extends State<HasilStudiPage> {
-
   String _valSemester = ApiLocalStorage.userModelMahasiswa!.semAwal;
 
   @override
@@ -24,7 +26,10 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
         Provider.of<UserMahasiswaKhsSemesterState>(context, listen: true);
 
     UserMahasiswaKhsState userKhs =
-    Provider.of<UserMahasiswaKhsState>(context, listen: false);
+        Provider.of<UserMahasiswaKhsState>(context, listen: false);
+
+    UserMahasiswaRekapHasilStudiState userRhs =
+        Provider.of<UserMahasiswaRekapHasilStudiState>(context, listen: false);
 
     Future<void> refresh() {
       user.refreshData();
@@ -32,7 +37,8 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
     }
 
     userKhs.initData(_valSemester.toString());
-    
+    userRhs.initData();
+
     return SafeArea(
       child: RefreshIndicator(
         onRefresh: refresh,
@@ -41,7 +47,7 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LabelSubHeader('Statistik Indeks Prestasi', 20),
+              LabelSubHeader('Statistik IP Semester', 20),
               SizedBox(
                 height: 6,
               ),
@@ -53,11 +59,11 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                   child: LineChartWidget(),
                 ),
               ),
-              SizedBox(height: 70),
+              SizedBox(height: 75),
               Container(
                 margin: EdgeInsets.only(bottom: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Nilai Semester',
@@ -67,42 +73,77 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                         color: Color(0xff020202),
                       ),
                     ),
-                    user.isLoading ? ShimmerWidget(height: 20, width: 200,) : SizedBox(
-                      width: 210,
-                      child: ButtonTheme(
-                        alignedDropdown: true,
-                        child: DropdownButton(
-                          isExpanded: true,
-                          hint: Text("Pilih Semester", ),
-                          icon: Icon(Icons.keyboard_arrow_down),
-                          iconSize: 28,
-                          value: _valSemester,
-                          items: user.data?.data?.map((value) {
-                            return DropdownMenuItem(
-                              child: Text(value.semNama!, overflow: TextOverflow.ellipsis,),
-                              value: value.semId,
-                            );
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              _valSemester = value.toString();
-                              userKhs.initData(value.toString());
-                            });
-                          },
-                        ),
-                      ),
-                    )
+                    user.isLoading
+                        ? ShimmerWidget(
+                            height: 20,
+                            width: 200,
+                          )
+                        : SizedBox(
+                            width: double.infinity,
+                            child: Container(
+                              padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Color(0xFFE7E7E7),
+                              ),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  hint: Text("Pilih Semester",
+                                      overflow: TextOverflow.ellipsis,
+                                      style:
+                                          TextStyle(color: Color(0xFF808080))),
+                                  icon: Icon(Icons.keyboard_arrow_down),
+                                  iconSize: 28,
+                                  value: _valSemester,
+                                  items: user.data?.data?.map((value) {
+                                    return DropdownMenuItem(
+                                      child: Text(
+                                        value.semNama!,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            color: Color(0xFF808080),
+                                            fontSize: 14),
+                                      ),
+                                      value: value.semId,
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _valSemester = value.toString();
+                                      userKhs.initData(value.toString());
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                          )
                   ],
                 ),
               ),
               Consumer<UserMahasiswaKhsState>(
                 builder: (context, value, child) {
                   return value.isLoading
-                      ? ShimmerWidget(height: 150, width: double.infinity,)
+                      ? ShimmerWidget(
+                          height: 150,
+                          width: double.infinity,
+                        )
                       : HasilStudiList(khs: value.data?.khs?.khs);
                 },
               ),
-
+              // SizedBox(
+              //   height: 20.0,
+              // ),
+              LabelSubHeader('Rekap Hasil Studi', 20),
+              Consumer<UserMahasiswaRekapHasilStudiState>(
+                builder: (context, value, child) {
+                  return value.isLoading
+                      ? ShimmerWidget(
+                          height: 150,
+                          width: double.infinity,
+                        )
+                      : RekapHasilStudiList(transkrip: value.data?.transkrip);
+                },
+              ),
               SizedBox(
                 height: 20.0,
               ),
@@ -110,7 +151,7 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                 padding: EdgeInsets.all(15.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  border: Border.all(width: 1, color: Colors.grey.shade300),
+                  border: Border.all(width: 1, color: ColorPallete.primary),
                   // color: Colors.amber,
                 ),
                 child: Column(
@@ -132,53 +173,13 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text(
-                            ':',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            '116  ',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            'Total Semester',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            ':',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            'Lima',
+                          child: userRhs.isLoading
+                              ? ShimmerWidget(
+                            width: MediaQuery.of(context).size.width,
+                            height: 20,
+                          )
+                              : Text(
+                            '${userRhs.data?.sksLulus}',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -193,7 +194,7 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                         Expanded(
                           flex: 2,
                           child: Text(
-                            'Indeks Prestasi Komulatif',
+                            'Indeks Prestasi Kumulatif',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -202,23 +203,18 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Text(
-                            ':',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text(
-                            '3.71',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          child: userRhs.isLoading
+                              ? ShimmerWidget(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 20,
+                                )
+                              : Text(
+                                  '${userRhs.data?.ipk}',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                         ),
                       ],
                     )

@@ -4,7 +4,7 @@ import 'package:portal_akademik/model/model_user_mahasiswa_jadwal_matakuliah.dar
 import 'package:portal_akademik/util/color_pallete.dart';
 
 class PresensiListTile extends StatelessWidget {
-  final Color color;
+  final List<Color> color;
   final MataKuliah data;
   final Function() onTap;
 
@@ -36,7 +36,13 @@ class PresensiListTile extends StatelessWidget {
                       child: AspectRatio(
                           aspectRatio: 1 / 1,
                           child: Container(
-                            decoration: BoxDecoration(color: color),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                                colors: color
+                              )
+                            ),
                           )),
                     ),
                   ),

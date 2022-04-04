@@ -38,17 +38,9 @@ class RiwayatRegistrasiListTile extends StatelessWidget {
                           topRight: Radius.circular(20)),
                     ),
                     child: Center(
-                      child: Column(
-                        children: [
-                          Text(
-                            'Semester',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            '${data.semesterNama}',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
+                      child: Text(
+                        '${data.semesterNama}',
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ),

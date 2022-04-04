@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
-import '../../../model/model_user_mahasiswa_khs.dart';
+import 'package:portal_akademik/pages/hasilstudi/component/rekap_hasil_studi_table.dart';
+import '../../../model/model_user_mahasiswa_rekap_hasil_studi.dart';
 import '../../../util/color_pallete.dart';
-import 'hasil_studi_table.dart';
 
-class HasilStudiList extends StatelessWidget {
-  final List<Kh>? khs;
+class RekapHasilStudiList extends StatelessWidget {
+  final List<Transkrip>? transkrip;
 
-  HasilStudiList({required this.khs});
+  RekapHasilStudiList({required this.transkrip});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6.0),
-        border: Border.all(width: 1, color:ColorPallete.primary),
+        border: Border.all(width: 1, color: ColorPallete.primary),
         // color: Colors.amber,
       ),
       child: Table(
         columnWidths: const <int, TableColumnWidth>{
-          0: FlexColumnWidth(),
-          1: FixedColumnWidth(60),
-          2: FixedColumnWidth(60),
-          3: FixedColumnWidth(60),
+          0: FixedColumnWidth(40),
+          1: FlexColumnWidth(),
+          2: FixedColumnWidth(40),
+          3: FixedColumnWidth(40),
+          4: FixedColumnWidth(50)
         },
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         children: [
@@ -37,6 +38,17 @@ class HasilStudiList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
+                  'No',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
                   'Mata Kuliah',
                   style: TextStyle(
                     color: Colors.white,
@@ -48,7 +60,7 @@ class HasilStudiList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'NA',
+                  'K',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
@@ -59,7 +71,7 @@ class HasilStudiList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'NH',
+                  'N',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 14,
@@ -68,7 +80,7 @@ class HasilStudiList extends StatelessWidget {
                 ),
               ),
               Text(
-                'Bobot',
+                'KxN',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 14,
@@ -77,7 +89,7 @@ class HasilStudiList extends StatelessWidget {
               ),
             ],
           ),
-          ...?khs?.map((e) => TableRowItem(e.mk, e.angka, e.huruf, e.bobot)).toList(),
+          ...?transkrip?.map((e) => TableRowItem(e.no, e.namaMk, e.sks, e.nilai, e.sksbobot)).toList(),
         ],
       ),
     );

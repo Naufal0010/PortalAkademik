@@ -25,13 +25,44 @@ class PresensiListDetailTile extends StatelessWidget {
     }
   }
 
+  Widget wIsMandiri(String? isMandiri) {
+    if (isMandiri == "1") {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 200,
+            child: Text(
+              'Presensi Mandiri',
+              style: TextStyle(fontSize: 12,),
+            ),
+          ),
+          SizedBox(height: 6,),
+          SizedBox(
+            width: 220,
+            child: Text(
+              '${data.tglMulaiPresensi} s/d ${data.tglSelesaiPresensi}',
+              style: TextStyle(fontSize: 12),
+            ),
+          ),
+        ],
+      );
+    } else {
+      return SizedBox(
+        width: 200,
+        child: Text(
+          'Presensi oleh Dosen',
+          style: TextStyle(fontSize: 12,),
+        ),
+      );
+    }
+  }
+
   Widget aksiPresensiOnClick(String aksi) {
     if (aksi == "Hadir") {
       return Center(
-        child: Icon(
-          Icons.check,
-          color: Colors.white,
-        ),
+        child: Text(data.aksi,
+            style: TextStyle(color: Colors.white), textAlign: TextAlign.center)
       );
     } else if (aksi == "presensi") {
       return Center(
@@ -75,24 +106,6 @@ class PresensiListDetailTile extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        data.tglPertemuan,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 14),
-                      ),
-                      Text(
-                        data.dosenAmpu,
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      SizedBox(height: 8),
-                      SizedBox(
-                        width: 220,
-                        child: Text(
-                          data.jenisPresensi,
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ),
-                      SizedBox(height: 8),
                       SizedBox(
                         width: 200,
                         child: Text(
@@ -100,6 +113,21 @@ class PresensiListDetailTile extends StatelessWidget {
                           style: TextStyle(fontSize: 12,),
                         ),
                       ),
+                      SizedBox(height: 8),
+                      SizedBox(
+                        width: 200,
+                        child: Text(
+                         'SKS Pertemuan : ',
+                          style: TextStyle(fontSize: 12,),
+                        ),
+                      ),
+                      SizedBox(height: 6),
+                      Text(
+                        data.dosenAmpu,
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      SizedBox(height: 6),
+                      wIsMandiri(data.ismandiri),
                     ],
                   ),
                 ),
@@ -132,11 +160,11 @@ class PresensiListDetailTile extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(20),
                       topLeft: Radius.circular(20))),
-              width: 48,
+              width: 200,
               height: 32,
               child: Center(
                 child: Text(
-                  data.noPertemuan,
+                  'Pertemuan ke - ${data.noPertemuan}',
                   style: TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                 ),

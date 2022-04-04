@@ -33,10 +33,6 @@ class ButtonProfile extends StatelessWidget {
                 style: TextStyle(color: ColorPallete.primary, fontSize: 16),
               ),
             ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Color(0xFF9F9F9F),
-            )
           ],
         ),
       ),

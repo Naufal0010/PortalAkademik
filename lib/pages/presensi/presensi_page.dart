@@ -5,12 +5,6 @@ import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:provider/provider.dart';
 
-List<Color> colors = [
-  Color(0xFFF99898),
-  Color(0xFFA6E4FF),
-  Color(0xFF98F9AD),
-  Color(0xFFEDA6FF)
-];
 
 class PresensiPage extends StatefulWidget {
   const PresensiPage({Key? key}) : super(key: key);

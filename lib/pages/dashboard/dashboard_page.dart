@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/jadwal/jadwal_page.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/kalender/kalender_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/rencana_studi_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/riwayat_registrasi_page.dart';
 import 'package:portal_akademik/states/state.dart';
@@ -126,66 +128,65 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 24, bottom: 10),
-                child: Column(
+                padding: EdgeInsets.only(top: 14),
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                child: GridView(
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 4,
+                    childAspectRatio: 1
+                  ),
+                  scrollDirection: Axis.vertical,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButtonCustom(
-                            nameLabel: 'Rencana',
-                            iconLabel: Icons.school,
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          RencanaStudiPage()));
-                            }),
-                        IconButtonCustom(
-                            nameLabel: 'Rekap ',
-                            iconLabel: Icons.insert_chart,
-                            onTap: () {}),
-                        IconButtonCustom(
-                            nameLabel: 'Riwayat',
-                            iconLabel: Icons.assignment,
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          RiwayatRegistrasiPage()));
-                            }),
-                        IconButtonCustom(
-                            nameLabel: 'Kalender',
-                            iconLabel: Icons.calendar_today,
-                            onTap: () {})
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButtonCustom(
-                            nameLabel: 'Jadwal',
-                            iconLabel: Icons.schedule,
-                            onTap: () {}),
-                        IconButtonCustom(
-                            nameLabel: 'Perkuliahan ',
-                            iconLabel: Icons.class_,
-                            onTap: () {}),
-                        IconButtonCustom(
-                            nameLabel: 'Ujian Akhir',
-                            iconLabel: Icons.task,
-                            onTap: () {}),
-                        IconButtonCustom(
-                            nameLabel: 'Kuesioner',
-                            iconLabel: Icons.star,
-                            onTap: () {})
-                      ],
-                    ),
+                    IconButtonCustom(
+                        nameLabel: 'Rencana',
+                        iconLabel: Icons.school,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      RencanaStudiPage()));
+                        }),
+                    IconButtonCustom(
+                        nameLabel: 'Riwayat',
+                        iconLabel: Icons.assignment,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      RiwayatRegistrasiPage()));
+                        }),
+                    IconButtonCustom(
+                        nameLabel: 'Kalender',
+                        iconLabel: Icons.calendar_today,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => KalenderPage()));
+                        }),
+                    IconButtonCustom(
+                        nameLabel: 'Kuesioner',
+                        iconLabel: Icons.star,
+                        onTap: () {}),
+                    IconButtonCustom(
+                        nameLabel: 'Jadwal',
+                        iconLabel: Icons.schedule,
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => JadwalPage()));
+                        }),
+                    IconButtonCustom(
+                        nameLabel: 'Perkuliahan ',
+                        iconLabel: Icons.class_,
+                        onTap: () {}),
+                    IconButtonCustom(
+                        nameLabel: 'Ujian Akhir',
+                        iconLabel: Icons.task,
+                        onTap: () {}),
                   ],
                 ),
               ),

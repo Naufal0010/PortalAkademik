@@ -5,7 +5,7 @@ import 'package:portal_akademik/pages/empty_page.dart';
 import 'package:portal_akademik/pages/presensi/component/presensi_list_detail_tile.dart';
 import 'package:portal_akademik/pages/presensi/component/presensi_list_tile.dart';
 import 'package:portal_akademik/pages/presensi/presensi_detail_page.dart';
-import 'package:portal_akademik/pages/presensi/presensi_page.dart';
+import 'package:portal_akademik/pages/presensi/component/list_color_presensi.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_matakuliah.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_list_mk_presensi.dart';
@@ -123,7 +123,7 @@ Widget getErrorListPresensi(
           return EmptyPage();
         } else {
           return PresensiListTile(
-              color: colors[index % colors.length],
+              color: ListColorPresensi.colors[index % ListColorPresensi.colors.length],
               data: state.data!.data![index],
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(

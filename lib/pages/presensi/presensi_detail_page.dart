@@ -49,7 +49,7 @@ class PresensiDetailPage extends StatelessWidget {
                     padding: EdgeInsets.all(36.0),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(6),
                       border: Border.all(width: 1, color: ColorPallete.primary),
                       // color: Colors.amber,
                     ),
