@@ -168,10 +168,10 @@ class Kh {
   final dynamic bpengetahuan;
   final dynamic bketUmum;
   final dynamic bketKhusus;
-  final String  angka;
-  final String bobot;
+  final String?  angka;
+  final String? bobot;
   final int status;
-  final String  huruf;
+  final String?  huruf;
   final String?  tampil;
   final String?  validasi;
 
@@ -186,11 +186,11 @@ class Kh {
     mk: json["mk"] == null ? null : json["mk"],
     sks: json["sks"] == null ? null : json["sks"],
     w: json["w"] == null ? null : json["w"],
-    tugas: json["tugas"] == null ? null : json["tugas"],
+    tugas: json["tugas"] == null ? "-" : json["tugas"],
     kurikulum: json["kurikulum"] == null ? null : json["kurikulum"],
-    uts: json["uts"] == null ? null : json["uts"],
-    uas: json["uas"] == null ? null : json["uas"],
-    prak: json["prak"] == null ? null : json["prak"],
+    uts: json["uts"] == null ? "-" : json["uts"],
+    uas: json["uas"] == null ? "-" : json["uas"],
+    prak: json["prak"] == null ? "-" : json["prak"],
     prakLap: json["prak_lap"],
     presensi: json["presensi"],
     skill: json["skill"],

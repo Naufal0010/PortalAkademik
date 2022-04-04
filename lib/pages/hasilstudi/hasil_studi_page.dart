@@ -127,12 +127,129 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                           height: 150,
                           width: double.infinity,
                         )
-                      : HasilStudiList(khs: value.data?.khs?.khs);
+                      : Column(
+                          children: [
+                            HasilStudiList(khs: value.data?.khs?.khs),
+                            SizedBox(
+                              height: 20.0,
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(15.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(
+                                    width: 1, color: ColorPallete.primary),
+                                // color: Colors.amber,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'SKS Lulus',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: userKhs.isLoading
+                                            ? ShimmerWidget(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                height: 20,
+                                              )
+                                            : Text(
+                                                '${userKhs.data?.khs?.sksLulus}',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Indeks Prestasi (IP)',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: userKhs.isLoading
+                                            ? ShimmerWidget(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                height: 20,
+                                              )
+                                            : Text(
+                                                '${userKhs.data?.khs?.ipk}',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'SKS Maksimal Berikutnya',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: userKhs.isLoading
+                                            ? ShimmerWidget(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                height: 20,
+                                              )
+                                            : Text(
+                                                '${userKhs.data?.khs?.sksMaxDepan}',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
                 },
               ),
-              // SizedBox(
-              //   height: 20.0,
-              // ),
               LabelSubHeader('Rekap Hasil Studi', 20),
               Consumer<UserMahasiswaRekapHasilStudiState>(
                 builder: (context, value, child) {
@@ -141,86 +258,98 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                           height: 150,
                           width: double.infinity,
                         )
-                      : RekapHasilStudiList(transkrip: value.data?.transkrip);
+                      : Column(
+                          children: [
+                            RekapHasilStudiList(
+                                transkrip: value.data?.transkrip),
+                            SizedBox(
+                              height: 20.0,
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(15.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(
+                                    width: 1, color: ColorPallete.primary),
+                                // color: Colors.amber,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  LabelSubHeader('Keterangan Studi', 20),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Total SKS',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: userRhs.isLoading
+                                            ? ShimmerWidget(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                height: 20,
+                                              )
+                                            : Text(
+                                                '${userRhs.data?.sksLulus}',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'Indeks Prestasi Kumulatif',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: userRhs.isLoading
+                                            ? ShimmerWidget(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                height: 20,
+                                              )
+                                            : Text(
+                                                '${userRhs.data?.ipk}',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        );
                 },
               ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Container(
-                padding: EdgeInsets.all(15.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  border: Border.all(width: 1, color: ColorPallete.primary),
-                  // color: Colors.amber,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    LabelSubHeader('Keterangan Studi', 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            'Total SKS',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: userRhs.isLoading
-                              ? ShimmerWidget(
-                            width: MediaQuery.of(context).size.width,
-                            height: 20,
-                          )
-                              : Text(
-                            '${userRhs.data?.sksLulus}',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            'Indeks Prestasi Kumulatif',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: userRhs.isLoading
-                              ? ShimmerWidget(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 20,
-                                )
-                              : Text(
-                                  '${userRhs.data?.ipk}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              )
             ],
           ),
         ),
