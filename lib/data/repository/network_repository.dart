@@ -79,6 +79,17 @@ class NetworkRepository {
         method: MethodRequest.DELETE);
   }
 
+  // getSemesterAktif() untuk mengambil data semester aktif
+  Future<ApiModel> getSemesterAktif() async {
+    return await consumer.execute(url: '/simari/semesterAktif?with[]=semester&with[]=namaSemester');
+  }
+
+  // getListKrsMahasiswa(semester) untuk mengambil data rencana studi semester baru
+  Future<ApiModel> getListKrsMahasiswa(String semester) async {
+    return await consumer.execute(
+        url: '/akademik/krs/perSemester/$username/$semester');
+  }
+
   // getHeaderKrsMahasiswa() untuk mengambil data KRS Mahasiswa
   Future<ApiModel> getHeaderKrsMahasiswa() async {
     return await consumer.execute(url: '/akademik/krs/header/mahasiswa');

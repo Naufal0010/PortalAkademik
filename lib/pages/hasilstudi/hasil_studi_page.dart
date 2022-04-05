@@ -18,7 +18,7 @@ class HasilStudiPage extends StatefulWidget {
 }
 
 class _HasilStudiPageState extends State<HasilStudiPage> {
-  String _valSemester = ApiLocalStorage.userModelMahasiswa!.semAwal;
+  String _valSemester = ApiLocalStorage.semesterAktif!.rows![0].semesterAktif;
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
-
 import '../../../model/model_user_mahasiswa_khs.dart';
 import '../../../util/color_pallete.dart';
 

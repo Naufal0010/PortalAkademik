@@ -2,14 +2,19 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/jadwal/jadwal_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kalender/kalender_page.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/kuesioner/kuesioner_page.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/perkuliahan/perkuliahan_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/rencana_studi_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/riwayat_registrasi_page.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/ujianakhir/ujianakhir_page.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:portal_akademik/widget/icon_button_widget.dart';
 import 'package:portal_akademik/widget/jadwal_item_widget.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
+
+import '../../states/state_user_semester_aktif.dart';
 
 final List<String> imgList = [
   'assets/images/berakhlak.png',
@@ -68,6 +73,9 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     UserMahasiswaState userMahasiswa =
         Provider.of<UserMahasiswaState>(context, listen: true);
+
+    UserMahasiswaSemesterAktifState semesterAktif =
+    Provider.of<UserMahasiswaSemesterAktifState>(context, listen: true);
 
     Future<void> refresh() {
       userMahasiswa.refreshData();
@@ -134,10 +142,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 child: GridView(
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    mainAxisSpacing: 4,
-                    childAspectRatio: 1
-                  ),
+                      crossAxisCount: 4,
+                      mainAxisSpacing: 4,
+                      childAspectRatio: 1),
                   scrollDirection: Axis.vertical,
                   children: [
                     IconButtonCustom(
@@ -147,8 +154,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      RencanaStudiPage()));
+                                  builder: (context) => RencanaStudiPage()));
                         }),
                     IconButtonCustom(
                         nameLabel: 'Riwayat',
@@ -172,21 +178,39 @@ class _DashboardPageState extends State<DashboardPage> {
                     IconButtonCustom(
                         nameLabel: 'Kuesioner',
                         iconLabel: Icons.star,
-                        onTap: () {}),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => KuesionerPage()));
+                        }),
                     IconButtonCustom(
                         nameLabel: 'Jadwal',
                         iconLabel: Icons.schedule,
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => JadwalPage()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => JadwalPage()));
                         }),
                     IconButtonCustom(
                         nameLabel: 'Perkuliahan ',
                         iconLabel: Icons.class_,
-                        onTap: () {}),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PerkuliahanPage()));
+                        }),
                     IconButtonCustom(
                         nameLabel: 'Ujian Akhir',
                         iconLabel: Icons.task,
-                        onTap: () {}),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => UjianAkhirPage()));
+                        }),
                   ],
                 ),
               ),
