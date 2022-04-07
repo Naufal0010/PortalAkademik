@@ -4,6 +4,7 @@ import 'package:portal_akademik/pages/hasilstudi/hasil_studi_page.dart';
 import 'package:portal_akademik/pages/presensi/presensi_page.dart';
 import 'package:portal_akademik/pages/profile/profile_page.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
+
 import 'dashboard/dashboard_page.dart';
 
 final List<String> imgList = [

@@ -18,7 +18,7 @@ class UserMahasiswaKrsState with ChangeNotifier, DiagnosticableTreeMixin {
     final res = await NetworkRepository().getListKrsMahasiswa(ApiLocalStorage.semesterAktif!.rows![0].semesterAktif);
     if (res.code == CODE.SUCCESS) {
       data = UserModelRencanaHasilStudi.fromMap(res.data);
-      UtilLogger.log('message', data?.toJson());
+      UtilLogger.log('KRS', data?.toJson());
       isLoading = false;
       notifyListeners();
     } else {

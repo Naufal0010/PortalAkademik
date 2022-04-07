@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
-import 'package:portal_akademik/model/model_user_mahasiswa_semester_aktif.dart';
 import 'package:portal_akademik/model/model.dart';
+import 'package:portal_akademik/model/model_user_mahasiswa_semester_aktif.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
 import '../util/api_local_store.dart';

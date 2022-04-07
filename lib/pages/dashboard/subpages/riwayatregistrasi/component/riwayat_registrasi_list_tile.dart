@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/component/widget_isi_krs.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/component/widget_krs_disetujui.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/component/widget_revisi_krs.dart';
+
 import '../../../../../model/model_user_mahasiswa_riwayat_registrasi.dart';
 import '../../../../../util/color_pallete.dart';
 

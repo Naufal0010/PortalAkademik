@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
+import 'package:portal_akademik/pages/profile/component/button_profile_widget.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_auth.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
-import 'package:portal_akademik/pages/profile/component/button_profile_widget.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 

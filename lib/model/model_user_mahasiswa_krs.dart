@@ -11,7 +11,7 @@ class UserModelRencanaHasilStudi {
   final MkReguler? mkReguler;
   final MkKampusmerdeka? mkKampusmerdeka;
   final String ips;
-  final int sksMax;
+  final String sksMax;
 
   factory UserModelRencanaHasilStudi.fromJson(String str) => UserModelRencanaHasilStudi.fromMap(json.decode(str));
 
@@ -21,7 +21,7 @@ class UserModelRencanaHasilStudi {
     mkReguler: json["mk_reguler"] == null ? null : MkReguler.fromMap(json["mk_reguler"]),
     mkKampusmerdeka: json["mk_kampusmerdeka"] == null ? null : MkKampusmerdeka.fromMap(json["mk_kampusmerdeka"]),
     ips: json["ips"] == null ? null : json["ips"],
-    sksMax: json["sks_max"] == null ? null : json["sks_max"],
+    sksMax: json["sks_max"].toString(),
   );
 
   Map<String, dynamic> toMap() => {
@@ -62,20 +62,32 @@ class MkReguler {
     required this.krsTotalSks,
   });
 
-  final Map<String, KrsListMk>? krsListMk;
+  final List<KrsListMk>? krsListMk;
   final int krsTotalSks;
 
   factory MkReguler.fromJson(String str) => MkReguler.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory MkReguler.fromMap(Map<String, dynamic> json) => MkReguler(
-    krsListMk: json["krs_list_mk"] == null ? null : Map.from(json["krs_list_mk"]).map((k, v) => MapEntry<String, KrsListMk>(k, KrsListMk.fromMap(v))),
-    krsTotalSks: json["krs_total_sks"] == null ? null : json["krs_total_sks"],
-  );
+
+
+  factory MkReguler.fromMap(Map<String, dynamic> json) {
+
+    List<KrsListMk> listMk(Map map) {
+      List<KrsListMk> list = [];
+      map.entries.forEach((e) => list.add(KrsListMk.fromJson(e.value)));
+
+      return list;
+    }
+
+    return MkReguler(
+      krsListMk: json["krs_list_mk"] == null ? null : listMk(json["krs_list_mk"]),
+      krsTotalSks: json["krs_total_sks"] == null ? null : json["krs_total_sks"],
+    );
+  }
 
   Map<String, dynamic> toMap() => {
-    "krs_list_mk": krsListMk == null ? null : Map.from(krsListMk!).map((k, v) => MapEntry<String, dynamic>(k, v.toMap())),
+    "krs_list_mk": krsListMk == null ? null : List<KrsListMk>.from(krsListMk!).map((x) => x),
     "krs_total_sks": krsTotalSks == null ? null : krsTotalSks,
   };
 }
@@ -108,29 +120,29 @@ class KrsListMk {
     required this.detail,
   });
 
-  final String krsId;
-  final String krsIsSetuju;
-  final String krsIsKirim;
-  final String krsIsBatal;
-  final String krsIsRevisi;
+  final String? krsId;
+  final String? krsIsSetuju;
+  final String? krsIsKirim;
+  final String? krsIsBatal;
+  final String? krsIsRevisi;
   final dynamic krsIsBatalRevisi;
-  final String mkKode;
-  final String kurNama;
-  final String klsNama;
-  final String jenjang;
-  final String mkId;
-  final String mkNama;
-  final String mkSksTotal;
-  final String mkSksTeori;
-  final String mkSksPrak;
-  final String mkSksPrakLap;
-  final String klsJadwal;
-  final String klsId;
-  final String klsSemester;
-  final String klsIsMerdeka;
+  final String? mkKode;
+  final String? kurNama;
+  final String? klsNama;
+  final String? jenjang;
+  final String? mkId;
+  final String? mkNama;
+  final String? mkSksTotal;
+  final String? mkSksTeori;
+  final String? mkSksPrak;
+  final String? mkSksPrakLap;
+  final String? klsJadwal;
+  final String? klsId;
+  final String? klsSemester;
+  final String? klsIsMerdeka;
   final List<String>? status;
-  final String statusKrs;
-  final String jadwal;
+  final String? statusKrs;
+  final String? jadwal;
   final Detail? detail;
 
   factory KrsListMk.fromJson(String str) => KrsListMk.fromMap(json.decode(str));

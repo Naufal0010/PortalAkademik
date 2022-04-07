@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../util/color_pallete.dart';
 
 Widget wIsiKrs(int isiKrs) {
