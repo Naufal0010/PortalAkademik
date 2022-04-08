@@ -63,6 +63,11 @@ class NetworkRepository {
         url: '/akademik/jadwal/mahasiswa/kuliah/$username');
   }
 
+  Future<ApiModel> getJadwalUasMahasiswa() async {
+    return await consumer.execute(
+        url: '/akademik/jadwal/mahasiswa/uas/$username');
+  }
+
   // getUserMahasiswaListMkPresensi() untuk mengambil list presensi mahasiswa
   // berdasarkan parameter kelasId per mata kuliah
   Future<ApiModel> getUserMahasiswaListMkPresensi(String kelasId) async {
@@ -81,7 +86,8 @@ class NetworkRepository {
 
   // getSemesterAktif() untuk mengambil data semester aktif
   Future<ApiModel> getSemesterAktif() async {
-    return await consumer.execute(url: '/simari/semesterAktif?with[]=semester&with[]=namaSemester');
+    return await consumer.execute(
+        url: '/simari/semesterAktif?with[]=semester&with[]=namaSemester');
   }
 
   // getListKrsMahasiswa(semester) untuk mengambil data rencana studi semester baru

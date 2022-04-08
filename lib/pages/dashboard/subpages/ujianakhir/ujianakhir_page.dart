@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/ujianakhir/component/ujianakhir_list_table.dart';
+import 'package:portal_akademik/pages/presensi/component/shimmer_list_tile.dart';
+import 'package:portal_akademik/states/state.dart';
+import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_uas.dart';
 
 class UjianAkhirPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    UserMahasiswaJadwalUasState userUas =
+        Provider.of<UserMahasiswaJadwalUasState>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -15,6 +20,7 @@ class UjianAkhirPage extends StatelessWidget {
                 color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis),
       ),
+      body: userUas.isLoading ? ShimmerListTile() : UjianAkhirListTable(),
     );
   }
 }
