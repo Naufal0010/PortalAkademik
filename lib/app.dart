@@ -23,20 +23,15 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaKhsSemesterState()),
-        ChangeNotifierProvider(
-            create: (_) => UserMahasiswaJadwalMataKuliahState()),
+        ChangeNotifierProvider(create: (_) => UserMahasiswaJadwalMataKuliahState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaJadwalUasState()),
-        ChangeNotifierProvider(
-            create: (_) => UserMahasiswaListMkPresensiState()),
-        ChangeNotifierProvider(
-            create: (_) => UserMahasiswaSemesterAktifState()),
+        ChangeNotifierProvider(create: (_) => UserMahasiswaListMkPresensiState()),
+        ChangeNotifierProvider(create: (_) => UserMahasiswaSemesterAktifState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaKrsState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaKrsHeaderState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaKhsState()),
-        ChangeNotifierProvider(
-            create: (_) => UserMahasiswaRekapHasilStudiState()),
-        ChangeNotifierProvider(
-            create: (_) => UserMahasiswaRiwayatRegistrasiState()),
+        ChangeNotifierProvider(create: (_) => UserMahasiswaRekapHasilStudiState()),
+        ChangeNotifierProvider(create: (_) => UserMahasiswaRiwayatRegistrasiState()),
       ],
       child: GestureDetector(
         onTap: () {

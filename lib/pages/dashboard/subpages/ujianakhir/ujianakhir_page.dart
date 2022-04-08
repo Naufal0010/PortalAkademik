@@ -20,7 +20,12 @@ class UjianAkhirPage extends StatelessWidget {
                 color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis),
       ),
-      body: userUas.isLoading ? ShimmerListTile() : UjianAkhirListTable(),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: userUas.isLoading
+            ? ShimmerListTile()
+            : UjianAkhirListTable(),
+      ),
     );
   }
 }

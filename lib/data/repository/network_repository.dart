@@ -63,6 +63,7 @@ class NetworkRepository {
         url: '/akademik/jadwal/mahasiswa/kuliah/$username');
   }
 
+  // getJadwalUasMahasiswa() untuk mengambil list jadwal UAS Mahasiswa
   Future<ApiModel> getJadwalUasMahasiswa() async {
     return await consumer.execute(
         url: '/akademik/jadwal/mahasiswa/uas/$username');

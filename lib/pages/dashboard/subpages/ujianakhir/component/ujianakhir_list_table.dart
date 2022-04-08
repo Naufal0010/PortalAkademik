@@ -5,8 +5,6 @@ import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_uas.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 
 class UjianAkhirListTable extends StatelessWidget {
-  UjianAkhirListTable({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     UserMahasiswaJadwalUasState userUas =
@@ -21,8 +19,8 @@ class UjianAkhirListTable extends StatelessWidget {
         child: SizedBox(
           width: double.infinity,
           child: HorizontalDataTable(
-            leftHandSideColumnWidth: 150,
-            rightHandSideColumnWidth: 460,
+            leftHandSideColumnWidth: 180,
+            rightHandSideColumnWidth: 200,
             isFixedHeader: true,
             headerWidgets: _getTitleWidget(),
             leftSideItemBuilder: _generateFirstColumnRow,
@@ -51,7 +49,7 @@ class UjianAkhirListTable extends StatelessWidget {
   List<Widget> _getTitleWidget() {
     return [
       SizedBox(
-        width: 200,
+        width: 180,
         child: Container(
           child: Text('Mata Kuliah',
               style:
@@ -61,7 +59,7 @@ class UjianAkhirListTable extends StatelessWidget {
             color: ColorPallete.primary,
           ),
           padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.centerLeft,
+          alignment: Alignment.center,
         ),
       ),
       SizedBox(
@@ -75,7 +73,7 @@ class UjianAkhirListTable extends StatelessWidget {
             color: ColorPallete.primary,
           ),
           padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.centerLeft,
+          alignment: Alignment.center,
         ),
       ),
     ];
@@ -86,7 +84,7 @@ class UjianAkhirListTable extends StatelessWidget {
         Provider.of<UserMahasiswaJadwalUasState>(context, listen: true);
 
     return SizedBox(
-      width: 200,
+      width: 180,
       child: Container(
         child: Text(userUas.data!.data![index].mk,
             style: TextStyle(fontSize: 12.0)),
@@ -104,7 +102,8 @@ class UjianAkhirListTable extends StatelessWidget {
     return Row(
       children: <Widget>[
         SizedBox(
-          width: 150,
+          width: 200,
+          height: 100,
           child: Column(
             children: [
               Container(
