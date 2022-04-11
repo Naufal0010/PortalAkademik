@@ -5,7 +5,7 @@ class UserMhsJadwalMataKuliah {
     required this.data,
   });
 
-  final List<MataKuliah>? data;
+   List<MataKuliah>? data;
 
   factory UserMhsJadwalMataKuliah.fromJson(String str) =>
       UserMhsJadwalMataKuliah.fromMap(json.decode(str));

@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/pages/dashboard/component/jadwal_item_carousel.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/jadwal/jadwal_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kalender/kalender_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kuesioner/kuesioner_page.dart';
@@ -10,10 +11,10 @@ import 'package:portal_akademik/pages/dashboard/subpages/ujianakhir/ujianakhir_p
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:portal_akademik/widget/icon_button_widget.dart';
-import 'package:portal_akademik/widget/jadwal_item_widget.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 
+import '../../states/state_user_mahasiswa_jadwal_hari_ini.dart';
 import '../../states/state_user_semester_aktif.dart';
 
 final List<String> imgList = [
@@ -64,7 +65,6 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  int _currentIndexSlider = 0;
   bool isLoading = false;
 
   final CarouselController _controller = CarouselController();
@@ -76,6 +76,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
     UserMahasiswaSemesterAktifState semesterAktif =
     Provider.of<UserMahasiswaSemesterAktifState>(context, listen: true);
+
+    UserMahasiswaJadwalHariIniState jadwal = Provider.of<UserMahasiswaJadwalHariIniState>(context, listen: true);
 
     Future<void> refresh() {
       userMahasiswa.refreshData();
@@ -220,30 +222,8 @@ class _DashboardPageState extends State<DashboardPage> {
                   height: 150,
                   child: ListView(
                     children: [
-                      CarouselSlider(
-                        items: [
-                          JadwalItem(
-                              'JFH63',
-                              'Manajemen Proyek',
-                              'Ruang Kuliah II.3.1',
-                              'Mohammad Reza Faisal',
-                              'Rudy Herteno',
-                              '08:00'),
-                          JadwalItem(
-                              'JFH63',
-                              'Manajemen Proyek',
-                              'Ruang Kuliah II.3.1',
-                              'Mohammad Reza Faisal',
-                              'Rudy Herteno',
-                              '08:00'),
-                          JadwalItem(
-                              'JFH63',
-                              'Manajemen Proyek',
-                              'Ruang Kuliah II.3.1',
-                              'Mohammad Reza Faisal',
-                              'Rudy Herteno',
-                              '08:00'),
-                        ],
+                      jadwal.isLoading ? ShimmerWidget(height: 100, width: 100,) : CarouselSlider(
+                        items: jadwal.data!.data!.map((e) => JadwalItem(e)).toList(),
                         options: CarouselOptions(
                           height: 150.0,
                           enlargeCenterPage: true,
@@ -251,8 +231,6 @@ class _DashboardPageState extends State<DashboardPage> {
                           aspectRatio: 16 / 9,
                           autoPlayCurve: Curves.fastOutSlowIn,
                           enableInfiniteScroll: false,
-                          autoPlayAnimationDuration:
-                              const Duration(milliseconds: 800),
                           viewportFraction: 0.8,
                         ),
                       ),
@@ -273,7 +251,6 @@ class _DashboardPageState extends State<DashboardPage> {
                           aspectRatio: 2.0,
                           onPageChanged: (index, reason) {
                             setState(() {
-                              _currentIndexSlider = index;
                             });
                           }),
                     )

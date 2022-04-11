@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 
-class JadwalItem extends StatelessWidget {
-  final String kodeMataKuliah;
-  final String namaMataKuliah;
-  final String ruangKuliah;
-  final String pengajarMataKuliahPertama;
-  final String pengajarMataKuliahKedua;
-  final String waktuKuliah;
+import '../../../model/model_user_mahasiswa_jadwal_matakuliah.dart';
 
-  JadwalItem(this.kodeMataKuliah, this.namaMataKuliah, this.ruangKuliah,
-      this.pengajarMataKuliahPertama, this.pengajarMataKuliahKedua, this.waktuKuliah);
+
+class JadwalItem extends StatelessWidget {
+  final MataKuliah data;
+
+  JadwalItem(this.data);
 
   @override
   Widget build(BuildContext context) {
+
+    String text = data.jamKuliah;
+    var waktuKuliah = text.substring(0, 5);
+
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(4),
@@ -33,10 +35,9 @@ class JadwalItem extends StatelessWidget {
               child: Text(
                 waktuKuliah,
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: ColorPallete.primary
-                ),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: ColorPallete.primary),
               ),
             ),
           ),
@@ -49,53 +50,43 @@ class JadwalItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    kodeMataKuliah,
+                    data.mk,
                     style: TextStyle(
                       fontSize: 14,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
-                  ),
-                  Text(
-                    namaMataKuliah,
-                    style: TextStyle(
-                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: ColorPallete.primary,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    softWrap: false,
+                    softWrap: true,
                   ),
                   Row(
                     children: [
                       Icon(Icons.location_on_outlined),
                       Text(
-                        ruangKuliah,
+                        data.ruangKuliah,
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  Text(
-                    pengajarMataKuliahPertama,
-                    style: TextStyle(
-                      fontSize: 14,
+                  SizedBox(
+                    width: 200,
+                    child: Html(
+                      data: """
+                      ${data.dosen}
+                            """,
+                      style: {
+                        "body": Style(
+                          color: Colors.black,
+                          textOverflow: TextOverflow.ellipsis,
+                          margin: EdgeInsets.symmetric(horizontal: -10),
+                          fontFamily: 'Poppins',
+                          fontSize: FontSize(14.0),
+                        ),
+                      },
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: true,
                   ),
-                  Text(
-                    pengajarMataKuliahKedua,
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: true,
-                  )
                 ],
               ),
             ),

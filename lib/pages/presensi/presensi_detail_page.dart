@@ -48,7 +48,7 @@ class PresensiDetailPage extends StatelessWidget {
                     width: double.infinity,
                     padding: EdgeInsets.all(36.0),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: ColorPallete.primary,
                       borderRadius: BorderRadius.circular(6),
                       border: Border.all(width: 1, color: ColorPallete.primary),
                       // color: Colors.amber,
@@ -58,7 +58,7 @@ class PresensiDetailPage extends StatelessWidget {
                       children: [
                         Text('Dosen Ampu',
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
+                                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.6,
                           child: Html(
@@ -67,6 +67,7 @@ class PresensiDetailPage extends StatelessWidget {
                             """,
                             style: {
                               "body": Style(
+                                color: Colors.white,
                                 textOverflow: TextOverflow.ellipsis,
                                 margin: EdgeInsets.symmetric(horizontal: -10),
                                 fontFamily: 'Poppins',
@@ -78,9 +79,7 @@ class PresensiDetailPage extends StatelessWidget {
                         SizedBox(
                           height: 8,
                         ),
-                        Text('Jadwal',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
+
                         Container(
                           width: MediaQuery.of(context).size.width * 0.6,
                           child: Html(
@@ -89,6 +88,7 @@ class PresensiDetailPage extends StatelessWidget {
                             """,
                             style: {
                               "body": Style(
+                                color: Colors.white,
                                 textOverflow: TextOverflow.ellipsis,
                                 margin: EdgeInsets.symmetric(horizontal: -10),
                                 fontFamily: 'Poppins',
@@ -108,6 +108,7 @@ class PresensiDetailPage extends StatelessWidget {
                             """,
                             style: {
                               "body": Style(
+                                color: Colors.white,
                                 textOverflow: TextOverflow.ellipsis,
                                 margin: EdgeInsets.symmetric(horizontal: -10),
                                 fontFamily: 'Poppins',
@@ -119,9 +120,7 @@ class PresensiDetailPage extends StatelessWidget {
                         SizedBox(
                           height: 8,
                         ),
-                        Text('Ruang',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
+
                         Container(
                           width: MediaQuery.of(context).size.width * 0.6,
                           child: Html(
@@ -130,6 +129,7 @@ class PresensiDetailPage extends StatelessWidget {
                             """,
                             style: {
                               "body": Style(
+                                color: Colors.white,
                                 textOverflow: TextOverflow.ellipsis,
                                 margin: EdgeInsets.symmetric(horizontal: -10),
                                 fontFamily: 'Poppins',
@@ -141,6 +141,7 @@ class PresensiDetailPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(height: 4,),
                   Consumer<UserMahasiswaListMkPresensiState>(
                     builder: (context, value, child) {
                       return value.isLoading

@@ -39,9 +39,9 @@ class PresensiListDetailTile extends StatelessWidget {
           ),
           SizedBox(height: 6,),
           SizedBox(
-            width: 220,
+            width: 200,
             child: Text(
-              '${data.tglMulaiPresensi} s/d ${data.tglSelesaiPresensi}',
+              '${data.tglMulaiPresensi} s/d \n${data.tglSelesaiPresensi}',
               style: TextStyle(fontSize: 12),
             ),
           ),
@@ -67,7 +67,6 @@ class PresensiListDetailTile extends StatelessWidget {
     } else if (aksi == "presensi") {
       return Center(
         child: Container(
-          width: 80,
           height: 50,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -76,13 +75,20 @@ class PresensiListDetailTile extends StatelessWidget {
           ),
           child: Center(
             child: Text(data.aksi,
-                style: TextStyle(color: ColorPallete.primary, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                style: TextStyle(color: ColorPallete.primary), textAlign: TextAlign.center)
           ),
         ),
       );
+    } else if (aksi == "Tanpa Keterangan") {
+      return Center(
+        child: Text(data.aksi,
+            style: TextStyle(color: Colors.white, fontSize: 12), textAlign: TextAlign.center),
+      );
     }
-    return Text(data.aksi,
-        style: TextStyle(color: Colors.white), textAlign: TextAlign.center);
+    return Center(
+      child: Text(data.aksi,
+          style: TextStyle(color: Colors.white), textAlign: TextAlign.center),
+    );
   }
 
   @override
@@ -99,7 +105,7 @@ class PresensiListDetailTile extends StatelessWidget {
         children: [
           Container(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 36.0, top: 36.0, bottom: 16),
@@ -135,20 +141,23 @@ class PresensiListDetailTile extends StatelessWidget {
                 Ink(
                   child: InkWell(
                     onTap: onTap,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: keteranganColor(data.aksi),
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              bottomRight: Radius.circular(20))),
-                      width: 100,
-                      height: 200,
-                      child: Center(
-                        child: aksiPresensiOnClick(data.aksi),
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 16.0),
+                        child: SizedBox(
+                          width: 80,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: keteranganColor(data.aksi),
+                                borderRadius: BorderRadius.circular(10)),
+                            height: 60,
+                            child: aksiPresensiOnClick(data.aksi),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/home_page.dart';
 import 'package:portal_akademik/pages/login/login_page.dart';
 import 'package:portal_akademik/states/state.dart';
+import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_hari_ini.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_matakuliah.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_uas.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_khs.dart';
@@ -23,6 +24,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaKhsSemesterState()),
+        ChangeNotifierProvider(create: (_) => UserMahasiswaJadwalHariIniState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaJadwalMataKuliahState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaJadwalUasState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaListMkPresensiState()),
