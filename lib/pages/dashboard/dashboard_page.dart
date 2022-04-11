@@ -81,6 +81,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
     Future<void> refresh() {
       userMahasiswa.refreshData();
+      jadwal.refreshData();
       return userMahasiswa.refreshData();
     }
 
