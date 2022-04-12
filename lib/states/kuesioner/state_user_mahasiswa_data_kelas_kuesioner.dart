@@ -3,10 +3,10 @@ import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
-import '../../model/kuesioner/model_user_mahasiswa_data_detail_kuesioner.dart';
+import '../../model/kuesioner/model_user_mahasiswa_data_kelas_kuesioner.dart';
 
 class UserMahasiswaDataKelasKuesionerState with ChangeNotifier, DiagnosticableTreeMixin {
-  UserModelMahasiswaDataDetailKuesioner? data;
+  UserModelMahasiswaDataKelasKuesioner? data;
   Map<String, dynamic>? error;
   bool isLoading = true;
 
@@ -17,7 +17,7 @@ class UserMahasiswaDataKelasKuesionerState with ChangeNotifier, DiagnosticableTr
   Future<void> initData() async {
     final res = await NetworkRepository().getDataKelasKuesioner();
     if (res.code == CODE.SUCCESS) {
-      data = UserModelMahasiswaDataDetailKuesioner.fromMap(res.data);
+      data = UserModelMahasiswaDataKelasKuesioner.fromMap(res.data);
       UtilLogger.log('Data Kelas Kuesioner', data?.toJson());
       isLoading = false;
       notifyListeners();

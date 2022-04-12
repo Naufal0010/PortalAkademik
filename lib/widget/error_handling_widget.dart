@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/kuesioner/subtabpages/evaluasidosen/component/empty_evaluasi_dosen.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/component/riwayat_registrasi_list_tile.dart';
 import 'package:portal_akademik/pages/empty_page.dart';
 import 'package:portal_akademik/pages/presensi/component/list_color_presensi.dart';
@@ -11,7 +12,10 @@ import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_riwayat_registrasi.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 
+import '../pages/dashboard/subpages/kuesioner/subtabpages/evaluasidosen/component/evaluasi_dosen_list_tile.dart';
+import '../pages/dashboard/subpages/kuesioner/subtabpages/evaluasidosen/subpages/evaluasi_dosen_detail_page.dart';
 import '../states/jadwal/state_user_mahasiswa_jadwal_matakuliah.dart';
+import '../states/kuesioner/state_user_mahasiswa_data_kelas_kuesioner.dart';
 
 Widget getErrorName(BuildContext context, UserMahasiswaState state) {
   if (state.error != null) {
@@ -229,6 +233,52 @@ Widget getErrorListRiwayatRegistrasi(
         } else {
           return RiwayatRegistrasiListTile(state.data!.data![index]);
         }
+      },
+    ),
+  );
+}
+
+Widget getErrorListKuesionerEvaluasiDosen(
+    BuildContext context, UserMahasiswaDataKelasKuesionerState state) {
+  if (state.error != null) {
+    Fluttertoast.showToast(
+        msg: "${state.error!['content']}",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0);
+
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          state.refreshData();
+        },
+        child: Center(child: Text('Refresh')),
+        style: ElevatedButton.styleFrom(
+            primary: ColorPallete.primary, onPrimary: Colors.white),
+      ),
+    );
+  }
+
+  if (state.data?.kelas?.length == 0) {
+    return EmptyEvaluasiDosen();
+  }
+
+  return Expanded(
+    child: ListView.builder(
+      physics: AlwaysScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: state.data?.kelas?.length,
+      itemBuilder: (context, index) {
+          return EvaluasiDosenListTile(
+              data: state.data!.kelas![index],
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        EvaluasiDosenDetailPage(state.data!.kelas![index])));
+              });
       },
     ),
   );
