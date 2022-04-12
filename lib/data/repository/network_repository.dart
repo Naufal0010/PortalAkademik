@@ -109,6 +109,17 @@ class NetworkRepository {
         url: '/akademik/statusBayar/riwayatRegistrasi/$username');
   }
 
+  // getDataKelasKuesioner() untuk mengambil data kuesioner berdasarkan NIM
+  Future<ApiModel> getDataKelasKuesioner() async {
+    return await consumer.execute(
+        url: '/akademik/kuisionerPenilaian/dataKelasKuisioner/$username');
+  }
+
+  Future<ApiModel> getDataDetailKuesioner(String idKelas) async {
+    return await consumer.execute(
+        url: '/akademik/kuisionerPenilaian/dataKuisioner/$idKelas/$username');
+  }
+
   // refreshToken() jika access token expired
   Future refreshToken() async {
     FormData formData = FormData.fromMap({

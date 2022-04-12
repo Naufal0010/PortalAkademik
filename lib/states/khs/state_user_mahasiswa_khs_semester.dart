@@ -1,25 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
-import 'package:portal_akademik/model/model_user_mahasiswa_jadwal_uas.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
-class UserMahasiswaJadwalUasState with ChangeNotifier, DiagnosticableTreeMixin {
-  UserModelMahasiswaJadwalUas? data;
+class UserMahasiswaKhsSemesterState with ChangeNotifier, DiagnosticableTreeMixin {
+  UserKhsSemesterMahasiswa?  data;
   Map<String, dynamic>? error;
   bool isLoading = true;
 
-  UserMahasiswaJadwalUasState() {
+  UserMahasiswaKhsSemesterState() {
     initData();
   }
 
   Future<void> initData() async {
-    final res = await NetworkRepository().getJadwalUasMahasiswa();
+    final res = await NetworkRepository().getUserMahasiswaKhsSemester();
     if (res.code == CODE.SUCCESS) {
-      data = UserModelMahasiswaJadwalUas.fromMap(res.data);
+      data = UserKhsSemesterMahasiswa.fromMap(res.data);
       isLoading = false;
       notifyListeners();
-      UtilLogger.log('Jadwal UAS Mahasiswa', data);
+      UtilLogger.log('Khs Semester', data);
     } else {
       isLoading = false;
       error = res.message;

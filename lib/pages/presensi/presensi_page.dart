@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/presensi/component/shimmer_list_tile.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_matakuliah.dart';
 import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:provider/provider.dart';
+
+import '../../states/jadwal/state_user_mahasiswa_jadwal_matakuliah.dart';
 
 
 class PresensiPage extends StatefulWidget {

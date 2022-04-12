@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:portal_akademik/util/line_titles.dart';
+import 'package:portal_akademik/pages/hasilstudi/component/line_titles.dart';
 
 class LineChartWidget extends StatelessWidget {
   final List<Color> gradientColors = [

@@ -41,7 +41,8 @@ class JadwalPage extends StatelessWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    LinkKalender('Senin', '13', true),
+                    LinkKalender('Semua', '', true),
+                    LinkKalender('Senin', '13', false),
                     LinkKalender('Selasa', '14', false),
                     LinkKalender('Rabu', '15', false),
                     LinkKalender('Kamis', '16', false),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/component/krs_list_sudah_ambil.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_krs.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_krs_header.dart';
+import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../states/krs/state_user_mahasiswa_krs_header.dart';
 import '../../../../util/color_pallete.dart';
 
 class RencanaStudiPage extends StatelessWidget {

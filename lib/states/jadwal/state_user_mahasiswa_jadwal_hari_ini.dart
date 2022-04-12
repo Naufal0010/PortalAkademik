@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
+import 'package:portal_akademik/model/jadwal/model_user_mahasiswa_jadwal_matakuliah.dart';
 import 'package:portal_akademik/model/model.dart';
-import 'package:portal_akademik/model/model_user_mahasiswa_jadwal_matakuliah.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
 var now = DateTime.now();
@@ -31,7 +31,7 @@ class UserMahasiswaJadwalHariIniState with ChangeNotifier, DiagnosticableTreeMix
         hari = 'Kamis';
         break;
       case 'Friday':
-        hari = 'Jum\'at ';
+        hari = 'Jumat';
         break;
       default:
         hari = 'Hari Libur';

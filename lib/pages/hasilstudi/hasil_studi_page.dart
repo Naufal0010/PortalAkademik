@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/hasilstudi/component/hasil_studi_list.dart';
 import 'package:portal_akademik/pages/hasilstudi/component/rekap_hasil_studi_list.dart';
+import 'package:portal_akademik/states/khs/state_user_mahasiswa_rekap_hasil_studi.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_khs_semester.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_rekap_hasil_studi.dart';
 import 'package:portal_akademik/util/api_local_store.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
-import 'package:portal_akademik/widget/line_chart_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 
-import '../../states/state_user_mahasiswa_khs.dart';
+import '../../states/khs/state_user_mahasiswa_khs.dart';
+import '../../states/khs/state_user_mahasiswa_khs_semester.dart';
 
 class HasilStudiPage extends StatefulWidget {
   @override
@@ -47,19 +46,19 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LabelSubHeader('Statistik IP Semester', 20),
-              SizedBox(
-                height: 6,
-              ),
-              Container(
-                child: Container(
-                  height: 150,
-                  width: MediaQuery.of(context).size.width,
-                  // color: Colors.amber,
-                  child: LineChartWidget(),
-                ),
-              ),
-              SizedBox(height: 75),
+              // LabelSubHeader('Statistik IP Semester', 20),
+              // SizedBox(
+              //   height: 6,
+              // ),
+              // Container(
+              //   child: Container(
+              //     height: 150,
+              //     width: MediaQuery.of(context).size.width,
+              //     // color: Colors.amber,
+              //     child: LineChartWidget(),
+              //   ),
+              // ),
+              // SizedBox(height: 75),
               Container(
                 margin: EdgeInsets.only(bottom: 10),
                 child: Column(

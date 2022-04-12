@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/perkuliahan/component/jadwal_perkuliahan_list_table.dart';
 import 'package:portal_akademik/pages/presensi/component/shimmer_list_tile.dart';
 
+import '../../../../states/jadwal/state_user_mahasiswa_jadwal_matakuliah.dart';
 import '../../../../states/state.dart';
-import '../../../../states/state_user_mahasiswa_jadwal_matakuliah.dart';
 
 class PerkuliahanPage extends StatelessWidget {
   @override

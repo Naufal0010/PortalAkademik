@@ -1,36 +1,29 @@
 import 'package:flutter/foundation.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
-import 'package:portal_akademik/model/model_user_mahasiswa_jadwal_matakuliah.dart';
-import 'package:portal_akademik/model/model_user_mahasiswa_list_mk_presensi.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
-class UserMahasiswaListMkPresensiState with ChangeNotifier, DiagnosticableTreeMixin {
-  MataKuliah? mataKuliah;
-  UserMhsListMkPresensi? data;
+import '../../model/kuesioner/model_user_mahasiswa_data_detail_kuesioner.dart';
+
+class UserMahasiswaDataKelasKuesionerState with ChangeNotifier, DiagnosticableTreeMixin {
+  UserModelMahasiswaDataDetailKuesioner? data;
   Map<String, dynamic>? error;
   bool isLoading = true;
 
+  UserMahasiswaDataKelasKuesionerState() {
+    initData();
+  }
+
   Future<void> initData() async {
-    final res = await NetworkRepository().getUserMahasiswaListMkPresensi(mataKuliah!.idKelas);
+    final res = await NetworkRepository().getDataKelasKuesioner();
     if (res.code == CODE.SUCCESS) {
-      data = UserMhsListMkPresensi.fromMap(res.data);
+      data = UserModelMahasiswaDataDetailKuesioner.fromMap(res.data);
+      UtilLogger.log('Data Kelas Kuesioner', data?.toJson());
       isLoading = false;
       notifyListeners();
-      UtilLogger.log('Data Presensi Mata Kuliah Mahasiswa', data);
     } else {
       isLoading = false;
       error = res.message;
-      notifyListeners();
-    }
-  }
-
-  Future<void> aksiPresensi(String presId) async {
-    final res = await NetworkRepository().getAksiPresensiMahasiswa(presId);
-    if (res.code == CODE.SUCCESS) {
-      refreshData();
-      UtilLogger.log('Data Aksi Presensi Mata Kuliah Mahasiswa', data);
-    } else {
       notifyListeners();
     }
   }

@@ -4,7 +4,7 @@ import 'package:portal_akademik/model/model.dart';
 import 'package:portal_akademik/util/api_local_store.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
-import '../model/model_user_mahasiswa_rekap_hasil_studi.dart';
+import '../../model/khs/model_user_mahasiswa_rekap_hasil_studi.dart';
 
 class UserMahasiswaRekapHasilStudiState with ChangeNotifier, DiagnosticableTreeMixin {
   UserModelRekapHasilStudi? data;

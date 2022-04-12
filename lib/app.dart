@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/home_page.dart';
 import 'package:portal_akademik/pages/login/login_page.dart';
+import 'package:portal_akademik/states/jadwal/state_user_mahasiswa_jadwal_hari_ini.dart';
+import 'package:portal_akademik/states/jadwal/state_user_mahasiswa_jadwal_matakuliah.dart';
+import 'package:portal_akademik/states/jadwal/state_user_mahasiswa_jadwal_uas.dart';
+import 'package:portal_akademik/states/khs/state_user_mahasiswa_khs.dart';
+import 'package:portal_akademik/states/khs/state_user_mahasiswa_khs_semester.dart';
+import 'package:portal_akademik/states/khs/state_user_mahasiswa_rekap_hasil_studi.dart';
+import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs.dart';
+import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs_header.dart';
+import 'package:portal_akademik/states/kuesioner/state_user_mahasiswa_data_kelas_kuesioner.dart';
+import 'package:portal_akademik/states/presensi/state_user_mahasiswa_list_mk_presensi.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_hari_ini.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_matakuliah.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_uas.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_khs.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_khs_semester.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_krs.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_krs_header.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_list_mk_presensi.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_rekap_hasil_studi.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_riwayat_registrasi.dart';
 import 'package:portal_akademik/states/state_user_semester_aktif.dart';
 
@@ -34,6 +35,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UserMahasiswaKhsState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaRekapHasilStudiState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaRiwayatRegistrasiState()),
+        ChangeNotifierProvider(create: (_) => UserMahasiswaDataKelasKuesionerState()),
       ],
       child: GestureDetector(
         onTap: () {

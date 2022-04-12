@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
+import '../../../../../states/jadwal/state_user_mahasiswa_jadwal_matakuliah.dart';
 import '../../../../../states/state.dart';
-import '../../../../../states/state_user_mahasiswa_jadwal_matakuliah.dart';
 import '../../../../../util/color_pallete.dart';
 
 class JadwalPerkuliahanListTable extends StatelessWidget {

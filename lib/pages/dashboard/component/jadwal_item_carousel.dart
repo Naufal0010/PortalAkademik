@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 
-import '../../../model/model_user_mahasiswa_jadwal_matakuliah.dart';
+import '../../../model/jadwal/model_user_mahasiswa_jadwal_matakuliah.dart';
 
 
 class JadwalItem extends StatelessWidget {
@@ -49,16 +49,16 @@ class JadwalItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    data.mk,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: ColorPallete.primary,
+                  SizedBox(
+                    width: 200,
+                    child: Text(
+                      data.mk,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: ColorPallete.primary,
+                      ),
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: true,
                   ),
                   Row(
                     children: [

@@ -1,25 +1,25 @@
 import 'package:flutter/foundation.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
+import 'package:portal_akademik/model/jadwal/model_user_mahasiswa_jadwal_uas.dart';
 import 'package:portal_akademik/model/model.dart';
-import 'package:portal_akademik/model/model_user_mahasiswa_jadwal_matakuliah.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
-class UserMahasiswaJadwalMataKuliahState with ChangeNotifier, DiagnosticableTreeMixin {
-  UserMhsJadwalMataKuliah? data;
+class UserMahasiswaJadwalUasState with ChangeNotifier, DiagnosticableTreeMixin {
+  UserModelMahasiswaJadwalUas? data;
   Map<String, dynamic>? error;
   bool isLoading = true;
 
-  UserMahasiswaJadwalMataKuliahState() {
+  UserMahasiswaJadwalUasState() {
     initData();
   }
 
   Future<void> initData() async {
-    final res = await NetworkRepository().getJadwalListMataKuliahMahasiswa();
+    final res = await NetworkRepository().getJadwalUasMahasiswa();
     if (res.code == CODE.SUCCESS) {
-      data = UserMhsJadwalMataKuliah.fromMap(res.data);
+      data = UserModelMahasiswaJadwalUas.fromMap(res.data);
       isLoading = false;
       notifyListeners();
-      UtilLogger.log('Jadwal Mata Kuliah Mahasiswa', data);
+      UtilLogger.log('Jadwal UAS Mahasiswa', data);
     } else {
       isLoading = false;
       error = res.message;

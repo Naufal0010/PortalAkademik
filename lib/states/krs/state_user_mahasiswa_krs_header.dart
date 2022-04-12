@@ -3,7 +3,7 @@ import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
-import '../model/model_user_mahasiswa_krs_header.dart';
+import '../../model/krs/model_user_mahasiswa_krs_header.dart';
 
 class UserMahasiswaKrsHeaderState with ChangeNotifier, DiagnosticableTreeMixin {
   UserMhsHeaderKrs? data;

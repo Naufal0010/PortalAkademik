@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
+import 'package:portal_akademik/states/jadwal/state_user_mahasiswa_jadwal_uas.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_uas.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 
 class UjianAkhirListTable extends StatelessWidget {

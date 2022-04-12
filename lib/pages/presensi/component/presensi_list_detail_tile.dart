@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portal_akademik/model/model_user_mahasiswa_list_mk_presensi.dart';
+import 'package:portal_akademik/model/presensi/model_user_mahasiswa_list_mk_presensi.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 
 class PresensiListDetailTile extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
-import '../../../../../model/model_user_mahasiswa_krs.dart';
+import '../../../../../model/krs/model_user_mahasiswa_krs.dart';
 import '../../../../../util/color_pallete.dart';
 
 class KrsListSudahAmbil extends StatelessWidget {
@@ -104,20 +104,6 @@ class KrsListSudahAmbil extends StatelessWidget {
         ),
       ),
     ];
-  }
-
-  Widget _getTitleItemWidget(String label, double width) {
-    return Container(
-      child: Text(label,
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-      width: width,
-      height: 40,
-      decoration: BoxDecoration(
-        color: ColorPallete.primary,
-      ),
-      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-      alignment: Alignment.center,
-    );
   }
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {

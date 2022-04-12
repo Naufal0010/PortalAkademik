@@ -6,11 +6,12 @@ import 'package:portal_akademik/pages/presensi/component/list_color_presensi.dar
 import 'package:portal_akademik/pages/presensi/component/presensi_list_detail_tile.dart';
 import 'package:portal_akademik/pages/presensi/component/presensi_list_tile.dart';
 import 'package:portal_akademik/pages/presensi/presensi_detail_page.dart';
+import 'package:portal_akademik/states/presensi/state_user_mahasiswa_list_mk_presensi.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_matakuliah.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_list_mk_presensi.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_riwayat_registrasi.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
+
+import '../states/jadwal/state_user_mahasiswa_jadwal_matakuliah.dart';
 
 Widget getErrorName(BuildContext context, UserMahasiswaState state) {
   if (state.error != null) {
@@ -177,20 +178,20 @@ Widget getErrorListDetailPresensi(
     );
   }
 
-  return Expanded(
-    child: ListView.builder(
-      physics: AlwaysScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: state.data?.data?.length,
-      itemBuilder: (context, index) {
-        if (state.data?.data?.length == null) {
-          return EmptyPage();
-        } else {
-          return PresensiListDetailTile(data: state.data!.data![index], onTap: () {  },);
-        }
-      },
-    ),
-  );
+  // return Expanded(
+  //   child: ListView.builder(
+  //     physics: AlwaysScrollableScrollPhysics(),
+  //     shrinkWrap: true,
+  //     itemCount: state.data?.data?.length,
+  //     itemBuilder: (context, index) {
+  //       if (state.data?.data?.length == null) {
+  //         return EmptyPage();
+  //       } else {
+  //         return PresensiListDetailTile(data: state.data!.data![index], onTap: () {  },);
+  //       }
+  //     },
+  //   ),
+  // );
 }
 
 Widget getErrorListRiwayatRegistrasi(

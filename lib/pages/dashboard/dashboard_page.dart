@@ -14,7 +14,7 @@ import 'package:portal_akademik/widget/icon_button_widget.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 
-import '../../states/state_user_mahasiswa_jadwal_hari_ini.dart';
+import '../../states/jadwal/state_user_mahasiswa_jadwal_hari_ini.dart';
 import '../../states/state_user_semester_aktif.dart';
 
 final List<String> imgList = [

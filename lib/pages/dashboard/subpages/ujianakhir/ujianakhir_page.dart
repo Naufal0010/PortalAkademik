@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/ujianakhir/component/ujianakhir_list_table.dart';
 import 'package:portal_akademik/pages/presensi/component/shimmer_list_tile.dart';
+import 'package:portal_akademik/states/jadwal/state_user_mahasiswa_jadwal_uas.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_jadwal_uas.dart';
 
 class UjianAkhirPage extends StatelessWidget {
   @override
