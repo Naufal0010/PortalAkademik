@@ -63,7 +63,7 @@ class JadwalItem extends StatelessWidget {
                       children: [
                         Icon(Icons.location_on_outlined),
                         SizedBox(
-                          width: 180,
+                          width: 170,
                           child: Text(
                             data.ruangKuliah,
                             style: TextStyle(
