@@ -4,7 +4,6 @@ import 'package:portal_akademik/util/color_pallete.dart';
 
 import '../../../model/jadwal/model_user_mahasiswa_jadwal_matakuliah.dart';
 
-
 class JadwalItem extends StatelessWidget {
   final MataKuliah data;
 
@@ -12,7 +11,6 @@ class JadwalItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     String text = data.jamKuliah;
     var waktuKuliah = text.substring(0, 5);
 
@@ -60,26 +58,32 @@ class JadwalItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.location_on_outlined),
-                      Text(
-                        data.ruangKuliah,
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  Flexible(
+                    child: Row(
+                      children: [
+                        Icon(Icons.location_on_outlined),
+                        SizedBox(
+                          width: 180,
+                          child: Text(
+                            data.ruangKuliah,
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                               ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
-                    width: 200,
+                    width: 220,
                     child: Html(
                       data: """
-                      ${data.dosen}
+                        ${data.dosen}
                             """,
                       style: {
                         "body": Style(
                           color: Colors.black,
-                          textOverflow: TextOverflow.ellipsis,
                           margin: EdgeInsets.symmetric(horizontal: -10),
                           fontFamily: 'Poppins',
                           fontSize: FontSize(14.0),
@@ -90,7 +94,7 @@ class JadwalItem extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
