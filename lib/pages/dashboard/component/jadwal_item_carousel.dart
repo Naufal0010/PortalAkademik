@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
@@ -51,7 +52,9 @@ class JadwalItem extends StatelessWidget {
                     width: 200,
                     child: Text(
                       data.mk,
+                      maxLines: 2,
                       style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: ColorPallete.primary,
@@ -66,10 +69,12 @@ class JadwalItem extends StatelessWidget {
                           width: 170,
                           child: Text(
                             data.ruangKuliah,
+                            maxLines: 2,
                             style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                               ),
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
@@ -83,6 +88,8 @@ class JadwalItem extends StatelessWidget {
                             """,
                       style: {
                         "body": Style(
+                          textOverflow: TextOverflow.ellipsis,
+                          maxLines: 2,
                           color: Colors.black,
                           margin: EdgeInsets.symmetric(horizontal: -10),
                           fontFamily: 'Poppins',

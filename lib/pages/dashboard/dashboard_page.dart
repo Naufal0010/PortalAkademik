@@ -176,7 +176,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => KalenderPage()));
+                                  builder: (context) => KalenderAkademikPage()));
                         }),
                     IconButtonCustom(
                         nameLabel: 'Kuesioner',

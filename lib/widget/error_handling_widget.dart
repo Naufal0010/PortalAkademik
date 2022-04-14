@@ -128,7 +128,8 @@ Widget getErrorListPresensi(
           return EmptyPage();
         } else {
           return PresensiListTile(
-              color: ListColorPresensi.colors[index % ListColorPresensi.colors.length],
+              color: ListColorPresensi
+                  .colors[index % ListColorPresensi.colors.length],
               data: state.data!.data![index],
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -266,20 +267,56 @@ Widget getErrorListKuesionerEvaluasiDosen(
     return EmptyEvaluasiDosen();
   }
 
-  return Expanded(
-    child: ListView.builder(
-      physics: AlwaysScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: state.data?.kelas?.length,
-      itemBuilder: (context, index) {
-          return EvaluasiDosenListTile(
-              data: state.data!.kelas![index],
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        EvaluasiDosenDetailPage(state.data!.kelas![index])));
-              });
-      },
-    ),
+  return ListView.builder(
+    physics: AlwaysScrollableScrollPhysics(),
+    shrinkWrap: true,
+    itemCount: state.data?.kelas?.length,
+    itemBuilder: (context, index) {
+      return EvaluasiDosenListTile(
+          data: state.data!.kelas![index],
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    EvaluasiDosenDetailPage(state.data!.kelas![index])));
+          });
+    },
   );
 }
+
+// Widget getErrorListDetailKuesionerEvaluasiDosen(
+//     BuildContext context, UserMahasiswaDataDetailKuesionerState state) {
+//   if (state.error != null) {
+//     Fluttertoast.showToast(
+//         msg: "${state.error!['content']}",
+//         toastLength: Toast.LENGTH_SHORT,
+//         gravity: ToastGravity.BOTTOM,
+//         timeInSecForIosWeb: 1,
+//         backgroundColor: Colors.grey,
+//         textColor: Colors.white,
+//         fontSize: 16.0);
+//
+//     return Center(
+//       child: ElevatedButton(
+//         onPressed: () {
+//           state.refreshData();
+//         },
+//         child: Text('Refresh'),
+//         style: ElevatedButton.styleFrom(
+//             primary: ColorPallete.primary, onPrimary: Colors.white),
+//       ),
+//     );
+//   }
+//
+//   return Column(
+//     children: state.data!.kuesioner!
+//         .map(
+//           (e) => EvaluasiDosenDetailListTile(
+//             data: e,
+//             onTap: () {
+//               state.aksiPresensi(e.kodePertemuan);
+//             },
+//           ),
+//         )
+//         .toList(),
+//   );
+// }
