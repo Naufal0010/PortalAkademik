@@ -1,0 +1,269 @@
+import 'package:flutter/material.dart';
+import 'package:portal_akademik/util/color_pallete.dart';
+
+import '../../../../../states/jadwal/state_user_mahasiswa_jadwal_filter.dart';
+import '../../../../../states/state.dart';
+
+List<String> selectedCategory = ['Semua'];
+String all = 'Semua';
+String category1 = 'Senin';
+String category2 = 'Selasa';
+String category3 = 'Rabu';
+String category4 = 'Kamis';
+String category5 = 'Jumat';
+
+class LinkKalender extends StatefulWidget {
+  @override
+  State<LinkKalender> createState() => _LinkKalenderState();
+}
+
+class _LinkKalenderState extends State<LinkKalender> {
+  @override
+  Widget build(BuildContext context) {
+
+    UserMahasiswaJadwalFilterState jadwal =
+    Provider.of<UserMahasiswaJadwalFilterState>(context, listen: true);
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        InkWell(
+                          splashColor: Colors.orangeAccent,
+                          borderRadius: BorderRadius.circular(15),
+                          onTap: () {
+                            selectedCategory = [];
+                            selectedCategory.add(all);
+                            jadwal.refreshData();
+                            jadwal.initData();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                              color: selectedCategory.contains(all)
+                                  ? ColorPallete.primary
+                                  : Colors.grey.shade300,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Semua',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          splashColor: Colors.orangeAccent,
+                          borderRadius: BorderRadius.circular(15),
+                          onTap: () {
+                            selectedCategory = [];
+                            selectedCategory.add(category1);
+                            jadwal.initDataFilter('Senin');
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                              color: selectedCategory.contains(category1)
+                                  ? ColorPallete.primary
+                                  : Colors.grey.shade300,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Senin',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          splashColor: Colors.orangeAccent,
+                          borderRadius: BorderRadius.circular(15),
+                          onTap: () {
+                            selectedCategory = [];
+                            selectedCategory.add(category2);
+                            jadwal.initDataFilter('Selasa');
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                              color: selectedCategory.contains(category2)
+                                  ? ColorPallete.primary
+                                  : Colors.grey.shade300,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Selasa',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          splashColor: Colors.orangeAccent,
+                          borderRadius: BorderRadius.circular(15),
+                          onTap: () {
+                            selectedCategory = [];
+                            selectedCategory.add(category3);
+                            jadwal.initDataFilter('Rabu');
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                              color: selectedCategory.contains(category3)
+                                  ? ColorPallete.primary
+                                  : Colors.grey.shade300,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Rabu',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          splashColor: Colors.orangeAccent,
+                          borderRadius: BorderRadius.circular(15),
+                          onTap: () {
+                            selectedCategory = [];
+                            selectedCategory.add(category4);
+                            jadwal.initDataFilter('Kamis');
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                              color: selectedCategory.contains(category4)
+                                  ? ColorPallete.primary
+                                  : Colors.grey.shade300,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Kamis',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          splashColor: Colors.orangeAccent,
+                          borderRadius: BorderRadius.circular(15),
+                          onTap: () {
+                            selectedCategory = [];
+                            selectedCategory.add(category5);
+                            jadwal.initDataFilter('Jumat');
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 10),
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                              color: selectedCategory.contains(category5)
+                                  ? ColorPallete.primary
+                                  : Colors.grey.shade300,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Jumat',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    // return Ink(
+    //   child: InkWell(
+    //     onTap: onTap,
+    //     child: Container(
+    //       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+    //       margin: EdgeInsets.only(right: 10),
+    //       decoration: BoxDecoration(
+    //         color: activeLink ? ColorPallete.primary : Colors.grey.shade300,
+    //         borderRadius: BorderRadius.circular(15),
+    //       ),
+    //       child: Column(
+    //         mainAxisAlignment: MainAxisAlignment.center,
+    //         children: [
+    //           Text(
+    //             nameDay,
+    //             style: TextStyle(
+    //               color: Colors.white,
+    //               fontSize: 20,
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    // );
+  }
+}
