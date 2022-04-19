@@ -4,6 +4,7 @@ import 'package:portal_akademik/pages/login/login_page.dart';
 import 'package:portal_akademik/states/jadwal/state_user_mahasiswa_jadwal_filter.dart';
 import 'package:portal_akademik/states/jadwal/state_user_mahasiswa_jadwal_hari_ini.dart';
 import 'package:portal_akademik/states/jadwal/state_user_mahasiswa_jadwal_matakuliah.dart';
+import 'package:portal_akademik/states/jadwal/state_user_mahasiswa_jadwal_penting.dart';
 import 'package:portal_akademik/states/jadwal/state_user_mahasiswa_jadwal_uas.dart';
 import 'package:portal_akademik/states/khs/state_user_mahasiswa_khs.dart';
 import 'package:portal_akademik/states/khs/state_user_mahasiswa_khs_semester.dart';
@@ -31,6 +32,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UserMahasiswaJadwalMataKuliahState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaJadwalUasState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaJadwalFilterState()),
+        ChangeNotifierProvider(create: (_) => UserMahasiswaJadwalPentingState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaListMkPresensiState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaSemesterAktifState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaKrsState()),

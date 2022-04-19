@@ -65,7 +65,9 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     LabelSubHeader('Nilai Semester', 24),
-                    SizedBox(height: 6,),
+                    SizedBox(
+                      height: 6,
+                    ),
                     user.isLoading
                         ? ShimmerWidget(
                             height: 20,

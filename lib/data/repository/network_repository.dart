@@ -69,6 +69,13 @@ class NetworkRepository {
         url: '/akademik/jadwal/mahasiswa/uas/$username');
   }
 
+  // getJadwalPentingMahasiswa() untuk mengambil data jadwal penting untuk
+  // mahasiswa
+  Future<ApiModel> getJadwalPentingMahasiswa() async {
+    return await consumer.execute(
+        url: '/akademik/jadwal/penting?with[eq]=namaSemesterAwal');
+  }
+
   // getUserMahasiswaListMkPresensi() untuk mengambil list presensi mahasiswa
   // berdasarkan parameter kelasId per mata kuliah
   Future<ApiModel> getUserMahasiswaListMkPresensi(String kelasId) async {
@@ -115,6 +122,7 @@ class NetworkRepository {
         url: '/akademik/kuisionerPenilaian/dataKelasKuisioner/$username');
   }
 
+  // getDataDetailKuesioner(idKelas) untuk mengambil data detail kuesioner
   Future<ApiModel> getDataDetailKuesioner(String idKelas) async {
     return await consumer.execute(
         url: '/akademik/kuisionerPenilaian/dataKuisioner/$idKelas/$username');
