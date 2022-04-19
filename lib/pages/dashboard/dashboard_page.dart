@@ -15,6 +15,7 @@ import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 
 import '../../states/jadwal/state_user_mahasiswa_jadwal_hari_ini.dart';
+import '../presensi/presensi_detail_page.dart';
 
 final List<String> imgList = [
   'assets/images/berakhlak.png',
@@ -65,6 +66,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   bool isLoading = false;
+  int _currentIndex = 0;
 
   final CarouselController _controller = CarouselController();
 
@@ -73,7 +75,8 @@ class _DashboardPageState extends State<DashboardPage> {
     UserMahasiswaState userMahasiswa =
         Provider.of<UserMahasiswaState>(context, listen: true);
 
-    UserMahasiswaJadwalHariIniState jadwal = Provider.of<UserMahasiswaJadwalHariIniState>(context, listen: true);
+    UserMahasiswaJadwalHariIniState jadwal =
+        Provider.of<UserMahasiswaJadwalHariIniState>(context, listen: true);
 
     Future<void> refresh() {
       userMahasiswa.refreshData();
@@ -172,7 +175,8 @@ class _DashboardPageState extends State<DashboardPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => KalenderAkademikPage()));
+                                  builder: (context) =>
+                                      KalenderAkademikPage()));
                         }),
                     IconButtonCustom(
                         nameLabel: 'Kuesioner',
@@ -219,18 +223,37 @@ class _DashboardPageState extends State<DashboardPage> {
                   height: 150,
                   child: ListView(
                     children: [
-                      jadwal.isLoading ? ShimmerWidget(height: 100, width: 100,) : CarouselSlider(
-                        items: jadwal.data!.data!.map((e) => JadwalItem(e)).toList(),
-                        options: CarouselOptions(
-                          height: 150.0,
-                          enlargeCenterPage: true,
-                          autoPlay: false,
-                          aspectRatio: 16 / 9,
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enableInfiniteScroll: false,
-                          viewportFraction: 0.8,
-                        ),
-                      ),
+                      jadwal.isLoading
+                          ? ShimmerWidget(
+                              height: 100,
+                              width: 100,
+                            )
+                          : CarouselSlider(
+                              items: jadwal.data!.data!
+                                  .map(
+                                    (e) => JadwalItem(
+                                      e,
+                                      () {
+                                        Navigator.of(context).push(MaterialPageRoute(
+                                            builder: (context) =>
+                                                PresensiDetailPage(jadwal.data!.data![_currentIndex])));
+                                      },
+                                    ),
+                                  )
+                                  .toList(),
+                              options: CarouselOptions(
+                                height: 150.0,
+                                enlargeCenterPage: true,
+                                autoPlay: false,
+                                aspectRatio: 16 / 9,
+                                autoPlayCurve: Curves.fastOutSlowIn,
+                                enableInfiniteScroll: false,
+                                viewportFraction: 0.8,
+                                onPageChanged: (index, _) {
+                                  _currentIndex = index;
+                                }
+                              ),
+                            ),
                     ],
                   ),
                 ),
@@ -247,8 +270,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           enlargeCenterPage: true,
                           aspectRatio: 2.0,
                           onPageChanged: (index, reason) {
-                            setState(() {
-                            });
+                            setState(() {});
                           }),
                     )
                   ],
