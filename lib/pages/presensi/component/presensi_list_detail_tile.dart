@@ -120,14 +120,6 @@ class PresensiListDetailTile extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 8),
-                      SizedBox(
-                        width: 200,
-                        child: Text(
-                         'SKS Pertemuan : ',
-                          style: TextStyle(fontSize: 12,),
-                        ),
-                      ),
-                      SizedBox(height: 6),
                       Text(
                         data.dosenAmpu,
                         style: TextStyle(fontSize: 12),
