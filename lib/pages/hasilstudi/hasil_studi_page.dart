@@ -64,14 +64,8 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Nilai Semester',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff020202),
-                      ),
-                    ),
+                    LabelSubHeader('Nilai Semester', 24),
+                    SizedBox(height: 6,),
                     user.isLoading
                         ? ShimmerWidget(
                             height: 20,
