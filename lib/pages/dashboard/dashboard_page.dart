@@ -15,7 +15,6 @@ import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 
 import '../../states/jadwal/state_user_mahasiswa_jadwal_hari_ini.dart';
-import '../../states/state_user_semester_aktif.dart';
 
 final List<String> imgList = [
   'assets/images/berakhlak.png',
@@ -73,9 +72,6 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     UserMahasiswaState userMahasiswa =
         Provider.of<UserMahasiswaState>(context, listen: true);
-
-    UserMahasiswaSemesterAktifState semesterAktif =
-    Provider.of<UserMahasiswaSemesterAktifState>(context, listen: true);
 
     UserMahasiswaJadwalHariIniState jadwal = Provider.of<UserMahasiswaJadwalHariIniState>(context, listen: true);
 
@@ -188,8 +184,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   builder: (context) => KuesionerPage()));
                         }),
                     IconButtonCustom(
-                        nameLabel: 'Jadwal',
-                        iconLabel: Icons.schedule,
+                        nameLabel: 'Perkuliahan',
+                        iconLabel: Icons.class_,
                         onTap: () {
                           Navigator.push(
                               context,
@@ -197,8 +193,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                   builder: (context) => JadwalPage()));
                         }),
                     IconButtonCustom(
-                        nameLabel: 'Perkuliahan ',
-                        iconLabel: Icons.class_,
+                        nameLabel: 'Jadwal',
+                        iconLabel: Icons.schedule,
                         onTap: () {
                           Navigator.push(
                               context,

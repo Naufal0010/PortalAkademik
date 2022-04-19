@@ -4,8 +4,6 @@ import 'package:portal_akademik/pages/presensi/component/shimmer_list_detail_til
 
 import '../../../../states/jadwal/state_user_mahasiswa_jadwal_filter.dart';
 import '../../../../states/state.dart';
-import '../../../../widget/label_sub_header_widget.dart';
-import 'component/link_header.dart';
 import 'component/link_kalender.dart';
 
 class JadwalPage extends StatelessWidget {
@@ -17,7 +15,7 @@ class JadwalPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
-        title: Text('Jadwal',
+        title: Text('Perkuliahan',
             style: TextStyle(
                 color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis),
@@ -27,18 +25,6 @@ class JadwalPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    LinkHeader('Semua', true),
-                    LinkHeader('Kuliah', false),
-                    LinkHeader('Ujian', false),
-                  ],
-                )),
-            LabelSubHeader('Kuliah', 20),
             Container(
               height: 60,
               width: MediaQuery.of(context).size.width,
