@@ -106,10 +106,25 @@ class PresensiListDetailTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 36.0, top: 36.0, bottom: 16),
+                  padding: EdgeInsets.only(left: 36.0, top: 16.0, bottom: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(20),
+                                topLeft: Radius.circular(20))),
+                        child: Center(
+                          child: Text(
+                            'Pertemuan ke - ${data.noPertemuan}',
+                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 4,),
                       SizedBox(
                         width: 200,
                         child: Text(
@@ -151,25 +166,26 @@ class PresensiListDetailTile extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            top: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(20),
-                      topLeft: Radius.circular(20))),
-              width: 200,
-              height: 32,
-              child: Center(
-                child: Text(
-                  'Pertemuan ke - ${data.noPertemuan}',
-                  style: TextStyle(color: Colors.black),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   top: 0,
+          //   left: -3,
+          //   child: Container(
+          //     decoration: BoxDecoration(
+          //         color: Colors.white,
+          //         borderRadius: BorderRadius.only(
+          //             bottomRight: Radius.circular(20),
+          //             topLeft: Radius.circular(20))),
+          //     width: 200,
+          //     height: 32,
+          //     child: Center(
+          //       child: Text(
+          //         'Pertemuan ke - ${data.noPertemuan}',
+          //         style: TextStyle(color: Colors.black),
+          //         textAlign: TextAlign.center,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
