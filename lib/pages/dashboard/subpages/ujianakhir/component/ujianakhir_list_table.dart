@@ -11,7 +11,7 @@ class UjianAkhirListTable extends StatelessWidget {
         Provider.of<UserMahasiswaJadwalUasState>(context, listen: true);
     return Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        height: 650,
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: ColorPallete.primary),
           // color: Colors.amber,
