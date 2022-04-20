@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
-import '../../../../../states/jadwal/state_user_mahasiswa_jadwal_matakuliah.dart';
+import '../../../../../states/jadwal/state_user_mahasiswa_jadwal_penting.dart';
 import '../../../../../states/state.dart';
 import '../../../../../util/color_pallete.dart';
 
-class JadwalPerkuliahanListTable extends StatelessWidget {
+class JadwalPentingListTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
 
-    UserMahasiswaJadwalMataKuliahState userJadwal =
-    Provider.of<UserMahasiswaJadwalMataKuliahState>(context, listen: true);
+    UserMahasiswaJadwalPentingState jadwalPenting =
+    Provider.of<UserMahasiswaJadwalPentingState>(context, listen: true);
 
     return Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        height: 200,
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: ColorPallete.primary),
           // color: Colors.amber,
@@ -24,13 +23,13 @@ class JadwalPerkuliahanListTable extends StatelessWidget {
         child: SizedBox(
           width: double.infinity,
           child: HorizontalDataTable(
-            leftHandSideColumnWidth: 150,
-            rightHandSideColumnWidth: 460,
+            leftHandSideColumnWidth: 100,
+            rightHandSideColumnWidth: 450,
             isFixedHeader: true,
             headerWidgets: _getTitleWidget(),
             leftSideItemBuilder: _generateFirstColumnRow,
             rightSideItemBuilder: _generateRightHandSideColumnRow,
-            itemCount: userJadwal.data!.data!.length,
+            itemCount: jadwalPenting.data!.data!.length,
             rowSeparatorWidget: const Divider(
               color: Colors.orange,
               height: 1.0,
@@ -40,7 +39,8 @@ class JadwalPerkuliahanListTable extends StatelessWidget {
             rightHandSideColBackgroundColor: Color(0xFFFFFFFF),
             horizontalScrollbarStyle: const ScrollbarStyle(
                 thumbColor: Colors.orange,
-                thickness: 2.0,
+                isAlwaysShown: true,
+                thickness: 3.0,
                 radius: Radius.circular(5.0)),
             verticalScrollbarStyle: const ScrollbarStyle(
                 thumbColor: Colors.orange,
@@ -55,9 +55,9 @@ class JadwalPerkuliahanListTable extends StatelessWidget {
   List<Widget> _getTitleWidget() {
     return [
       SizedBox(
-        width: 200,
+        width: 100,
         child: Container(
-          child: Text('Mata Kuliah',
+          child: Text('Jadwal',
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
           height: 40,
           decoration: BoxDecoration(
@@ -68,9 +68,9 @@ class JadwalPerkuliahanListTable extends StatelessWidget {
         ),
       ),
       SizedBox(
-        width: 300,
+        width: 150,
         child: Container(
-          child: Text('Dosen Ampu',
+          child: Text('Semester',
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
           height: 40,
           decoration: BoxDecoration(
@@ -81,9 +81,22 @@ class JadwalPerkuliahanListTable extends StatelessWidget {
         ),
       ),
       SizedBox(
-        width: 200,
+        width: 150,
         child: Container(
-          child: Text('Jadwal Kuliah',
+          child: Text('Mulai',
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+          height: 40,
+          decoration: BoxDecoration(
+            color: ColorPallete.primary,
+          ),
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+        ),
+      ),
+      SizedBox(
+        width: 150,
+        child: Container(
+          child: Text('Selesai',
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
           height: 40,
           decoration: BoxDecoration(
@@ -98,13 +111,13 @@ class JadwalPerkuliahanListTable extends StatelessWidget {
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
 
-    UserMahasiswaJadwalMataKuliahState userJadwal =
-    Provider.of<UserMahasiswaJadwalMataKuliahState>(context, listen: true);
+    UserMahasiswaJadwalPentingState jadwalPenting =
+    Provider.of<UserMahasiswaJadwalPentingState>(context, listen: true);
 
     return SizedBox(
-      width: 200,
+      width: 150,
       child: Container(
-        child: Text(userJadwal.data!.data![index].mk,
+        child: Text(jadwalPenting.data!.data![index].jadwal,
             style: TextStyle(fontSize: 12.0)),
         height: 100,
         padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
@@ -115,29 +128,19 @@ class JadwalPerkuliahanListTable extends StatelessWidget {
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
 
-    UserMahasiswaJadwalMataKuliahState userJadwal =
-    Provider.of<UserMahasiswaJadwalMataKuliahState>(context, listen: true);
+    UserMahasiswaJadwalPentingState jadwalPenting =
+    Provider.of<UserMahasiswaJadwalPentingState>(context, listen: true);
 
     return Row(
       children: <Widget>[
 
         SizedBox(
-          width: 300,
+          width: 150,
           child: Container(
-            child: Html(
-              data: """
-                    ${userJadwal.data!.data![index].dosen}
-                    """,
-              style: {
-                "body": Style(
-                  textOverflow: TextOverflow.ellipsis,
-                  margin: EdgeInsets.symmetric(horizontal: -10),
-                  fontFamily: 'Poppins',
-                  fontSize: FontSize(12.0),
-                  height: 100,
-                ),
-              },
-            ),
+            child: Text(jadwalPenting.data!.data![index].semester.toString(),
+                style: TextStyle(fontSize: 12.0)),
+            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+            alignment: Alignment.centerLeft,
           ),
         ),
         SizedBox(
@@ -145,19 +148,32 @@ class JadwalPerkuliahanListTable extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                child: Text(userJadwal.data!.data![index].hariKuliah.toString(),
+                child: Text(jadwalPenting.data!.data![index].tglMulai.toString(),
                     style: TextStyle(fontSize: 12.0)),
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.centerLeft,
               ),
               Container(
-                child: Text(userJadwal.data!.data![index].jamKuliah.toString(),
+                child: Text(jadwalPenting.data!.data![index].jamMulai.toString(),
+                    style: TextStyle(fontSize: 12.0)),
+                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                alignment: Alignment.centerLeft,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: 150,
+          child: Column(
+            children: [
+              Container(
+                child: Text(jadwalPenting.data!.data![index].tglSelesai.toString(),
                     style: TextStyle(fontSize: 12.0)),
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.centerLeft,
               ),
               Container(
-                child: Text(userJadwal.data!.data![index].ruangKuliah.toString(),
+                child: Text(jadwalPenting.data!.data![index].jamSelesai.toString(),
                     style: TextStyle(fontSize: 12.0)),
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.centerLeft,

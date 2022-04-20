@@ -12,11 +12,11 @@ class UserModelMahasiswaJadwalPenting {
 
   String toJson() => json.encode(toMap());
 
-  factory UserModelMahasiswaJadwalPenting.fromMap(Map<String, dynamic> json) =>
+  factory UserModelMahasiswaJadwalPenting.fromMap(List json) =>
       UserModelMahasiswaJadwalPenting(
-        data: json["data"] == null
+        data: json == null
             ? null
-            : List<JadwalPenting>.from(json["data"].map((x) => JadwalPenting.fromMap(x))),
+            : List<JadwalPenting>.from(json.map((x) => JadwalPenting.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/presensi/component/shimmer_list_tile.dart';
 
-import '../../../../states/jadwal/state_user_mahasiswa_jadwal_matakuliah.dart';
+import '../../../../states/jadwal/state_user_mahasiswa_jadwal_penting.dart';
 import '../../../../states/state.dart';
-import 'component/jadwal_perkuliahan_list_table.dart';
+import 'component/jadwal_penting_list_table.dart';
 
 class JadwalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    UserMahasiswaJadwalMataKuliahState userJadwal =
-        Provider.of<UserMahasiswaJadwalMataKuliahState>(context, listen: true);
+    UserMahasiswaJadwalPentingState jadwalPenting =
+    Provider.of<UserMahasiswaJadwalPentingState>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
@@ -24,9 +24,9 @@ class JadwalPage extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: userJadwal.isLoading
+        child: jadwalPenting.isLoading
             ? ShimmerListTile()
-            : JadwalPerkuliahanListTable(),
+            : JadwalPentingListTable(),
       ),
     );
   }
