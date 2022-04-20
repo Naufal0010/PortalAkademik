@@ -67,10 +67,8 @@ class PresensiListDetailTile extends StatelessWidget {
     } else if (aksi == "presensi") {
       return Center(
         child: Container(
-          height: 50,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.0),
             border: Border.all(color: ColorPallete.primary)
           ),
           child: Center(
@@ -98,7 +96,7 @@ class PresensiListDetailTile extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 6),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(4.0),
         border: Border.all(width: 1, color: ColorPallete.primary),
       ),
       child: Stack(
@@ -157,7 +155,7 @@ class PresensiListDetailTile extends StatelessWidget {
             top: 0,
             child: Container(
               decoration: BoxDecoration(
-                  color: ColorPallete.blackPastel,
+                  color: Colors.white,
                   borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(20),
                       topLeft: Radius.circular(20))),
@@ -166,7 +164,7 @@ class PresensiListDetailTile extends StatelessWidget {
               child: Center(
                 child: Text(
                   'Pertemuan ke - ${data.noPertemuan}',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                   textAlign: TextAlign.center,
                 ),
               ),

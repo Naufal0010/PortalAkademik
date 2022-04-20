@@ -17,9 +17,9 @@ class PresensiListTile extends StatelessWidget {
       child: Material(
         color: Colors.white,
         shadowColor: Colors.black.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: BorderRadius.circular(6.0),
         child: InkWell(
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(6.0),
           highlightColor: ColorPallete.primary,
           splashColor: ColorPallete.primary,
           onTap: onTap,
@@ -31,8 +31,8 @@ class PresensiListTile extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.20,
                     child: ClipRRect(
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          topLeft: Radius.circular(20)),
+                          bottomLeft: Radius.circular(6),
+                          topLeft: Radius.circular(6)),
                       child: AspectRatio(
                           aspectRatio: 1 / 1,
                           child: Container(

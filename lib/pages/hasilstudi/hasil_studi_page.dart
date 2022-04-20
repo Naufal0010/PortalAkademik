@@ -129,13 +129,13 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                               height: 20.0,
                             ),
                             Container(
-                              padding: EdgeInsets.all(15.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                    width: 1, color: ColorPallete.primary),
-                                // color: Colors.amber,
-                              ),
+                              padding: EdgeInsets.all(10.0),
+                              // decoration: BoxDecoration(
+                              //   borderRadius: BorderRadius.circular(10.0),
+                              //   border: Border.all(
+                              //       width: 1, color: ColorPallete.primary),
+                              //   // color: Colors.amber,
+                              // ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -261,13 +261,13 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                               height: 20.0,
                             ),
                             Container(
-                              padding: EdgeInsets.all(15.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                    width: 1, color: ColorPallete.primary),
-                                // color: Colors.amber,
-                              ),
+                              padding: EdgeInsets.all(10.0),
+                              // decoration: BoxDecoration(
+                              //   borderRadius: BorderRadius.circular(10.0),
+                              //   border: Border.all(
+                              //       width: 1, color: ColorPallete.primary),
+                              //   // color: Colors.amber,
+                              // ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [

@@ -19,7 +19,7 @@ class RiwayatRegistrasiListTile extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(4),
           border: Border.all(width: 1, color: ColorPallete.primary),
         ),
         child: Column(
@@ -35,8 +35,8 @@ class RiwayatRegistrasiListTile extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: ColorPallete.primary,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20)),
+                          topLeft: Radius.circular(2),
+                          topRight: Radius.circular(2)),
                     ),
                     child: Center(
                       child: Text(

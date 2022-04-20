@@ -38,7 +38,7 @@ class _LinkKalenderState extends State<LinkKalender> {
                       children: <Widget>[
                         InkWell(
                           splashColor: Colors.orangeAccent,
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(10),
                           onTap: () {
                             selectedCategory = [];
                             selectedCategory.add(all);
@@ -62,7 +62,7 @@ class _LinkKalenderState extends State<LinkKalender> {
                                   'Semua',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ],
@@ -71,7 +71,7 @@ class _LinkKalenderState extends State<LinkKalender> {
                         ),
                         InkWell(
                           splashColor: Colors.orangeAccent,
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(10),
                           onTap: () {
                             selectedCategory = [];
                             selectedCategory.add(category1);
@@ -94,7 +94,7 @@ class _LinkKalenderState extends State<LinkKalender> {
                                   'Senin',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ],
@@ -126,7 +126,7 @@ class _LinkKalenderState extends State<LinkKalender> {
                                   'Selasa',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ],
@@ -158,7 +158,7 @@ class _LinkKalenderState extends State<LinkKalender> {
                                   'Rabu',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ],
@@ -190,7 +190,7 @@ class _LinkKalenderState extends State<LinkKalender> {
                                   'Kamis',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ],
@@ -222,7 +222,7 @@ class _LinkKalenderState extends State<LinkKalender> {
                                   'Jumat',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 20,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ],
