@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/dashboard/component/jadwal_item_carousel.dart';
-import 'package:portal_akademik/pages/dashboard/subpages/jadwal/jadwal_page.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/jadwalpenting/jadwal_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kalender/kalender_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kuesioner/kuesioner_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/perkuliahan/perkuliahan_page.dart';
@@ -196,7 +196,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => JadwalPage()));
+                                  builder: (context) => PerkuliahanPage()));
                         }),
                     IconButtonCustom(
                         nameLabel: 'Jadwal',
@@ -205,7 +205,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PerkuliahanPage()));
+                                  builder: (context) => JadwalPage()));
                         }),
                     IconButtonCustom(
                         nameLabel: 'Ujian Akhir',

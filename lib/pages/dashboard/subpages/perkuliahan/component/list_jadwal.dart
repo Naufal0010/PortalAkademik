@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:portal_akademik/pages/dashboard/subpages/jadwal/component/jadwal_item.dart';
 
 import '../../../../../states/jadwal/state_user_mahasiswa_jadwal_filter.dart';
 import '../../../../../util/color_pallete.dart';
+import 'jadwal_item.dart';
 
 Widget ListJadwalKuliah(
     BuildContext context, UserMahasiswaJadwalFilterState state) {
