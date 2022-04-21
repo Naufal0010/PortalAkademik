@@ -164,9 +164,7 @@ class RencanaStudiPage extends StatelessWidget {
                               ),
                               userKrs.isLoading
                                   ? ShimmerWidget(
-                                width: MediaQuery.of(context)
-                                    .size
-                                    .width,
+                                width: 60,
                                 height: 20,
                               )
                                   : Text(
