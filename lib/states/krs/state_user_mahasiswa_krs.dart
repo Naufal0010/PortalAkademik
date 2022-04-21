@@ -6,7 +6,7 @@ import 'package:portal_akademik/util/api_local_store.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
 class UserMahasiswaKrsState with ChangeNotifier, DiagnosticableTreeMixin {
-  UserModelRencanaHasilStudi? data;
+  UserModelMahasiswaKrs? data;
   Map<String, dynamic>? error;
   bool isLoading = true;
 
@@ -17,7 +17,7 @@ class UserMahasiswaKrsState with ChangeNotifier, DiagnosticableTreeMixin {
   Future<void> initData() async {
     final res = await NetworkRepository().getListKrsMahasiswa(ApiLocalStorage.semesterAktif!.rows![0].semesterAktif);
     if (res.code == CODE.SUCCESS) {
-      data = UserModelRencanaHasilStudi.fromMap(res.data);
+      data = UserModelMahasiswaKrs.fromMap(res.data);
       UtilLogger.log('KRS', data?.toJson());
       isLoading = false;
       notifyListeners();

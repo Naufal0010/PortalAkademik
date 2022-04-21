@@ -47,7 +47,7 @@ class RencanaStudiPage extends StatelessWidget {
                       padding: EdgeInsets.all(36.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(4.0),
                         border:
                             Border.all(width: 1, color: ColorPallete.primary),
                       ),
@@ -132,15 +132,58 @@ class RencanaStudiPage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(height: 8,),
                     userKrs.isLoading
                         ? ShimmerWidget(
                             width: double.infinity,
                             height: 100,
                           )
                         : KrsListSudahAmbil(
-                            list: userKrs.data!.mkReguler!.krsListMk)
+                            list: userKrs.data!.mkReguler!.krsListMk),
+                    Container(
+                      padding: EdgeInsets.all(10.0),
+                      // decoration: BoxDecoration(
+                      //   borderRadius: BorderRadius.circular(10.0),
+                      //   border: Border.all(
+                      //       width: 1, color: ColorPallete.primary),
+                      //   // color: Colors.amber,
+                      // ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Total SKS',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              userKrs.isLoading
+                                  ? ShimmerWidget(
+                                width: MediaQuery.of(context)
+                                    .size
+                                    .width,
+                                height: 20,
+                              )
+                                  : Text(
+                                '${userKrs.data?.mkReguler!.krsTotalSks}',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
                   ],
-                )),
+                ),
+            ),
           ),
         ),
       ),

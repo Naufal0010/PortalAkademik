@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
-import 'package:portal_akademik/util/service/logger.dart';
 
 import '../../../../../model/krs/model_user_mahasiswa_krs.dart';
 import '../../../../../util/color_pallete.dart';
@@ -15,14 +14,14 @@ class KrsListSudahAmbil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        height: 300,
+        height: 400,
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: ColorPallete.primary),
           // color: Colors.amber,
         ),
         child: HorizontalDataTable(
-          leftHandSideColumnWidth: 130,
-          rightHandSideColumnWidth: 560,
+          leftHandSideColumnWidth: 40,
+          rightHandSideColumnWidth: 770,
           isFixedHeader: true,
           headerWidgets: _getTitleWidget(),
           leftSideItemBuilder: _generateFirstColumnRow,
@@ -45,17 +44,17 @@ class KrsListSudahAmbil extends StatelessWidget {
               isAlwaysShown: true,
               thickness: 2.0,
               radius: Radius.circular(5.0)),
-        )
-    );
+        ));
   }
 
   List<Widget> _getTitleWidget() {
     return [
       SizedBox(
-        width: 200,
+        width: 40,
         child: Container(
-          child: Text('Detail',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+          child: Text('',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
           height: 40,
           decoration: BoxDecoration(
             color: ColorPallete.primary,
@@ -65,105 +64,140 @@ class KrsListSudahAmbil extends StatelessWidget {
         ),
       ),
       SizedBox(
-        width: 200,
+        width: 240,
         child: Container(
-          child: Text('Dosen',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+          child: Text('Detail',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
           height: 40,
           decoration: BoxDecoration(
             color: ColorPallete.primary,
           ),
           padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.center,
+          alignment: Alignment.centerLeft,
+        ),
+      ),
+      SizedBox(
+        width: 280,
+        child: Container(
+          child: Text('Dosen',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+          height: 40,
+          decoration: BoxDecoration(
+            color: ColorPallete.primary,
+          ),
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
         ),
       ),
       SizedBox(
         width: 200,
         child: Container(
           child: Text('Jadwal',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
           height: 40,
           decoration: BoxDecoration(
             color: ColorPallete.primary,
           ),
           padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.center,
+          alignment: Alignment.centerLeft,
         ),
       ),
       SizedBox(
-        width: 50,
+        width: 60,
         child: Container(
           child: Text('SKS',
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
           height: 40,
           decoration: BoxDecoration(
             color: ColorPallete.primary,
           ),
           padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.center,
+          alignment: Alignment.centerLeft,
         ),
       ),
     ];
   }
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
-    UtilLogger.log('test', list);
     return Container(
-      width: 200,
-      height: 60,
-      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-      alignment: Alignment.centerLeft,
-      child: Column(
-        children: [
-          Text(
-            'test',
-            style: TextStyle(fontSize: 12.0),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-          ),
-          Text(
-            'test',
-            style: TextStyle(fontSize: 12.0),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-          ),
-          Text(
-            'test',
-            style: TextStyle(fontSize: 12.0),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-          ),
-          Text(
-            'test',
-            style: TextStyle(fontSize: 12.0),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-          ),
-
-        ],
-      )
-    );
+        width: 220,
+        height: 120,
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        alignment: Alignment.centerLeft,
+        child: Text(''));
   }
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
     return Row(
       children: <Widget>[
         Container(
-          width: 200,
-          height: 40,
-          padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-          alignment: Alignment.center,
-          child: Text("", style: TextStyle(fontSize: 12.0))
-        ),
-
+            width: 240,
+            height: 120,
+            padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+            alignment: Alignment.centerLeft,
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 220,
+                  child: Container(
+                    child: Text(
+                      list![index].mkKode.toString(),
+                      style: TextStyle(
+                          fontSize: 12.0, fontWeight: FontWeight.bold),
+                    ),
+                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    alignment: Alignment.centerLeft,
+                  ),
+                ),
+                SizedBox(
+                  width: 220,
+                  child: Container(
+                    child: Text(list![index].mkNama.toString(),
+                        style: TextStyle(fontSize: 12.0)),
+                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    alignment: Alignment.centerLeft,
+                  ),
+                ),
+                SizedBox(
+                  width: 220,
+                  child: Container(
+                    child: Text(list![index].kurNama.toString(),
+                        style: TextStyle(fontSize: 12.0)),
+                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    alignment: Alignment.centerLeft,
+                  ),
+                ),
+                SizedBox(
+                  width: 220,
+                  child: Container(
+                    child: Text(
+                        'Semester ${list![index].klsSemester.toString()}',
+                        style: TextStyle(fontSize: 12.0)),
+                    padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    alignment: Alignment.centerLeft,
+                  ),
+                ),
+              ],
+            )),
+        Container(
+            width: 280,
+            height: 120,
+            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+            alignment: Alignment.centerLeft,
+            child: Text(list![index].detail!.getDosenAmpu(),
+                style: TextStyle(fontSize: 12.0))),
         Container(
           width: 200,
-          height: 40,
-          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.center,
+          height: 120,
+          padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+          alignment: Alignment.centerLeft,
           child: Html(
             data: """
-        
+                ${list![index].jadwal.toString()}
                 """,
             style: {
               "body": Style(
@@ -176,11 +210,11 @@ class KrsListSudahAmbil extends StatelessWidget {
           ),
         ),
         Container(
-          child: Text('test'),
-          width: 40,
-          height: 40,
+          child: Text(list![index].mkSksTotal),
+          width: 50,
+          height: 50,
           padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.center,
+          alignment: Alignment.centerLeft,
         ),
       ],
     );

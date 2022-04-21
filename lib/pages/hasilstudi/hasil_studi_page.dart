@@ -4,7 +4,6 @@ import 'package:portal_akademik/pages/hasilstudi/component/rekap_hasil_studi_lis
 import 'package:portal_akademik/states/khs/state_user_mahasiswa_rekap_hasil_studi.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/util/api_local_store.dart';
-import 'package:portal_akademik/util/color_pallete.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 

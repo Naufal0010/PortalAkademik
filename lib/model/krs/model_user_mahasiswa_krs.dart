@@ -1,27 +1,27 @@
 import 'dart:convert';
 
-class UserModelRencanaHasilStudi {
-  UserModelRencanaHasilStudi({
+class UserModelMahasiswaKrs {
+  UserModelMahasiswaKrs({
     required this.mkReguler,
     required this.mkKampusmerdeka,
     required this.ips,
     required this.sksMax,
   });
 
-  final MkReguler? mkReguler;
-  final MkKampusmerdeka? mkKampusmerdeka;
+  final Mk? mkReguler;
+  final Mk? mkKampusmerdeka;
   final String ips;
   final String sksMax;
 
-  factory UserModelRencanaHasilStudi.fromJson(String str) => UserModelRencanaHasilStudi.fromMap(json.decode(str));
+  factory UserModelMahasiswaKrs.fromJson(String str) => UserModelMahasiswaKrs.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory UserModelRencanaHasilStudi.fromMap(Map<String, dynamic> json) => UserModelRencanaHasilStudi(
-    mkReguler: json["mk_reguler"] == null ? null : MkReguler.fromMap(json["mk_reguler"]),
-    mkKampusmerdeka: json["mk_kampusmerdeka"] == null ? null : MkKampusmerdeka.fromMap(json["mk_kampusmerdeka"]),
+  factory UserModelMahasiswaKrs.fromMap(Map<String, dynamic> json) => UserModelMahasiswaKrs(
+    mkReguler: json["mk_reguler"] == null ? null : Mk.fromMap(json["mk_reguler"]),
+    mkKampusmerdeka: json["mk_kampusmerdeka"] == null ? null : Mk.fromMap(json["mk_kampusmerdeka"]),
     ips: json["ips"] == null ? null : json["ips"],
-    sksMax: json["sks_max"].toString(),
+    sksMax: json["sks_max"] == null ? null : json["sks_max"],
   );
 
   Map<String, dynamic> toMap() => {
@@ -32,32 +32,8 @@ class UserModelRencanaHasilStudi {
   };
 }
 
-class MkKampusmerdeka {
-  MkKampusmerdeka({
-    required this.krsListMk,
-    required this.krsTotalSks,
-  });
-
-  final List<dynamic>? krsListMk;
-  final int krsTotalSks;
-
-  factory MkKampusmerdeka.fromJson(String str) => MkKampusmerdeka.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory MkKampusmerdeka.fromMap(Map<String, dynamic> json) => MkKampusmerdeka(
-    krsListMk: json["krs_list_mk"] == null ? null : List<dynamic>.from(json["krs_list_mk"].map((x) => x)),
-    krsTotalSks: json["krs_total_sks"] == null ? null : json["krs_total_sks"],
-  );
-
-  Map<String, dynamic> toMap() => {
-    "krs_list_mk": krsListMk == null ? null : List<dynamic>.from(krsListMk!.map((x) => x)),
-    "krs_total_sks": krsTotalSks == null ? null : krsTotalSks,
-  };
-}
-
-class MkReguler {
-  MkReguler({
+class Mk {
+  Mk({
     required this.krsListMk,
     required this.krsTotalSks,
   });
@@ -65,29 +41,17 @@ class MkReguler {
   final List<KrsListMk>? krsListMk;
   final int krsTotalSks;
 
-  factory MkReguler.fromJson(String str) => MkReguler.fromMap(json.decode(str));
+  factory Mk.fromJson(String str) => Mk.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-
-
-  factory MkReguler.fromMap(Map<String, dynamic> json) {
-
-    List<KrsListMk> listMk(Map map) {
-      List<KrsListMk> list = [];
-      map.entries.forEach((e) => list.add(KrsListMk.fromJson(e.value)));
-
-      return list;
-    }
-
-    return MkReguler(
-      krsListMk: json["krs_list_mk"] == null ? null : listMk(json["krs_list_mk"]),
-      krsTotalSks: json["krs_total_sks"] == null ? null : json["krs_total_sks"],
-    );
-  }
+  factory Mk.fromMap(Map<String, dynamic> json) => Mk(
+    krsListMk: json["krs_list_mk"] == null ? null : List<KrsListMk>.from(json["krs_list_mk"].map((x) => KrsListMk.fromMap(x))),
+    krsTotalSks: json["krs_total_sks"] == null ? null : json["krs_total_sks"],
+  );
 
   Map<String, dynamic> toMap() => {
-    "krs_list_mk": krsListMk == null ? null : List<KrsListMk>.from(krsListMk!).map((x) => x),
+    "krs_list_mk": krsListMk == null ? null : List<dynamic>.from(krsListMk!.map((x) => x.toMap())),
     "krs_total_sks": krsTotalSks == null ? null : krsTotalSks,
   };
 }
@@ -120,29 +84,29 @@ class KrsListMk {
     required this.detail,
   });
 
-  final String? krsId;
-  final String? krsIsSetuju;
-  final String? krsIsKirim;
-  final String? krsIsBatal;
-  final String? krsIsRevisi;
+  final String krsId;
+  final String krsIsSetuju;
+  final String krsIsKirim;
+  final String krsIsBatal;
+  final String krsIsRevisi;
   final dynamic krsIsBatalRevisi;
-  final String? mkKode;
-  final String? kurNama;
-  final String? klsNama;
-  final String? jenjang;
-  final String? mkId;
-  final String? mkNama;
-  final String? mkSksTotal;
-  final String? mkSksTeori;
-  final String? mkSksPrak;
-  final String? mkSksPrakLap;
-  final String? klsJadwal;
-  final String? klsId;
-  final String? klsSemester;
-  final String? klsIsMerdeka;
-  final List<String>? status;
-  final String? statusKrs;
-  final String? jadwal;
+  final String mkKode;
+  final String kurNama;
+  final String klsNama;
+  final String jenjang;
+  final String mkId;
+  final String mkNama;
+  final String mkSksTotal;
+  final String mkSksTeori;
+  final String mkSksPrak;
+  final String mkSksPrakLap;
+  final String klsJadwal;
+  final String klsId;
+  final String klsSemester;
+  final String klsIsMerdeka;
+  final List<dynamic> status;
+  final String statusKrs;
+  final String jadwal;
   final Detail? detail;
 
   factory KrsListMk.fromJson(String str) => KrsListMk.fromMap(json.decode(str));
@@ -170,7 +134,7 @@ class KrsListMk {
     klsId: json["kls_id"] == null ? null : json["kls_id"],
     klsSemester: json["kls_semester"] == null ? null : json["kls_semester"],
     klsIsMerdeka: json["kls_isMerdeka"] == null ? null : json["kls_isMerdeka"],
-    status: json["status"] == null ? null : List<String>.from(json["status"]),
+    status: json["status"] == null ? null : json["status"],
     statusKrs: json["status_krs"] == null ? null : json["status_krs"],
     jadwal: json["jadwal"] == null ? null : json["jadwal"],
     detail: json["detail"] == null ? null : Detail.fromMap(json["detail"]),
@@ -197,10 +161,10 @@ class KrsListMk {
     "kls_id": klsId == null ? null : klsId,
     "kls_semester": klsSemester == null ? null : klsSemester,
     "kls_isMerdeka": klsIsMerdeka == null ? null : klsIsMerdeka,
-    "status": status == null ? null : List<String>.from(status!.map((x) => x)),
+    "status": status == null ? null : status,
     "status_krs": statusKrs == null ? null : statusKrs,
     "jadwal": jadwal == null ? null : jadwal,
-    "detail": detail == null ? null : detail?.toMap(),
+    "detail": detail == null ? null : detail!.toMap(),
   };
 }
 
@@ -212,8 +176,14 @@ class Detail {
   });
 
   final List<DosenAmpu>? dosenAmpu;
-  final List<dynamic>? mkPrasyarat;
+  final List<MkPrasyarat>? mkPrasyarat;
   final String mkJumlahPeserta;
+
+  String getDosenAmpu() {
+    String dosen = '';
+    dosenAmpu!.forEach((element) {dosen += '${element.nip} - ${element.nama}\n';  });
+    return dosen;
+  }
 
   factory Detail.fromJson(String str) => Detail.fromMap(json.decode(str));
 
@@ -221,13 +191,13 @@ class Detail {
 
   factory Detail.fromMap(Map<String, dynamic> json) => Detail(
     dosenAmpu: json["dosen_ampu"] == null ? null : List<DosenAmpu>.from(json["dosen_ampu"].map((x) => DosenAmpu.fromMap(x))),
-    mkPrasyarat: json["mk_prasyarat"] == null ? null : List<dynamic>.from(json["mk_prasyarat"].map((x) => x)),
+    mkPrasyarat: json["mk_prasyarat"] == null ? null : List<MkPrasyarat>.from(json["mk_prasyarat"].map((x) => MkPrasyarat.fromMap(x))),
     mkJumlahPeserta: json["mk_jumlahPeserta"] == null ? null : json["mk_jumlahPeserta"],
   );
 
   Map<String, dynamic> toMap() => {
     "dosen_ampu": dosenAmpu == null ? null : List<dynamic>.from(dosenAmpu!.map((x) => x.toMap())),
-    "mk_prasyarat": mkPrasyarat == null ? null : List<dynamic>.from(mkPrasyarat!.map((x) => x)),
+    "mk_prasyarat": mkPrasyarat == null ? null : List<dynamic>.from(mkPrasyarat!.map((x) => x.toMap())),
     "mk_jumlahPeserta": mkJumlahPeserta == null ? null : mkJumlahPeserta,
   };
 }
@@ -257,5 +227,45 @@ class DosenAmpu {
     "nip": nip == null ? null : nip,
     "nama": nama == null ? null : nama,
     "prodi": prodi == null ? null : prodi,
+  };
+}
+
+class MkPrasyarat {
+  MkPrasyarat({
+    required this.id,
+    required this.kode,
+    required this.nama,
+    required this.syaratKode,
+    required this.syarat,
+    required this.bobot,
+  });
+
+  final String id;
+  final String kode;
+  final String nama;
+  final String syaratKode;
+  final String syarat;
+  final String bobot;
+
+  factory MkPrasyarat.fromJson(String str) => MkPrasyarat.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory MkPrasyarat.fromMap(Map<String, dynamic> json) => MkPrasyarat(
+    id: json["id"] == null ? null : json["id"],
+    kode: json["kode"] == null ? null : json["kode"],
+    nama: json["nama"] == null ? null : json["nama"],
+    syaratKode: json["syarat_kode"] == null ? null : json["syarat_kode"],
+    syarat: json["syarat"] == null ? null : json["syarat"],
+    bobot: json["bobot"] == null ? null : json["bobot"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "id": id == null ? null : id,
+    "kode": kode == null ? null : kode,
+    "nama": nama == null ? null : nama,
+    "syarat_kode": syaratKode == null ? null : syaratKode,
+    "syarat": syarat == null ? null : syarat,
+    "bobot": bobot == null ? null : bobot,
   };
 }
