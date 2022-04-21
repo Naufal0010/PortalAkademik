@@ -8,6 +8,21 @@ import '../../../../states/krs/state_user_mahasiswa_krs_header.dart';
 import '../../../../util/color_pallete.dart';
 
 class RencanaStudiPage extends StatelessWidget {
+  Widget isDisetujui(String? disetujui) {
+    if (disetujui == "1") {
+      return Text(
+        'Disetujui',
+        style: TextStyle(color: Colors.white),
+        textAlign: TextAlign.center,
+      );
+    }
+    return Text(
+      'Belum Disetujui',
+      style: TextStyle(color: Colors.white),
+      textAlign: TextAlign.center,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     UserMahasiswaKrsHeaderState user =
@@ -38,149 +53,178 @@ class RencanaStudiPage extends StatelessWidget {
           child: SingleChildScrollView(
             physics: AlwaysScrollableScrollPhysics(),
             child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(36.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(4.0),
-                        border:
-                            Border.all(width: 1, color: ColorPallete.primary),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Semester',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          user.isLoading
-                              ? ShimmerWidget(
-                                  height: 20, width: double.infinity)
-                              : Text(
-                                  '${user.data?.semester}',
-                                  style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontSize: 12.0),
-                                ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Text('Dosen PA',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          user.isLoading
-                              ? ShimmerWidget(
-                                  height: 20, width: double.infinity)
-                              : Text(
-                                  '${user.data?.dosenAmpu}',
-                                  style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontSize: 12.0),
-                                ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Text('IPS / SKS Maksimal',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          user.isLoading
-                              ? ShimmerWidget(
-                                  height: 20, width: double.infinity)
-                              : Text(
-                                  '${user.data?.ips} / ${user.data?.sksMax}',
-                                  style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontSize: 12.0),
-                                ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Text('Komentar',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold)),
-                          ...?user.data?.krs?.komentar
-                              ?.map(
-                                (e) => Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 16,
-                                      child: Text(
-                                        e.tanggal,
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 10),
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(36.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(4.0),
+                          border:
+                              Border.all(width: 1, color: ColorPallete.primary),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Semester',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            user.isLoading
+                                ? ShimmerWidget(
+                                    height: 20, width: double.infinity)
+                                : Text(
+                                    '${user.data?.semester}',
+                                    style: TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: 12.0),
+                                  ),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Text('Dosen PA',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            user.isLoading
+                                ? ShimmerWidget(
+                                    height: 20, width: double.infinity)
+                                : Text(
+                                    '${user.data?.dosenAmpu}',
+                                    style: TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: 12.0),
+                                  ),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Text('IPS / SKS Maksimal',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            user.isLoading
+                                ? ShimmerWidget(
+                                    height: 20, width: double.infinity)
+                                : Text(
+                                    '${user.data?.ips} / ${user.data?.sksMax}',
+                                    style: TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: 12.0),
+                                  ),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Text('Komentar',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold)),
+                            ...?user.data?.krs?.komentar
+                                ?.map(
+                                  (e) => Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 16,
+                                        child: Text(
+                                          e.tanggal,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 10),
+                                        ),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        decoration: BoxDecoration(
+                                            color: ColorPallete.primary,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
                                       ),
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 10),
-                                      decoration: BoxDecoration(
-                                          color: ColorPallete.primary,
-                                          borderRadius:
-                                              BorderRadius.circular(10.0)),
-                                    ),
-                                    Text(
-                                      e.teks,
-                                      style: TextStyle(fontSize: 12.0),
-                                    ),
-                                  ],
-                                ),
-                              )
-                              .toList(),
-                        ],
+                                      Text(
+                                        e.teks,
+                                        style: TextStyle(fontSize: 12.0),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                                .toList(),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 8,),
-                    userKrs.isLoading
-                        ? ShimmerWidget(
-                            width: double.infinity,
-                            height: 100,
-                          )
-                        : KrsListSudahAmbil(
-                            list: userKrs.data!.mkReguler!.krsListMk),
-                    Container(
-                      padding: EdgeInsets.all(10.0),
-                      // decoration: BoxDecoration(
-                      //   borderRadius: BorderRadius.circular(10.0),
-                      //   border: Border.all(
-                      //       width: 1, color: ColorPallete.primary),
-                      //   // color: Colors.amber,
-                      // ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Total SKS',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              userKrs.isLoading
-                                  ? ShimmerWidget(
-                                width: 60,
-                                height: 20,
-                              )
-                                  : Text(
-                                '${userKrs.data?.mkReguler!.krsTotalSks}',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: ColorPallete.primary,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20),
+                            ),
                           ),
-                        ],
+                          width: 120,
+                          height: 32,
+                          child: Center(
+                            child: user.isLoading
+                                ? ShimmerWidget(
+                              width: 80,
+                              height: 20,
+                            )
+                                : isDisetujui(user.data!.krs!.isSetujui),
+                          ),
+                        ),
                       ),
-                    )
-                  ],
-                ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  userKrs.isLoading
+                      ? ShimmerWidget(
+                          width: double.infinity,
+                          height: 100,
+                        )
+                      : KrsListSudahAmbil(
+                          list: userKrs.data!.mkReguler!.krsListMk),
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    // decoration: BoxDecoration(
+                    //   borderRadius: BorderRadius.circular(10.0),
+                    //   border: Border.all(
+                    //       width: 1, color: ColorPallete.primary),
+                    //   // color: Colors.amber,
+                    // ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Total SKS',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            userKrs.isLoading
+                                ? ShimmerWidget(
+                                    width: 60,
+                                    height: 20,
+                                  )
+                                : Text(
+                                    '${userKrs.data?.mkReguler!.krsTotalSks}',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
