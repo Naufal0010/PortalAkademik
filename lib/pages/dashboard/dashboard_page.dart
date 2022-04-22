@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:portal_akademik/pages/dashboard/component/jadwal_item_carousel.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/jadwalpenting/jadwal_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kalender/kalender_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kuesioner/kuesioner_page.dart';
@@ -16,7 +15,7 @@ import 'package:portal_akademik/widget/shimmer_widget.dart';
 
 import '../../states/jadwal/state_user_mahasiswa_jadwal_hari_ini.dart';
 import '../../states/state_user_semester_aktif.dart';
-import '../presensi/presensi_detail_page.dart';
+import 'component/list_carousel_jadwal_hari_ini.dart';
 
 final List<String> imgList = [
   'assets/images/berakhlak.png',
@@ -67,7 +66,6 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   bool isLoading = false;
-  int _currentIndex = 0;
 
   final CarouselController _controller = CarouselController();
 
@@ -77,9 +75,10 @@ class _DashboardPageState extends State<DashboardPage> {
         Provider.of<UserMahasiswaState>(context, listen: true);
 
     UserMahasiswaSemesterAktifState semesterAktif =
-    Provider.of<UserMahasiswaSemesterAktifState>(context, listen: true);
+        Provider.of<UserMahasiswaSemesterAktifState>(context, listen: true);
 
-    UserMahasiswaJadwalHariIniState jadwal = Provider.of<UserMahasiswaJadwalHariIniState>(context, listen: true);
+    UserMahasiswaJadwalHariIniState jadwal =
+        Provider.of<UserMahasiswaJadwalHariIniState>(context, listen: true);
 
     Future<void> refresh() {
       userMahasiswa.refreshData();
@@ -178,7 +177,8 @@ class _DashboardPageState extends State<DashboardPage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => KalenderAkademikPage()));
+                                  builder: (context) =>
+                                      KalenderAkademikPage()));
                         }),
                     IconButtonCustom(
                         nameLabel: 'Kuesioner',
@@ -225,25 +225,12 @@ class _DashboardPageState extends State<DashboardPage> {
                   height: 150,
                   child: ListView(
                     children: [
-                      jadwal.isLoading ? ShimmerWidget(height: 100, width: 100,) : CarouselSlider(
-                        items: jadwal.data!.data!.map((e) => JadwalItem(e, () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  PresensiDetailPage(jadwal.data!.data![_currentIndex])));
-                        },)).toList(),
-                        options: CarouselOptions(
-                          height: 150.0,
-                          enlargeCenterPage: true,
-                          autoPlay: false,
-                          aspectRatio: 16 / 9,
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          enableInfiniteScroll: false,
-                          viewportFraction: 0.8,
-                          onPageChanged: (index, _) {
-                            _currentIndex = index;
-                          }
-                        ),
-                      ),
+                      jadwal.isLoading
+                          ? ShimmerWidget(
+                              height: 100,
+                              width: 100,
+                            )
+                          : ListCarouselJadwalHariIni(context, jadwal)
                     ],
                   ),
                 ),
@@ -260,8 +247,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           enlargeCenterPage: true,
                           aspectRatio: 2.0,
                           onPageChanged: (index, reason) {
-                            setState(() {
-                            });
+                            setState(() {});
                           }),
                     )
                   ],
