@@ -50,6 +50,11 @@ flutter_native_splash:
   ios: true
   web: false
 
+  android_12:
+    image: assets/images/ulm_logo_hd.png
+    icon_background_color: "#FFFFFF"
+
+
 flutter:
 
   uses-material-design: true
