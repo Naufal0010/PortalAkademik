@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kuesioner/subtabpages/evaluasidosen/subpages/component/list_kritik_saran_evaluasi_dosen.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kuesioner/subtabpages/evaluasidosen/subpages/component/shimmer_list.dart';
-import 'package:portal_akademik/pages/presensi/component/shimmer_list_detail_tile.dart';
 import 'package:portal_akademik/states/kuesioner/state_user_mahasiswa_data_detail_kuesioner.dart';
 
 import '../../../../../../../model/kuesioner/model_user_mahasiswa_data_kelas_kuesioner.dart';
