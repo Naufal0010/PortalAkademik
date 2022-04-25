@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:portal_akademik/model/kuesioner/model_user_mahasiswa_data_detail_kuesioner.dart';
 
-import '../../../../../../../util/color_pallete.dart';
+import '../../../../../../../../util/color_pallete.dart';
 
 class EvaluasiDosenDetailListTile extends StatelessWidget {
   final DataKuesioner dataKuesioner;
@@ -21,7 +21,7 @@ class EvaluasiDosenDetailListTile extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(4),
           border: Border.all(width: 1, color: ColorPallete.primary),
         ),
         child: Column(
@@ -37,8 +37,8 @@ class EvaluasiDosenDetailListTile extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: ColorPallete.primary,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20)),
+                          topLeft: Radius.circular(2),
+                          topRight: Radius.circular(2)),
                     ),
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
