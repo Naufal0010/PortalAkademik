@@ -128,6 +128,11 @@ class NetworkRepository {
         url: '/akademik/kuisionerPenilaian/dataKuisioner/$idKelas/$username');
   }
 
+  // getDataKuesionerPelayanan() untuk mengambil data kuesioner pelayanan ULM
+  Future<ApiModel> getDataKuesionerPelayanan() async {
+    return await consumer.execute(url: '/akademik/kuisionerUnlamNilai/dataKuisioner/$username');
+  }
+
   // refreshToken() jika access token expired
   Future refreshToken() async {
     FormData formData = FormData.fromMap({
