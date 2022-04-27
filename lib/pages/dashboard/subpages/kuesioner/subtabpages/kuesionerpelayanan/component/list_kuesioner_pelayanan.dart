@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../../../../../../../util/color_pallete.dart';
 import '../../../../../../../states/kuesioner/state_user_mahasiswa_data_pelayanan.dart';
 import 'kuesioner_pelayanan_list_tile.dart';
 
@@ -19,20 +18,10 @@ Widget ListKuesionerPelayananan(
   }
 
   if (state.data?.data == 0) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 150,
-      padding: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        border: Border.all(width: 1, color: ColorPallete.primary),
-        // color: Colors.amber,
-      ),
-      child: Center(
-        child: Text(
-          'Tidak ada jadwal mata kuliah hari ini',
-          style: TextStyle(color: Colors.black),
-        ),
+    return Center(
+      child: Text(
+        'Belum masuk masa pengisian kuesioner',
+        style: TextStyle(color: Colors.black),
       ),
     );
   }
