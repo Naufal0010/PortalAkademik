@@ -30,7 +30,7 @@ Widget ListKuesionerPelayananan(
     children: state.data!.data!
         .map(
           (e) => KuesionerPelayananListTile(
-            dataKategori: e.kategori!,
+            dataKuesionerPelayanan: e,
       ),
     )
         .toList(),

@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../model/kuesioner/model_user_mahasiswa_data_pelayanan.dart';
 import '../../../../../../../util/color_pallete.dart';
+import 'kuesioner_kategori_list_tile.dart';
 
 class KuesionerPelayananListTile extends StatefulWidget {
-  final DataKategori dataKategori;
+  final DataKuesionerPelayanan dataKuesionerPelayanan;
 
-  KuesionerPelayananListTile({required this.dataKategori});
+  KuesionerPelayananListTile({required this.dataKuesionerPelayanan});
 
   @override
-  State<KuesionerPelayananListTile> createState() => _KuesionerPelayananListTileState();
+  State<KuesionerPelayananListTile> createState() =>
+      _KuesionerPelayananListTileState();
 }
 
 enum YaTidak { Ya, Tidak }
 
-class _KuesionerPelayananListTileState extends State<KuesionerPelayananListTile> {
+class _KuesionerPelayananListTileState
+    extends State<KuesionerPelayananListTile> {
   YaTidak? _character = YaTidak.Ya;
 
   @override
@@ -47,12 +50,11 @@ class _KuesionerPelayananListTileState extends State<KuesionerPelayananListTile>
                         child: Column(
                           children: [
                             Text(
-                              '${widget.dataKategori.kategoriNama}',
+                              '${widget.dataKuesionerPelayanan.kategori!.kategoriNama}',
                               style: TextStyle(color: Colors.white),
                             ),
                           ],
-                        )
-                    ),
+                        )),
                   ),
                 ),
               ],
@@ -60,20 +62,30 @@ class _KuesionerPelayananListTileState extends State<KuesionerPelayananListTile>
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(16.0),
-              child: Column(
-                  children: [
-                    Text(
-                      '${widget.dataKategori.kategoriSoal}',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    isWajibOnly(widget.dataKategori.isWajibOnly)
-                  ]
-              ),
+              child: Column(children: [
+                isKategoriSoalNull(
+                    widget.dataKuesionerPelayanan.kategori!.kategoriSoal),
+                isWajibOnly(
+                    widget.dataKuesionerPelayanan.kategori!.isWajibOnly),
+                KuesionerKategoriListTile(
+                    dataKuesioner: widget.dataKuesionerPelayanan.kuisioner!,
+                    status: widget.dataKuesionerPelayanan.kuisioner!.map((e) => e.soalStatus).toList())
+              ]),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget isKategoriSoalNull(String? isNull) {
+    if (isNull != null) {
+      return Text(
+        '${widget.dataKuesionerPelayanan.kategori!.kategoriSoal}',
+        style: TextStyle(color: Colors.black),
+      );
+    }
+    return Text('');
   }
 
   Widget isWajibOnly(int isWajib) {
@@ -114,4 +126,3 @@ class _KuesionerPelayananListTileState extends State<KuesionerPelayananListTile>
     return Container();
   }
 }
-
