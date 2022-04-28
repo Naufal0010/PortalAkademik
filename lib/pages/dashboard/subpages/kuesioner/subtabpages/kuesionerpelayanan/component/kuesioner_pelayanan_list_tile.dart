@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../../model/kuesioner/model_user_mahasiswa_data_pelayanan.dart';
+import '../../../../../../../states/kuesioner/state_user_mahasiswa_data_pelayanan.dart';
+import '../../../../../../../states/state.dart';
 import '../../../../../../../util/color_pallete.dart';
 import '../../../../../../../util/service/logger.dart';
 import 'kuesioner_kategori_list_tile.dart';
@@ -23,6 +25,9 @@ class _KuesionerPelayananListTileState
 
   @override
   Widget build(BuildContext context) {
+    UserMahasiswaDataPelayananState user =
+        Provider.of<UserMahasiswaDataPelayananState>(context, listen: false);
+
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8),
       child: Container(
@@ -70,7 +75,8 @@ class _KuesionerPelayananListTileState
                     widget.dataKuesionerPelayanan.kategori!.isWajibOnly),
                 KuesionerKategoriListTile(
                     dataKuesioner: widget.dataKuesionerPelayanan.kuisioner!,
-                    status: _character == YaTidak.Ya ? '1' : '0')
+                    status: _character == YaTidak.Ya ? '1' : '0',
+                    isVisible: _character == YaTidak.Ya ? true : false)
               ]),
             ),
           ],
@@ -90,6 +96,9 @@ class _KuesionerPelayananListTileState
   }
 
   Widget isWajibOnly(int isWajib) {
+    UserMahasiswaDataPelayananState user =
+        Provider.of<UserMahasiswaDataPelayananState>(context, listen: false);
+
     if (isWajib == 0) {
       return Row(
         children: [
@@ -102,6 +111,9 @@ class _KuesionerPelayananListTileState
                 onChanged: (YaTidak? value) {
                   setState(() {
                     _character = value;
+                    user.tambahDataOpsi(
+                        widget.dataKuesionerPelayanan.kategori!.kategoriId,
+                        value == YaTidak.Ya ? 1 : 0);
                     UtilLogger.log('Ya', value);
                   });
                 },
@@ -117,6 +129,9 @@ class _KuesionerPelayananListTileState
                 onChanged: (YaTidak? value) {
                   setState(() {
                     _character = value;
+                    user.tambahDataOpsi(
+                        widget.dataKuesionerPelayanan.kategori!.kategoriId,
+                        value == YaTidak.Tidak ? 0 : 1);
                     UtilLogger.log('Tidak', value);
                   });
                 },

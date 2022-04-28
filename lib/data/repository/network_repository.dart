@@ -5,6 +5,8 @@ import 'package:portal_akademik/model/model_api.dart';
 import 'package:portal_akademik/util/api/consumer.dart';
 import 'package:portal_akademik/util/service/util_preference.dart';
 
+import '../../model/kuesioner/pelayanan/model_pelayanan_ulm_tambah_data.dart';
+
 /*
 *
 * Class NetworkRepository berfungsi untuk menampung function yang bertujuan
@@ -130,7 +132,26 @@ class NetworkRepository {
 
   // getDataKuesionerPelayanan() untuk mengambil data kuesioner pelayanan ULM
   Future<ApiModel> getDataKuesionerPelayanan() async {
-    return await consumer.execute(url: '/akademik/kuisionerUnlamNilai/dataKuisioner/$username');
+    return await consumer.execute(
+        url: '/akademik/kuisionerUnlamNilai/dataKuisioner/$username');
+  }
+
+  // tambahDataKuesionerEvaluasiaDosen() untuk menambah atau menyimpan kuesioner
+  // evaluasi dosen ke database
+  Future<ApiModel> tambahDataKuesionerEvaluasiDosen() async {
+    return await consumer.execute(
+        url: '/akademik/kuisionerPenilaian/createBatchKuisionerMahasiswa',
+        method: MethodRequest.POST);
+  }
+
+  // tambahDataKuesionerPelayanan() untuk menambah atau menyimpan kuesioner
+  // pelayanan ke database
+  Future<ApiModel> tambahDataKuesionerPelayanan(ModelPelayananUlmTambahData pelayanan) async {
+    FormData formData = FormData.fromMap(pelayanan.toMap());
+    return await consumer.execute(
+        url: '/akademik/kuisionerUnlamNilai/createBatchKuisionerPelayanan',
+        method: MethodRequest.POST,
+        formData: formData);
   }
 
   // refreshToken() jika access token expired

@@ -29,9 +29,12 @@ Widget ListKuesionerPelayananan(
   return Column(
     children: state.data!.data!
         .map(
-          (e) => KuesionerPelayananListTile(
-            dataKuesionerPelayanan: e,
-      ),
+          (e) {
+            state.tambahDataOpsi(e.kategori!.kategoriId!.toString(), 1);
+            return KuesionerPelayananListTile(
+              dataKuesionerPelayanan: e,
+            );
+          }
     )
         .toList(),
   );

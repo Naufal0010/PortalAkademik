@@ -2,18 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../../../../../../model/kuesioner/model_user_mahasiswa_data_pelayanan.dart';
+import '../../../../../../../states/kuesioner/state_user_mahasiswa_data_pelayanan.dart';
+import '../../../../../../../states/state.dart';
 import '../../../../../../../util/color_pallete.dart';
 
 class KuesionerKategoriListTile extends StatelessWidget {
   final List<DataKuesionerKategori> dataKuesioner;
   final String status;
+  final bool isVisible;
 
   KuesionerKategoriListTile(
-      {required this.dataKuesioner, required this.status});
+      {required this.dataKuesioner, required this.status, required this.isVisible});
 
   @override
   Widget build(BuildContext context) {
     double _currentRating = 0;
+
+    UserMahasiswaDataPelayananState user =
+    Provider.of<UserMahasiswaDataPelayananState>(context, listen: false);
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8),
@@ -56,35 +62,39 @@ class KuesionerKategoriListTile extends StatelessWidget {
                                     padding: EdgeInsets.symmetric(vertical: 8),
                                     child: Column(
                                       children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('Nilai Kepentingan'),
-                                            SizedBox(
-                                              width: 110,
-                                              child: RatingBar.builder(
-                                                itemSize: 18.0,
-                                                initialRating: _currentRating,
-                                                direction: Axis.horizontal,
-                                                itemCount: 5,
-                                                itemPadding:
-                                                    EdgeInsets.symmetric(
-                                                        horizontal: 2.0),
-                                                itemBuilder: (context, _) =>
-                                                    Icon(
-                                                  Icons.star,
-                                                  color: Colors.amber,
-                                                ),
-                                                onRatingUpdate: (rating) {
-                                                  _currentRating = rating;
+                                        Visibility(
+                                          visible: isVisible,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text('Nilai Kepentingan'),
+                                              SizedBox(
+                                                width: 110,
+                                                child: RatingBar.builder(
+                                                  itemSize: 18.0,
+                                                  initialRating: _currentRating,
+                                                  direction: Axis.horizontal,
+                                                  itemCount: 5,
+                                                  itemPadding:
+                                                      EdgeInsets.symmetric(
+                                                          horizontal: 2.0),
+                                                  itemBuilder: (context, _) =>
+                                                      Icon(
+                                                    Icons.star,
+                                                    color: Colors.amber,
+                                                  ),
+                                                  onRatingUpdate: (rating) {
+                                                    _currentRating = rating;
 
-                                                  print(rating);
-                                                  print(_currentRating);
-                                                },
-                                              ),
-                                            )
-                                          ],
+                                                    user.tambahDataBintang(e.soalKategoriId, e.soalId, 1, rating.toInt());
+                                                    print(rating);
+                                                    print(_currentRating);
+                                                  },
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                         Row(
                                           mainAxisAlignment:
@@ -108,7 +118,7 @@ class KuesionerKategoriListTile extends StatelessWidget {
                                                 ),
                                                 onRatingUpdate: (rating) {
                                                   _currentRating = rating;
-
+                                                  user.tambahDataBintang(e.soalKategoriId, e.soalId, 2, rating.toInt());
                                                   print(rating);
                                                   print(_currentRating);
                                                 },

@@ -12,6 +12,9 @@ class KuesionerPelayananTabPage extends StatelessWidget {
     UserMahasiswaDataPelayananState user =
         Provider.of<UserMahasiswaDataPelayananState>(context, listen: false);
 
+    final tfPelayanan = TextEditingController();
+    final tfPerbaikan = TextEditingController();
+
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.all(16.0),
@@ -46,6 +49,7 @@ class KuesionerPelayananTabPage extends StatelessWidget {
                     maxWidth: MediaQuery.of(context).size.width,
                   ),
                   child: TextField(
+                    controller: tfPelayanan,
                     keyboardType: TextInputType.multiline,
                     maxLines: 5,
                     decoration: InputDecoration(
@@ -62,11 +66,12 @@ class KuesionerPelayananTabPage extends StatelessWidget {
                 height: 8,
               ),
               SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Text(
-                    'Kolom upaya perbaikan tentang pelayanan beasiswa/kesehatan/softskills/minat dan penalaran',
-                    style: TextStyle(fontSize: 16),
-                  )),
+                width: MediaQuery.of(context).size.width,
+                child: Text(
+                  'Kolom upaya perbaikan tentang pelayanan beasiswa/kesehatan/softskills/minat dan penalaran',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
               Container(
                 padding: EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
@@ -79,6 +84,7 @@ class KuesionerPelayananTabPage extends StatelessWidget {
                     maxWidth: MediaQuery.of(context).size.width,
                   ),
                   child: TextField(
+                    controller: tfPerbaikan,
                     keyboardType: TextInputType.multiline,
                     maxLines: 5,
                     decoration: InputDecoration(
@@ -98,7 +104,9 @@ class KuesionerPelayananTabPage extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
                   child: Text(
                     'Simpan',
                     style: TextStyle(fontSize: 16),
