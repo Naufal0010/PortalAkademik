@@ -6,9 +6,10 @@ import '../../../../../../../util/color_pallete.dart';
 
 class KuesionerKategoriListTile extends StatelessWidget {
   final List<DataKuesionerKategori> dataKuesioner;
-  final List<String> status;
+  final String status;
 
-  KuesionerKategoriListTile({required this.dataKuesioner, required this.status});
+  KuesionerKategoriListTile(
+      {required this.dataKuesioner, required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -38,82 +39,91 @@ class KuesionerKategoriListTile extends StatelessWidget {
                           topRight: Radius.circular(2)),
                     ),
                     child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Column(
-                          children: dataKuesioner.map(
-                                (e) => Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${e.soalNama}',
-                                      style: TextStyle(color: ColorPallete.primary),
-                                    ),
-                                    Container(
-                                      width: double.infinity,
-                                      padding: EdgeInsets.symmetric(vertical: 8),
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text('Nilai Kepentingan'),
-                                              SizedBox(
-                                                width: 110,
-                                                child: RatingBar.builder(
-                                                  itemSize: 18.0,
-                                                  initialRating: _currentRating,
-                                                  direction: Axis.horizontal,
-                                                  itemCount: 5,
-                                                  itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-                                                  itemBuilder: (context, _) => Icon(
-                                                    Icons.star,
-                                                    color: Colors.amber,
-                                                  ),
-                                                  onRatingUpdate: (rating) {
-                                                    _currentRating = rating;
-
-                                                    print(rating);
-                                                    print(_currentRating);
-                                                  },
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Column(
+                        children: dataKuesioner.where((element) => element.soalStatus == status)
+                            .map(
+                              (e) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${e.soalNama}',
+                                    style:
+                                        TextStyle(color: ColorPallete.primary),
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.symmetric(vertical: 8),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('Nilai Kepentingan'),
+                                            SizedBox(
+                                              width: 110,
+                                              child: RatingBar.builder(
+                                                itemSize: 18.0,
+                                                initialRating: _currentRating,
+                                                direction: Axis.horizontal,
+                                                itemCount: 5,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 2.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.amber,
                                                 ),
-                                              )
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text('Nilai Kepuasan'),
-                                              SizedBox(
-                                                width: 110,
-                                                child: RatingBar.builder(
-                                                  itemSize: 18.0,
-                                                  initialRating: _currentRating,
-                                                  direction: Axis.horizontal,
-                                                  itemCount: 5,
-                                                  itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
-                                                  itemBuilder: (context, _) => Icon(
-                                                    Icons.star,
-                                                    color: Colors.amber,
-                                                  ),
-                                                  onRatingUpdate: (rating) {
-                                                    _currentRating = rating;
+                                                onRatingUpdate: (rating) {
+                                                  _currentRating = rating;
 
-                                                    print(rating);
-                                                    print(_currentRating);
-                                                  },
+                                                  print(rating);
+                                                  print(_currentRating);
+                                                },
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('Nilai Kepuasan'),
+                                            SizedBox(
+                                              width: 110,
+                                              child: RatingBar.builder(
+                                                itemSize: 18.0,
+                                                initialRating: _currentRating,
+                                                direction: Axis.horizontal,
+                                                itemCount: 5,
+                                                itemPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 2.0),
+                                                itemBuilder: (context, _) =>
+                                                    Icon(
+                                                  Icons.star,
+                                                  color: Colors.amber,
                                                 ),
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                                onRatingUpdate: (rating) {
+                                                  _currentRating = rating;
 
-                              )
-                              .toList(),
-                        ),
+                                                  print(rating);
+                                                  print(_currentRating);
+                                                },
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                            .toList(),
+                      ),
                     ),
                   ),
                 ),

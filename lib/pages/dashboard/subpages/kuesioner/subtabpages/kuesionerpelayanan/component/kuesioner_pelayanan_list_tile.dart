@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../../model/kuesioner/model_user_mahasiswa_data_pelayanan.dart';
 import '../../../../../../../util/color_pallete.dart';
+import '../../../../../../../util/service/logger.dart';
 import 'kuesioner_kategori_list_tile.dart';
 
 class KuesionerPelayananListTile extends StatefulWidget {
@@ -69,7 +70,7 @@ class _KuesionerPelayananListTileState
                     widget.dataKuesionerPelayanan.kategori!.isWajibOnly),
                 KuesionerKategoriListTile(
                     dataKuesioner: widget.dataKuesionerPelayanan.kuisioner!,
-                    status: widget.dataKuesionerPelayanan.kuisioner!.map((e) => e.soalStatus).toList())
+                    status: _character == YaTidak.Ya ? '1' : '0')
               ]),
             ),
           ],
@@ -101,6 +102,7 @@ class _KuesionerPelayananListTileState
                 onChanged: (YaTidak? value) {
                   setState(() {
                     _character = value;
+                    UtilLogger.log('Ya', value);
                   });
                 },
               ),
@@ -115,6 +117,7 @@ class _KuesionerPelayananListTileState
                 onChanged: (YaTidak? value) {
                   setState(() {
                     _character = value;
+                    UtilLogger.log('Tidak', value);
                   });
                 },
               ),
