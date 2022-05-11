@@ -83,6 +83,7 @@ class _DashboardPageState extends State<DashboardPage> {
     Future<void> refresh() {
       userMahasiswa.refreshData();
       jadwal.refreshData();
+      semesterAktif.refreshData();
       return userMahasiswa.refreshData();
     }
 
@@ -128,6 +129,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       SizedBox(
                         width: 30,
                       ),
+                      semesterAktif.isLoading ? SizedBox() : SizedBox(),
                       userMahasiswa.isLoading
                           ? ShimmerWidget(
                               borderRadius: BorderRadius.circular(30.0),

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:portal_akademik/config/config.dart';
+import 'package:portal_akademik/model/kuesioner/evaluasidosen/model_evaluasi_dosen_tambah_data.dart';
 import 'package:portal_akademik/model/model_api.dart';
 import 'package:portal_akademik/util/api/consumer.dart';
 import 'package:portal_akademik/util/service/util_preference.dart';
@@ -138,10 +139,12 @@ class NetworkRepository {
 
   // tambahDataKuesionerEvaluasiaDosen() untuk menambah atau menyimpan kuesioner
   // evaluasi dosen ke database
-  Future<ApiModel> tambahDataKuesionerEvaluasiDosen() async {
+  Future<ApiModel> tambahDataKuesionerEvaluasiDosen(ModelEvaluasiDosenTambahData evaluasiDosen) async {
+    FormData formData = FormData.fromMap(evaluasiDosen.toMap());
     return await consumer.execute(
         url: '/akademik/kuisionerPenilaian/createBatchKuisionerMahasiswa',
-        method: MethodRequest.POST);
+        method: MethodRequest.POST,
+        formData: formData);
   }
 
   // tambahDataKuesionerPelayanan() untuk menambah atau menyimpan kuesioner
