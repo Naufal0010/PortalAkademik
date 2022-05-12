@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:portal_akademik/model/kuesioner/model_user_mahasiswa_data_detail_kuesioner.dart';
 
+import '../../../../../../../../states/kuesioner/state_user_mahasiswa_data_kelas_kuesioner.dart';
+import '../../../../../../../../states/state.dart';
 import '../../../../../../../../util/color_pallete.dart';
 
 class EvaluasiDosenDetailListTile extends StatelessWidget {
@@ -14,6 +16,10 @@ class EvaluasiDosenDetailListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double _currentRating = 0;
+
+    UserMahasiswaDataKelasKuesionerState user =
+        Provider.of<UserMahasiswaDataKelasKuesionerState>(context,
+            listen: false);
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8),
@@ -63,8 +69,7 @@ class EvaluasiDosenDetailListTile extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                width: 150,
-                                  child: Text('${e.dosen!.nama}')),
+                                  width: 150, child: Text('${e.dosen!.nama}')),
                               SizedBox(
                                 width: 110,
                                 child: RatingBar.builder(
@@ -72,14 +77,18 @@ class EvaluasiDosenDetailListTile extends StatelessWidget {
                                   initialRating: _currentRating,
                                   direction: Axis.horizontal,
                                   itemCount: 5,
-                                  itemPadding: EdgeInsets.symmetric(horizontal: 2.0),
+                                  itemPadding:
+                                      EdgeInsets.symmetric(horizontal: 2.0),
                                   itemBuilder: (context, _) => Icon(
                                     Icons.star,
                                     color: Colors.amber,
                                   ),
                                   onRatingUpdate: (rating) {
                                     _currentRating = rating;
-
+                                    user.tambahEvaluasiDosenBintang(
+                                        dataKuesioner.idSoal,
+                                        e.nip,
+                                        rating.toString());
                                     print(rating);
                                     print(_currentRating);
                                   },

@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../../../model/kuesioner/model_user_mahasiswa_data_detail_kuesioner.dart';
+import '../../../../../../../../states/kuesioner/state_user_mahasiswa_data_kelas_kuesioner.dart';
+import '../../../../../../../../states/state.dart';
 import '../../../../../../../../util/color_pallete.dart';
 
-class EvaluasiDosenKritikSaranList extends StatelessWidget {
+class EvaluasiDosenKritikSaranList extends StatefulWidget {
   final DataDosen dataDosen;
+  final DosenKelas dosenKelas;
 
   EvaluasiDosenKritikSaranList(
-      {required this.dataDosen});
+      {required this.dataDosen, required this.dosenKelas});
+
+  @override
+  State<EvaluasiDosenKritikSaranList> createState() => _EvaluasiDosenKritikSaranListState();
+}
+
+class _EvaluasiDosenKritikSaranListState extends State<EvaluasiDosenKritikSaranList> {
+  final tfKritikSaranController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
+    UserMahasiswaDataKelasKuesionerState user =
+    Provider.of<UserMahasiswaDataKelasKuesionerState>(context,
+        listen: false);
+
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8),
       child: Container(
@@ -22,7 +37,7 @@ class EvaluasiDosenKritikSaranList extends StatelessWidget {
                 SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Text(
-                      'Kritik dan Saran untuk ${dataDosen.nama}',
+                      'Kritik dan Saran untuk ${widget.dataDosen.nama}',
                       style: TextStyle(fontSize: 16),
                     )),
                 Container(
@@ -39,6 +54,7 @@ class EvaluasiDosenKritikSaranList extends StatelessWidget {
                       maxHeight: 400,
                     ),
                     child: TextField(
+                      controller: tfKritikSaranController,
                       keyboardType: TextInputType.multiline,
                       maxLines: 5,
                       maxLength: 400,
@@ -51,6 +67,9 @@ class EvaluasiDosenKritikSaranList extends StatelessWidget {
                                   color: Colors.transparent)),
                           hintText:
                           'Tuliskan kritik dan saran maksimal 400 karakter'),
+                      onChanged: (text) {
+                        user.tambahEvaluasiDosenSaran(widget.dosenKelas.nip, text);
+                      },
                     ),
                   ),
                 )

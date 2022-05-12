@@ -11,8 +11,8 @@ class ModelEvaluasiDosenTambahData {
 
   final String klsId;
   final String nim;
-  final List<JawabanKuisioner>? jawabanKuisioner;
-  final List<Saran>? saran;
+  List<EvaluasiJawabanKuisioner>? jawabanKuisioner;
+  List<Saran>? saran;
 
   factory ModelEvaluasiDosenTambahData.fromJson(String str) => ModelEvaluasiDosenTambahData.fromMap(json.decode(str));
 
@@ -21,7 +21,7 @@ class ModelEvaluasiDosenTambahData {
   factory ModelEvaluasiDosenTambahData.fromMap(Map<String, dynamic> json) => ModelEvaluasiDosenTambahData(
     klsId: json["klsId"] == null ? null : json["klsId"],
     nim: json["nim"] == null ? null : json["nim"],
-    jawabanKuisioner: json["jawabanKuisioner"] == null ? null : List<JawabanKuisioner>.from(json["jawabanKuisioner"].map((x) => JawabanKuisioner.fromMap(x))),
+    jawabanKuisioner: json["jawabanKuisioner"] == null ? null : List<EvaluasiJawabanKuisioner>.from(json["jawabanKuisioner"].map((x) => EvaluasiJawabanKuisioner.fromMap(x))),
     saran: json["saran"] == null ? null : List<Saran>.from(json["saran"].map((x) => Saran.fromMap(x))),
   );
 
@@ -33,22 +33,22 @@ class ModelEvaluasiDosenTambahData {
   };
 }
 
-class JawabanKuisioner {
-  JawabanKuisioner({
+class EvaluasiJawabanKuisioner {
+  EvaluasiJawabanKuisioner({
     required this.nipDosen,
     required this.bobot,
     required this.idSoal,
   });
 
-  final String nipDosen;
-  final String bobot;
-  final String idSoal;
+  String nipDosen;
+  String bobot;
+  String idSoal;
 
-  factory JawabanKuisioner.fromJson(String str) => JawabanKuisioner.fromMap(json.decode(str));
+  factory EvaluasiJawabanKuisioner.fromJson(String str) => EvaluasiJawabanKuisioner.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory JawabanKuisioner.fromMap(Map<String, dynamic> json) => JawabanKuisioner(
+  factory EvaluasiJawabanKuisioner.fromMap(Map<String, dynamic> json) => EvaluasiJawabanKuisioner(
     nipDosen: json["nipDosen"] == null ? null : json["nipDosen"],
     bobot: json["bobot"] == null ? null : json["bobot"],
     idSoal: json["idSoal"] == null ? null : json["idSoal"],
@@ -67,8 +67,8 @@ class Saran {
     required this.saranData,
   });
 
-  final String nipDosen;
-  final String saranData;
+  String nipDosen;
+  String saranData;
 
   factory Saran.fromJson(String str) => Saran.fromMap(json.decode(str));
 

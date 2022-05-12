@@ -44,6 +44,7 @@ Widget ListKritikSaranEvaluasiDosen(
         .map(
           (e) => EvaluasiDosenKritikSaranList(
             dataDosen: e.dosen!,
+            dosenKelas: e,
           ),
         )
         .toList(),
