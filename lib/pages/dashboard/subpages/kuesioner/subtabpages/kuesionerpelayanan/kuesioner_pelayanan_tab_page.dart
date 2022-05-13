@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/presensi/component/shimmer_list_detail_tile.dart';
+import 'package:portal_akademik/util/api_local_store.dart';
 
 import '../../../../../../states/kuesioner/state_user_mahasiswa_data_pelayanan.dart';
 import '../../../../../../states/state.dart';
@@ -59,6 +60,9 @@ class KuesionerPelayananTabPage extends StatelessWidget {
                             borderSide: BorderSide(color: Colors.transparent)),
                         hintText:
                             'Deskripsikan pendapat anda tentang pelayanan mahasiswa'),
+                    onChanged: (text) {
+                      user.tambahDataSaranPendapat(ApiLocalStorage.userModelMahasiswa!.nim, text);
+                    },
                   ),
                 ),
               ),
@@ -94,6 +98,9 @@ class KuesionerPelayananTabPage extends StatelessWidget {
                             borderSide: BorderSide(color: Colors.transparent)),
                         hintText:
                             'Deskripsikan pendapat anda tentang perbaikan pelayanan mahasiswa'),
+                    onChanged: (text) {
+                      user.tambahDataSaranPerbaikan(ApiLocalStorage.userModelMahasiswa!.nim, text);
+                    },
                   ),
                 ),
               ),

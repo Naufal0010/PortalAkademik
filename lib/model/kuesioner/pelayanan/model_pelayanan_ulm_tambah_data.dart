@@ -4,11 +4,13 @@ class ModelPelayananUlmTambahData {
   ModelPelayananUlmTambahData({
     required this.nim,
     required this.pendapat,
+    required this.perbaikan,
     required this.jawabanKuisioner,
   });
 
-  final String nim;
+  String nim;
   String pendapat;
+  String perbaikan;
   List<JawabanKuisioner>? jawabanKuisioner;
 
   factory ModelPelayananUlmTambahData.fromJson(String str) => ModelPelayananUlmTambahData.fromMap(json.decode(str));
@@ -18,12 +20,14 @@ class ModelPelayananUlmTambahData {
   factory ModelPelayananUlmTambahData.fromMap(Map<String, dynamic> json) => ModelPelayananUlmTambahData(
     nim: json["nim"] == null ? null : json["nim"],
     pendapat: json["pendapat"] == null ? null : json["pendapat"],
+    perbaikan: json['perbaikan'] == null ? null : json["perbaikan"],
     jawabanKuisioner: json["jawabanKuisioner"] == null ? null : List<JawabanKuisioner>.from(json["jawabanKuisioner"].map((x) => JawabanKuisioner.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
     "nim": nim == null ? null : nim,
     "pendapat": pendapat == null ? null : pendapat,
+    "perbaikan": perbaikan == null ? null : perbaikan,
     "jawabanKuisioner": jawabanKuisioner == null ? null : List<dynamic>.from(jawabanKuisioner!.map((x) => x.toMap())),
   };
 }

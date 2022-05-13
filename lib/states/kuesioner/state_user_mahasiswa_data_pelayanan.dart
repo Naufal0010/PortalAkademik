@@ -74,7 +74,10 @@ class UserMahasiswaDataPelayananState
   tambahDataOpsi(String idKategori, int nilaiKategori) {
     if (tambahData == null) {
       tambahData = new ModelPelayananUlmTambahData(
-          nim: ApiLocalStorage.userModelMahasiswa!.nim, pendapat: '', jawabanKuisioner: []);
+          nim: ApiLocalStorage.userModelMahasiswa!.nim,
+          pendapat: '',
+          perbaikan: '',
+          jawabanKuisioner: []);
     }
     final check = tambahData!.jawabanKuisioner!
         .firstWhereOrNull((element) => element.idKategori == idKategori);
@@ -93,6 +96,44 @@ class UserMahasiswaDataPelayananState
       }).toList();
     }
     UtilLogger.log('Tambah data opsi', tambahData!.toMap());
+  }
+
+  tambahDataSaranPendapat(String nim, String pendapat) {
+    if (tambahData == null) {
+      tambahData = new ModelPelayananUlmTambahData(
+          nim: ApiLocalStorage.userModelMahasiswa!.nim,
+          pendapat: '',
+          perbaikan: '',
+          jawabanKuisioner: []);
+    }
+
+    tambahData!.pendapat = pendapat;
+
+    if (tambahData!.nim == nim) {
+      tambahData!.nim = nim;
+      tambahData!.pendapat = pendapat;
+    }
+
+    UtilLogger.log('Saran pendapat', tambahData!.toMap());
+  }
+
+  tambahDataSaranPerbaikan(String nim, String perbaikan) {
+    if (tambahData == null) {
+      tambahData = new ModelPelayananUlmTambahData(
+          nim: ApiLocalStorage.userModelMahasiswa!.nim,
+          pendapat: '',
+          perbaikan: '',
+          jawabanKuisioner: []);
+    }
+
+    tambahData!.perbaikan = perbaikan;
+
+    if (tambahData!.nim == nim) {
+      tambahData!.nim = nim;
+      tambahData!.perbaikan = perbaikan;
+    }
+
+    UtilLogger.log('Saran perbaikan', tambahData!.toMap());
   }
 
   Future<void> refreshData() async {
