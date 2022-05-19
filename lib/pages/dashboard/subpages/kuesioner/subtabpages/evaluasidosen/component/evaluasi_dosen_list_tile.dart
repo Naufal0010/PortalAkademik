@@ -11,6 +11,17 @@ class EvaluasiDosenListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Widget isSudahKuesioner(String message) {
+      if (message == '1') {
+        return Center(
+          child: Icon(Icons.check_circle, color: Colors.deepOrange,),
+        );
+      }
+      
+      return Container();
+    }
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 4.0),
       child: Material(
@@ -36,6 +47,9 @@ class EvaluasiDosenListTile extends StatelessWidget {
                         aspectRatio: 1 / 1,
                         child: Container(
                           decoration: BoxDecoration(color: Colors.orange),
+                          child: Center(
+                            child: isSudahKuesioner(data.isMengisiKuesioner),
+                          ),
                         ),
                       ),
                     ),

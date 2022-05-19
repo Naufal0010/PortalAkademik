@@ -1,15 +1,19 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
+import 'package:portal_akademik/util/api_local_store.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 
 import '../../model/kuesioner/evaluasidosen/model_evaluasi_dosen_tambah_data.dart';
 import '../../model/kuesioner/model_user_mahasiswa_data_kelas_kuesioner.dart';
+import '../../pages/dashboard/subpages/kuesioner/kuesioner_page.dart';
 
 class UserMahasiswaDataKelasKuesionerState
     with ChangeNotifier, DiagnosticableTreeMixin {
   UserModelMahasiswaDataKelasKuesioner? data;
   ModelEvaluasiDosenTambahData? evaluasiDosenTambahData;
+  String kelasId = ApiLocalStorage.kelasId;
   Map<String, dynamic>? error;
   bool isLoading = true;
 
@@ -23,6 +27,7 @@ class UserMahasiswaDataKelasKuesionerState
       data = UserModelMahasiswaDataKelasKuesioner.fromMap(res.data);
       UtilLogger.log('Data Kelas Kuesioner', data?.toJson());
       isLoading = false;
+      checkEvaluasiDosenKosong();
       notifyListeners();
     } else {
       isLoading = false;
@@ -31,21 +36,41 @@ class UserMahasiswaDataKelasKuesionerState
     }
   }
 
-  Future<void> postDataKuesionerEvaluasiDosen() async {
+  Future<void> postDataKuesionerEvaluasiDosen(BuildContext context) async {
+    evaluasiDosenTambahData!.klsId = ApiLocalStorage.kelasId;
     final res = await NetworkRepository()
         .tambahDataKuesionerEvaluasiDosen(evaluasiDosenTambahData!);
+    UtilLogger.log('Post data evaluasi dosen', res);
     if (res.code == CODE.SUCCESS) {
       refreshData();
+      Navigator.of(context)
+          .pop(MaterialPageRoute(builder: (context) => KuesionerPage()));
       UtilLogger.log('Post data kuesioner pelayanan', data);
     } else {
+      final snackBar = SnackBar(
+          content: Text('Item masih ada yang belum diisi, silakan lengkapi'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       notifyListeners();
     }
   }
 
-  tambahEvaluasiDosenBintang(String idSoal, String nipDosen, String bobot) {
-
+  checkEvaluasiDosenKosong() {
     if (evaluasiDosenTambahData == null) {
-      evaluasiDosenTambahData = new ModelEvaluasiDosenTambahData(klsId: '', nim: '', jawabanKuisioner: [], saran: []);
+      evaluasiDosenTambahData = new ModelEvaluasiDosenTambahData(
+          klsId: ApiLocalStorage.kelasId,
+          nim: ApiLocalStorage.userModelMahasiswa!.nim,
+          jawabanKuisioner: [],
+          saran: []);
+    }
+  }
+
+  tambahEvaluasiDosenBintang(String idSoal, String nipDosen, String bobot) {
+    if (evaluasiDosenTambahData == null) {
+      evaluasiDosenTambahData = new ModelEvaluasiDosenTambahData(
+          klsId: ApiLocalStorage.kelasId,
+          nim: ApiLocalStorage.userModelMahasiswa!.nim,
+          jawabanKuisioner: [],
+          saran: []);
     }
 
     evaluasiDosenTambahData?.jawabanKuisioner!.add(EvaluasiJawabanKuisioner(
@@ -62,13 +87,15 @@ class UserMahasiswaDataKelasKuesionerState
       return e;
     }).toList();
     UtilLogger.log('Tambah data opsi', evaluasiDosenTambahData!.toMap());
-
   }
 
   tambahEvaluasiDosenSaran(String nipDosen, String saran) {
-
     if (evaluasiDosenTambahData == null) {
-      evaluasiDosenTambahData = new ModelEvaluasiDosenTambahData(klsId: '', nim: '', jawabanKuisioner: [], saran: []);
+      evaluasiDosenTambahData = new ModelEvaluasiDosenTambahData(
+          klsId: ApiLocalStorage.kelasId,
+          nim: ApiLocalStorage.userModelMahasiswa!.nim,
+          jawabanKuisioner: [],
+          saran: []);
     }
 
     evaluasiDosenTambahData!.saran!

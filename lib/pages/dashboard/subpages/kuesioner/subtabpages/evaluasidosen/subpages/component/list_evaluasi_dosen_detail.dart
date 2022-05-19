@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:portal_akademik/util/service/logger.dart';
 
 import '../../../../../../../../states/kuesioner/state_user_mahasiswa_data_detail_kuesioner.dart';
-import '../../../../../../../../util/color_pallete.dart';
 import 'evaluasi_dosen_detail_list_tile.dart';
 
 Widget ListEvaluasiDosenDetail(
@@ -19,11 +20,24 @@ Widget ListEvaluasiDosenDetail(
         fontSize: 16.0);
   }
 
-  if (state.data?.dosenKelas?.length == 0) {
-    return Center(
-      child: Text(
-        'Belum masuk masa pengisian kuesioner!',
-        style: TextStyle(color: Colors.black),
+  UtilLogger.log("Error Message", "${state.errorMessage}");
+
+  if (state.data?.kuesioner?.length == null) {
+    return Container(
+      alignment: Alignment.center,
+      width: MediaQuery.of(context).size.width,
+      height: 600,
+      child: Html(
+        data: """
+               ${state.errorMessage}
+              """,
+        style: {
+          "body": Style(
+            fontFamily: 'Poppins',
+            textAlign: TextAlign.center,
+            fontSize: FontSize(16.0),
+          ),
+        },
       ),
     );
   }

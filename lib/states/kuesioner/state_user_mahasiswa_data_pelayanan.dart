@@ -13,6 +13,7 @@ class UserMahasiswaDataPelayananState
   UserModelMahasiswaDataKuesionerPelayanan? data;
   ModelPelayananUlmTambahData? tambahData;
   Map<String, dynamic>? error;
+  String errorMessage = '';
   bool isLoading = true;
 
   UserMahasiswaDataPelayananState() {
@@ -29,6 +30,7 @@ class UserMahasiswaDataPelayananState
     } else {
       isLoading = false;
       error = res.message;
+      errorMessage = res.message;
       notifyListeners();
     }
   }
@@ -138,6 +140,7 @@ class UserMahasiswaDataPelayananState
 
   Future<void> refreshData() async {
     error = null;
+    errorMessage = '';
     data = null;
     isLoading = true;
     notifyListeners();

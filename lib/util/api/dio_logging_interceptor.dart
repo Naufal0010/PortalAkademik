@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
+import 'package:portal_akademik/util/service/logger.dart';
 import 'package:portal_akademik/util/service/util_preference.dart';
 
 
@@ -40,6 +41,7 @@ class CustomInterceptors extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     int statusCode = response.data['code'];
+    UtilLogger.log('Status code', statusCode);
 
     if (statusCode == 401) {
       return _refreshMethod(response, handler);

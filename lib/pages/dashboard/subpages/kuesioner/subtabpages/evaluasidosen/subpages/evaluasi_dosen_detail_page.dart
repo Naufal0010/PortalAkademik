@@ -8,10 +8,30 @@ import '../../../../../../../states/state.dart';
 import '../../../../../../../widget/shimmer_widget.dart';
 import 'component/list_evaluasi_dosen_detail.dart';
 
-class EvaluasiDosenDetailPage extends StatelessWidget {
+class EvaluasiDosenDetailPage extends StatefulWidget {
   final KelasMahasiswa data;
 
   EvaluasiDosenDetailPage(this.data);
+
+  @override
+  State<EvaluasiDosenDetailPage> createState() => _EvaluasiDosenDetailPageState();
+}
+
+class _EvaluasiDosenDetailPageState extends State<EvaluasiDosenDetailPage> {
+
+  void refresh(BuildContext context) {
+    UserMahasiswaDataDetailKuesionerState user =
+    Provider.of<UserMahasiswaDataDetailKuesionerState>(context,
+        listen: false);
+
+    user.refreshData();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    refresh(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +39,7 @@ class EvaluasiDosenDetailPage extends StatelessWidget {
         Provider.of<UserMahasiswaDataDetailKuesionerState>(context,
             listen: false);
 
-    user.initData(data.klsId);
-
-    Future<void> refresh() {
-      user.refreshData();
-      return user.refreshData();
-    }
+    user.initData(widget.data.klsId);
 
     return Scaffold(
       appBar: AppBar(
@@ -32,51 +47,36 @@ class EvaluasiDosenDetailPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
-        title: Text(data.mkkurNamaResmi,
+        title: Text(widget.data.mkkurNamaResmi,
             style: TextStyle(
                 color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis),
       ),
-      body: RefreshIndicator(
-        onRefresh: refresh,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Container(
-                child: Column(
-              children: [
-                Consumer<UserMahasiswaDataDetailKuesionerState>(
-                  builder: (context, value, child) {
-                    return value.isLoading
-                        ? ShimmerList()
-                        : ListEvaluasiDosenDetail(context, user);
-                  },
-                ),
-                Consumer<UserMahasiswaDataDetailKuesionerState>(
-                  builder: (context, value, child) {
-                    return value.isLoading
-                        ? ShimmerWidget(
-                            height: 150,
-                            width: double.infinity,
-                          )
-                        : ListKritikSaranEvaluasiDosen(context, user);
-                  },
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Simpan', style: TextStyle(fontSize: 16),),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.deepPurpleAccent,
-                      onPrimary: Colors.white
-                    ),
-                  ),
-                ),
-              ],
-            )),
-          ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Container(
+              child: Column(
+            children: [
+              Consumer<UserMahasiswaDataDetailKuesionerState>(
+                builder: (context, value, child) {
+                  return value.isLoading
+                      ? ShimmerList()
+                      : ListEvaluasiDosenDetail(context, user);
+                },
+              ),
+              Consumer<UserMahasiswaDataDetailKuesionerState>(
+                builder: (context, value, child) {
+                  return value.isLoading
+                      ? ShimmerWidget(
+                          height: 150,
+                          width: double.infinity,
+                        )
+                      : ListKritikSaranEvaluasiDosen(context, user);
+                },
+              ),
+            ],
+          )),
         ),
       ),
     );

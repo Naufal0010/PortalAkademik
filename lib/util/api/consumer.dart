@@ -3,6 +3,7 @@ import 'package:dio_log/interceptor/dio_log_interceptor.dart';
 import 'package:portal_akademik/model/model_api.dart';
 import 'package:portal_akademik/util/api/dio_logging_interceptor.dart';
 import 'package:portal_akademik/util/api/exception.dart';
+import 'package:portal_akademik/util/service/util_preference.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 
@@ -67,7 +68,7 @@ class ApiConsumer {
         headers: {
           'AppId': appId,
           'X-ApiKey': apiKey,
-          'X-Token': apiToken,
+          'X-Token': UtilPreferences.getString('accessToken'),
         },
         baseUrl: apiUrl!,
         method: _convertMethod(method),

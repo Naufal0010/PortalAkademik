@@ -8,6 +8,7 @@ import '../../model/kuesioner/model_user_mahasiswa_data_detail_kuesioner.dart';
 class UserMahasiswaDataDetailKuesionerState with ChangeNotifier, DiagnosticableTreeMixin {
   UserModelMahasiswaDataDetailKuesioner? data;
   Map<String, dynamic>? error;
+  String errorMessage = '';
   bool isLoading = true;
 
   Future<void> initData(String idKelas) async {
@@ -17,9 +18,13 @@ class UserMahasiswaDataDetailKuesionerState with ChangeNotifier, DiagnosticableT
       UtilLogger.log('Data Kelas Kuesioner', data?.toJson());
       isLoading = false;
       notifyListeners();
-    } else {
+    } else if (res.code == CODE.ERROR) {
       isLoading = false;
       error = res.message;
+      notifyListeners();
+    } else {
+      isLoading = false;
+      errorMessage = res.message;
       notifyListeners();
     }
   }
@@ -27,6 +32,7 @@ class UserMahasiswaDataDetailKuesionerState with ChangeNotifier, DiagnosticableT
   Future<void> refreshData() async {
     error = null;
     data = null;
+    errorMessage = '';
     isLoading = true;
     notifyListeners();
   }

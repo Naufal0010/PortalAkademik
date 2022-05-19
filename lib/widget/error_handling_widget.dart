@@ -10,7 +10,9 @@ import 'package:portal_akademik/pages/presensi/presensi_detail_page.dart';
 import 'package:portal_akademik/states/presensi/state_user_mahasiswa_list_mk_presensi.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_riwayat_registrasi.dart';
+import 'package:portal_akademik/util/api_local_store.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
+import 'package:portal_akademik/util/service/logger.dart';
 
 import '../pages/dashboard/subpages/kuesioner/subtabpages/evaluasidosen/component/evaluasi_dosen_list_tile.dart';
 import '../pages/dashboard/subpages/kuesioner/subtabpages/evaluasidosen/subpages/evaluasi_dosen_detail_page.dart';
@@ -275,6 +277,12 @@ Widget getErrorListKuesionerEvaluasiDosen(
       return EvaluasiDosenListTile(
           data: state.data!.kelas![index],
           onTap: () {
+            UserMahasiswaDataKelasKuesionerState user =
+            Provider.of<UserMahasiswaDataKelasKuesionerState>(context,
+                listen: false);
+            user.kelasId = state.data!.kelas![index].klsId;
+            ApiLocalStorage.kelasId = state.data!.kelas![index].klsId;
+            UtilLogger.log('KelasId', state.data!.kelas![index].klsId);
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
                     EvaluasiDosenDetailPage(state.data!.kelas![index])));
@@ -282,41 +290,3 @@ Widget getErrorListKuesionerEvaluasiDosen(
     },
   );
 }
-
-// Widget getErrorListDetailKuesionerEvaluasiDosen(
-//     BuildContext context, UserMahasiswaDataDetailKuesionerState state) {
-//   if (state.error != null) {
-//     Fluttertoast.showToast(
-//         msg: "${state.error!['content']}",
-//         toastLength: Toast.LENGTH_SHORT,
-//         gravity: ToastGravity.BOTTOM,
-//         timeInSecForIosWeb: 1,
-//         backgroundColor: Colors.grey,
-//         textColor: Colors.white,
-//         fontSize: 16.0);
-//
-//     return Center(
-//       child: ElevatedButton(
-//         onPressed: () {
-//           state.refreshData();
-//         },
-//         child: Text('Refresh'),
-//         style: ElevatedButton.styleFrom(
-//             primary: ColorPallete.primary, onPrimary: Colors.white),
-//       ),
-//     );
-//   }
-//
-//   return Column(
-//     children: state.data!.kuesioner!
-//         .map(
-//           (e) => EvaluasiDosenDetailListTile(
-//             data: e,
-//             onTap: () {
-//               state.aksiPresensi(e.kodePertemuan);
-//             },
-//           ),
-//         )
-//         .toList(),
-//   );
-// }

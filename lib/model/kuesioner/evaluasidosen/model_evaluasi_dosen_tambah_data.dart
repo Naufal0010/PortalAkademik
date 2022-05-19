@@ -9,7 +9,7 @@ class ModelEvaluasiDosenTambahData {
     required this.saran,
   });
 
-  final String klsId;
+  String klsId;
   final String nim;
   List<EvaluasiJawabanKuisioner>? jawabanKuisioner;
   List<Saran>? saran;
