@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/model.dart';
 import 'package:portal_akademik/util/api_local_store.dart';
@@ -27,21 +28,27 @@ class UserMahasiswaDataPelayananState
       UtilLogger.log('Data Kuesioner Pelayanan', data?.toJson());
       isLoading = false;
       notifyListeners();
-    } else {
+    } else if (res.code == CODE.ERROR) {
       isLoading = false;
       error = res.message;
+      notifyListeners();
+    } else {
+      isLoading = false;
       errorMessage = res.message;
       notifyListeners();
     }
   }
 
-  Future<void> postDataKuesionerPelayanan() async {
+  Future<void> postDataKuesionerPelayanan(BuildContext context) async {
     final res =
         await NetworkRepository().tambahDataKuesionerPelayanan(tambahData!);
     if (res.code == CODE.SUCCESS) {
       refreshData();
       UtilLogger.log('Post data kuesioner pelayanan', data);
     } else {
+      final snackBar = SnackBar(
+          content: Text('Item masih ada yang belum diisi, silakan lengkapi'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       notifyListeners();
     }
   }
@@ -50,15 +57,15 @@ class UserMahasiswaDataPelayananState
       String idKategori, String idSoal, int tipeSoal, int nilaiSoal) {
     tambahData!.jawabanKuisioner = tambahData!.jawabanKuisioner!.map((e) {
       if (e.idKategori == idKategori) {
-        final check = e.kuisioner!
-            .firstWhereOrNull((element) => element.idSoal == idSoal);
+        final check = e.kuisioner!.firstWhereOrNull((element) =>
+            element.idSoal == idSoal && element.tipeSoal == tipeSoal);
 
         if (check == null) {
           e.kuisioner!.add(DataKuesioner(
               idSoal: idSoal, tipeSoal: tipeSoal, nilaiSoal: nilaiSoal));
         } else {
           e.kuisioner = e.kuisioner!.map((e1) {
-            if (e1.idSoal == idSoal) {
+            if (e1.idSoal == idSoal && e1.tipeSoal == tipeSoal) {
               e1.idSoal = idSoal;
               e1.nilaiSoal = nilaiSoal;
               e1.tipeSoal = tipeSoal;
@@ -92,6 +99,7 @@ class UserMahasiswaDataPelayananState
         if (e.idKategori == idKategori) {
           e.idKategori = idKategori;
           e.nilaiKategori = nilaiKategori;
+          UtilLogger.log('Check Data Update', e.toMap());
         }
 
         return e;

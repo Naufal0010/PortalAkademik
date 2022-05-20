@@ -4,6 +4,7 @@ import 'package:portal_akademik/config/config.dart';
 import 'package:portal_akademik/model/kuesioner/evaluasidosen/model_evaluasi_dosen_tambah_data.dart';
 import 'package:portal_akademik/model/model_api.dart';
 import 'package:portal_akademik/util/api/consumer.dart';
+import 'package:portal_akademik/util/service/logger.dart';
 import 'package:portal_akademik/util/service/util_preference.dart';
 
 import '../../model/kuesioner/pelayanan/model_pelayanan_ulm_tambah_data.dart';
@@ -151,6 +152,7 @@ class NetworkRepository {
   // pelayanan ke database
   Future<ApiModel> tambahDataKuesionerPelayanan(ModelPelayananUlmTambahData pelayanan) async {
     FormData formData = FormData.fromMap(pelayanan.toMap());
+    UtilLogger.log('pelayanan', pelayanan.toMap());
     return await consumer.execute(
         url: '/akademik/kuisionerUnlamNilai/createBatchKuisionerPelayanan',
         method: MethodRequest.POST,
