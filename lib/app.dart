@@ -20,6 +20,8 @@ import 'package:portal_akademik/states/state_user_mahasiswa_riwayat_registrasi.d
 import 'package:portal_akademik/states/state_user_semester_aktif.dart';
 
 class App extends StatelessWidget {
+  static final navigatorKey = GlobalKey<NavigatorState>();
+
   App({Key? key}) : super(key: key);
 
   @override
@@ -51,6 +53,7 @@ class App extends StatelessWidget {
         },
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
+          navigatorKey: navigatorKey,
           home: WillPopScope(
             child: Consumer<AuthState>(
               builder: (context, percentDone, child) {

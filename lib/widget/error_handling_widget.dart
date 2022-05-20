@@ -168,6 +168,17 @@ Widget getErrorListDetailPresensi(
     );
   }
 
+  if (state.error != null) {
+    Fluttertoast.showToast(
+        msg: "Session Habis",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
   if (state.data?.data?.length == null) {
     return EmptyPage();
   } else {
@@ -185,20 +196,6 @@ Widget getErrorListDetailPresensi(
     );
   }
 
-  // return Expanded(
-  //   child: ListView.builder(
-  //     physics: AlwaysScrollableScrollPhysics(),
-  //     shrinkWrap: true,
-  //     itemCount: state.data?.data?.length,
-  //     itemBuilder: (context, index) {
-  //       if (state.data?.data?.length == null) {
-  //         return EmptyPage();
-  //       } else {
-  //         return PresensiListDetailTile(data: state.data!.data![index], onTap: () {  },);
-  //       }
-  //     },
-  //   ),
-  // );
 }
 
 Widget getErrorListRiwayatRegistrasi(

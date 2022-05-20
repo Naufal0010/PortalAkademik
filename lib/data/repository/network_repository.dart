@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:portal_akademik/app.dart';
 import 'package:portal_akademik/config/config.dart';
 import 'package:portal_akademik/model/kuesioner/evaluasidosen/model_evaluasi_dosen_tambah_data.dart';
 import 'package:portal_akademik/model/model_api.dart';
+import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/util/api/consumer.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 import 'package:portal_akademik/util/service/util_preference.dart';
@@ -171,6 +173,7 @@ class NetworkRepository {
     if (response.code == CODE.SUCCESS) {
       return response.data['accessToken'];
     } else {
+      Provider.of<AuthState>(App.navigatorKey.currentContext!, listen: false).logout();
       return null;
     }
   }
