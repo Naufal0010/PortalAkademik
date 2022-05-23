@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/pages/dashboard/component/icon_button_widget.dart';
+import 'package:portal_akademik/pages/dashboard/component/img_item_photo.dart';
+import 'package:portal_akademik/pages/dashboard/component/text_item_name.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/jadwalpenting/jadwal_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kalender/kalender_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/kuesioner/kuesioner_page.dart';
@@ -8,14 +11,13 @@ import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/rencana_st
 import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/riwayat_registrasi_page.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/ujianakhir/ujianakhir_page.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/widget/error_handling_widget.dart';
-import 'package:portal_akademik/widget/icon_button_widget.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 
 import '../../states/jadwal/state_user_mahasiswa_jadwal_hari_ini.dart';
 import '../../states/state_user_semester_aktif.dart';
 import 'component/list_carousel_jadwal_hari_ini.dart';
+import 'component/text_item_nim.dart';
 
 final List<String> imgList = [
   'assets/images/berakhlak.png',
@@ -117,12 +119,12 @@ class _DashboardPageState extends State<DashboardPage> {
                                 ? ShimmerWidget(
                                     height: 25,
                                   )
-                                : getErrorName(context, userMahasiswa),
+                                : getName(context, userMahasiswa),
                             userMahasiswa.isLoading
                                 ? ShimmerWidget(
                                     height: 15,
                                   )
-                                : getErrorNim(context, userMahasiswa),
+                                : getNimProdiJenjang(context, userMahasiswa),
                           ],
                         ),
                       ),
@@ -136,7 +138,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               height: 50,
                               width: 50,
                             )
-                          : getErrorPhoto(context, userMahasiswa)
+                          : getPhoto(context, userMahasiswa)
                     ],
                   ),
                 ),

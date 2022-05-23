@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/pages/presensi/component/list_presensi.dart';
 import 'package:portal_akademik/pages/presensi/component/shimmer_list_tile.dart';
-import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -42,7 +42,7 @@ class _PresensiPageState extends State<PresensiPage> {
                 ),
                 userMahasiswa.isLoading
                     ? ShimmerListTile()
-                    : getErrorListPresensi(context, userMahasiswa),
+                    : getListPresensi(context, userMahasiswa),
               ],
             ),
           ),

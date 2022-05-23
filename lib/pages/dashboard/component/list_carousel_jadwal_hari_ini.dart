@@ -42,7 +42,7 @@ Widget ListCarouselJadwalHariIni(
   }
 
   return CarouselSlider(
-    items: state.data!.data!
+    items: state.data?.data!
         .map(
           (e) => JadwalItem(
             e,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:portal_akademik/model/jadwal/model_user_mahasiswa_jadwal_matakuliah.dart';
+import 'package:portal_akademik/pages/presensi/component/list_detail_presensi.dart';
 import 'package:portal_akademik/pages/presensi/component/shimmer_list_detail_tile.dart';
 import 'package:portal_akademik/states/presensi/state_user_mahasiswa_list_mk_presensi.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
-import 'package:portal_akademik/widget/error_handling_widget.dart';
 import 'package:provider/provider.dart';
 
 class PresensiDetailPage extends StatelessWidget {
@@ -146,7 +146,7 @@ class PresensiDetailPage extends StatelessWidget {
                     builder: (context, value, child) {
                       return value.isLoading
                           ? ShimmerListDetailTile()
-                          : getErrorListDetailPresensi(context, value);
+                          : getListDetailPresensi(context, value);
                     },
                   ),
                 ],

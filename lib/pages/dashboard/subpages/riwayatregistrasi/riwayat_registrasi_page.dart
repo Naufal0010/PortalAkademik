@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/riwayatregistrasi/component/list_riwayat_registrasi.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_riwayat_registrasi.dart';
-import 'package:portal_akademik/widget/error_handling_widget.dart';
 
 import '../../../../states/state.dart';
 import '../../../presensi/component/shimmer_list_tile.dart';
@@ -8,9 +8,8 @@ import '../../../presensi/component/shimmer_list_tile.dart';
 class RiwayatRegistrasiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     UserMahasiswaRiwayatRegistrasiState user =
-    Provider.of<UserMahasiswaRiwayatRegistrasiState>(context, listen: true);
+        Provider.of<UserMahasiswaRiwayatRegistrasiState>(context, listen: true);
 
     Future<void> refresh() {
       user.refreshData();
@@ -38,7 +37,7 @@ class RiwayatRegistrasiPage extends StatelessWidget {
               children: [
                 user.isLoading
                     ? ShimmerListTile()
-                    : getErrorListRiwayatRegistrasi(context, user),
+                    : getListRiwayatRegistrasi(context, user),
               ],
             ),
           ),
