@@ -16,7 +16,7 @@ class HasilStudiPage extends StatefulWidget {
 }
 
 class _HasilStudiPageState extends State<HasilStudiPage> {
-  String _valSemester = '';
+  String _valSemester = ApiLocalStorage.semesterAktif!.rows![0].semesterAktif;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +32,6 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
     Future<void> refresh() {
       user.refreshData();
       return userKhs.refreshData();
-    }
-
-    if (ApiLocalStorage.semesterAktif?.rows?[0].semesterAktif != null) {
-      _valSemester = ApiLocalStorage.semesterAktif!.rows![0].semesterAktif;
-    } else {
-      _valSemester = '20181';
     }
 
     userKhs.initData(_valSemester.toString());
