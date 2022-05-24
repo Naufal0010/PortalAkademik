@@ -5,4 +5,5 @@ class ApiLocalStorage {
   static UserModelMahasiswa? userModelMahasiswa;
   static UserModelSemesterAktif? semesterAktif;
   static String kelasId = '';
+  static UserModelMahasiswaEditable? UserMahasiswaProfilEditable;
 }
