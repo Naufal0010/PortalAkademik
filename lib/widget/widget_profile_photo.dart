@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
 
-Widget getErrorName(
-    BuildContext context, UserMahasiswaProfilEditableState state) {
+Widget getName(BuildContext context, UserMahasiswaProfilEditableState state) {
   if (state.error != null) {
     Fluttertoast.showToast(
         msg: "${state.error!['content']}",
@@ -29,8 +28,7 @@ Widget getErrorName(
   );
 }
 
-Widget getErrorNim(
-    BuildContext context, UserMahasiswaProfilEditableState state) {
+Widget getNim(BuildContext context, UserMahasiswaProfilEditableState state) {
   if (state.error != null) {
     Fluttertoast.showToast(
         msg: "${state.error!['content']}",
@@ -56,8 +54,33 @@ Widget getErrorNim(
   );
 }
 
-Widget getErrorPhoto(
-    BuildContext context, UserMahasiswaProfilEditableState state) {
+Widget getProdi(BuildContext context, UserMahasiswaProfilEditableState state) {
+  if (state.error != null) {
+    Fluttertoast.showToast(
+        msg: "${state.error!['content']}",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0);
+
+    return Text('Loading');
+  }
+
+  return Text(
+    'Prodi. ${state.data!.prodi!.nama}\n ${state.data!.angkatan}',
+    textAlign: TextAlign.center,
+    overflow: TextOverflow.ellipsis,
+    style: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.bold,
+      color: Color(0xffFFE8D1),
+    ),
+  );
+}
+
+Widget getPhoto(BuildContext context, UserMahasiswaProfilEditableState state) {
   if (state.error != null) {
     Fluttertoast.showToast(
         msg: "${state.error!['content']}",
