@@ -68,7 +68,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Status Pernikahan'),
@@ -76,7 +76,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Nomor Telepon/HP'),
@@ -106,7 +106,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Kelurahan/Desa'),
@@ -121,7 +121,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Kabupaten/Kota'),
@@ -129,7 +129,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Kodepos'),
@@ -145,7 +145,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Pembiayaan Kuliah Oleh'),
@@ -153,7 +153,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Jumlah Saudara Kandung'),

@@ -74,7 +74,7 @@ class UserModelMahasiswaEditable {
       required this.konsentrasi,
       required this.konsentrasiAsing,
       required this.feedback,
-      required this.prodi});
+      required this.prodi,});
 
   final String nim;
   final String nama;

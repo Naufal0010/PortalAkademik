@@ -27,7 +27,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Status Ayah'),
@@ -35,7 +35,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Nomor Induk Kependudukan (NIK)'),
@@ -43,7 +43,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('TPekerjaan Ayah'),
@@ -51,7 +51,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Nama Ibu'),
@@ -59,7 +59,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Status Ibu'),
@@ -67,7 +67,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Nomor Induk Kependudukan (NIK)'),
@@ -75,7 +75,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Pekerjaan Ibu'),
@@ -83,7 +83,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Agama Orang Tua'),
@@ -91,7 +91,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Alamat Orang Tua'),
@@ -99,7 +99,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Kabupaten/Kota'),
@@ -107,7 +107,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('NKodepos'),
@@ -115,7 +115,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Rata-rata penghasilan orang tua/wali per bulan'),
@@ -123,7 +123,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Jumlah orang yang ditanggung biayanya oleh orang tua/wali'),
@@ -131,7 +131,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
             ],

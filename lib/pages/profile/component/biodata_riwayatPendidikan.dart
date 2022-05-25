@@ -43,7 +43,7 @@ class RiwayatPendidikanProfile extends StatelessWidget {
                 enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.agmrId,
+                  // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
               Text('Total Nilai UN'),
