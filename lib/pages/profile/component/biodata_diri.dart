@@ -25,6 +25,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Nama'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.nama,
@@ -33,6 +34,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('NIK'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.nik,
@@ -41,6 +43,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('NPWP'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.npwp,
@@ -49,6 +52,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Tempat Tanggal Lahir'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText:
@@ -58,6 +62,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Jenis Kelamin'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.jenisKelamin,
@@ -66,6 +71,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Agama'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -74,6 +80,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Status Pernikahan'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -82,6 +89,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Nomor Telepon/HP'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.noTelp,
@@ -90,6 +98,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Email'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: userMahasiswaProfil.data?.email),
@@ -97,6 +106,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Jalur Masuk Kuliah'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: userMahasiswaProfil.data?.jlrrKode),
@@ -104,6 +114,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Alamat Tinggal Saat Ini'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -112,6 +123,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Kelurahan/Desa'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: userMahasiswaProfil.data?.kelurahan),
@@ -119,6 +131,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Kecamatan'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -127,6 +140,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Kabupaten/Kota'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -135,6 +149,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Kodepos'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.kodePos,
@@ -143,6 +158,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Status Alamat Rumah'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -151,6 +167,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Pembiayaan Kuliah Oleh'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -159,6 +176,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Jumlah Saudara Kandung'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.jumlahSaudara,
@@ -167,6 +185,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Tinggi Badan(cm)'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.tinggiBadan,
@@ -175,6 +194,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Berat Badan(kg)'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.beratBadan,
@@ -183,6 +203,7 @@ class BiodataDiriProfile extends StatelessWidget {
               Text('Golongan Darah'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.golDarah,

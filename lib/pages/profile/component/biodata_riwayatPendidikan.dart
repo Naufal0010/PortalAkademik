@@ -25,6 +25,7 @@ class RiwayatPendidikanProfile extends StatelessWidget {
               Text('Nomor Induk Mahasiswa Nasional (NISN)'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.nisn,
@@ -33,6 +34,7 @@ class RiwayatPendidikanProfile extends StatelessWidget {
               Text('Nama Sekolah'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.asalSmta,
@@ -41,6 +43,7 @@ class RiwayatPendidikanProfile extends StatelessWidget {
               Text('Kabupaten/Kota Sekolah'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -49,6 +52,7 @@ class RiwayatPendidikanProfile extends StatelessWidget {
               Text('Total Nilai UN'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.totalNilaiUn,
@@ -57,6 +61,7 @@ class RiwayatPendidikanProfile extends StatelessWidget {
               Text('Rata-Rata Nilai UN'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: userMahasiswaProfil.data?.rataNilaiUn,

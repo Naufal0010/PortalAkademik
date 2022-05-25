@@ -25,6 +25,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Nama Ayah'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -33,6 +34,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Status Ayah'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -41,6 +43,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Nomor Induk Kependudukan (NIK)'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -49,6 +52,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('TPekerjaan Ayah'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -57,6 +61,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Nama Ibu'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -65,6 +70,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Status Ibu'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -73,6 +79,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Nomor Induk Kependudukan (NIK)'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -81,6 +88,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Pekerjaan Ibu'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -89,6 +97,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Agama Orang Tua'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -97,6 +106,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Alamat Orang Tua'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -105,14 +115,16 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Kabupaten/Kota'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
-              Text('NKodepos'),
+              Text('Kodepos'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -121,6 +133,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Rata-rata penghasilan orang tua/wali per bulan'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
@@ -129,6 +142,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
               Text('Jumlah orang yang ditanggung biayanya oleh orang tua/wali'),
               TextField(
                 enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   // labelText: userMahasiswaProfil.data?.agmrId,
