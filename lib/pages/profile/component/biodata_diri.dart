@@ -24,13 +24,13 @@ class BiodataDiriProfile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Nama'),
-              TextField(
+              TextFormField(
                 enabled: false,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: userMahasiswaProfil.data?.nama,
                 ),
+                initialValue: userMahasiswaProfil.data?.nama,
               ),
               SizedBox(height: 8),
               Text('NIK'),
