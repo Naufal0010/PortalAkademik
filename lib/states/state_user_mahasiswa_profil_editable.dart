@@ -14,7 +14,7 @@ class UserMahasiswaProfilEditableState
   }
 
   Future<void> initData() async {
-    final res = await NetworkRepository().getUser();
+    final res = await NetworkRepository().getUserEditable();
     if (res.code == CODE.SUCCESS) {
       data = UserModelMahasiswaEditable.fromMap(res.data);
       isLoading = false;

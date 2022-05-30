@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:portal_akademik/widget/widget_profile_photo.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
 
 class BiodataHeaderProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    UserMahasiswaProfilEditableState userMahasiswaProfil =
-        Provider.of<UserMahasiswaProfilEditableState>(context, listen: true);
+    UserMahasiswaState userMahasiswaProfil =
+        Provider.of<UserMahasiswaState>(context, listen: true);
 
     return Container(
       height: 180.0,
@@ -52,6 +51,11 @@ class BiodataHeaderProfile extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30.0),
                           height: 50,
                           width: 50,
+                          child: Icon(
+                            Icons.camera,
+                            color: Colors.black,
+                            size: 20,
+                          ),
                         )
                       : getPhoto(context, userMahasiswaProfil)
                 ],

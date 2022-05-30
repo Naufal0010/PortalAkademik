@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
+import 'package:portal_akademik/states/state.dart';
 
-Widget getName(BuildContext context, UserMahasiswaProfilEditableState state) {
+Widget getName(BuildContext context, UserMahasiswaState state) {
   if (state.error != null) {
     Fluttertoast.showToast(
         msg: "${state.error!['content']}",
@@ -28,7 +28,7 @@ Widget getName(BuildContext context, UserMahasiswaProfilEditableState state) {
   );
 }
 
-Widget getNim(BuildContext context, UserMahasiswaProfilEditableState state) {
+Widget getNim(BuildContext context, UserMahasiswaState state) {
   if (state.error != null) {
     Fluttertoast.showToast(
         msg: "${state.error!['content']}",
@@ -54,7 +54,7 @@ Widget getNim(BuildContext context, UserMahasiswaProfilEditableState state) {
   );
 }
 
-Widget getProdi(BuildContext context, UserMahasiswaProfilEditableState state) {
+Widget getProdi(BuildContext context, UserMahasiswaState state) {
   if (state.error != null) {
     Fluttertoast.showToast(
         msg: "${state.error!['content']}",
@@ -80,7 +80,7 @@ Widget getProdi(BuildContext context, UserMahasiswaProfilEditableState state) {
   );
 }
 
-Widget getPhoto(BuildContext context, UserMahasiswaProfilEditableState state) {
+Widget getPhoto(BuildContext context, UserMahasiswaState state) {
   if (state.error != null) {
     Fluttertoast.showToast(
         msg: "${state.error!['content']}",

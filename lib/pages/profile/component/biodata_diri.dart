@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 // import 'package:portal_akademik/widget/widget_profile_photo.dart';
 // import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
+import 'package:portal_akademik/util/color_pallete.dart';
 
 class BiodataDiriProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    UserMahasiswaProfilEditableState userMahasiswaProfil =
-        Provider.of<UserMahasiswaProfilEditableState>(context, listen: true);
+    UserMahasiswaState userMahasiswaProfil =
+        Provider.of<UserMahasiswaState>(context, listen: true);
 
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Color(0xFFFF9F43),
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(4.0),
+        border: Border.all(width: 1, color: ColorPallete.primary),
       ),
       child: Column(
         children: [
@@ -31,6 +32,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   labelText: userMahasiswaProfil.data?.nama,
                 ),
               ),
+              SizedBox(height: 8),
               Text('NIK'),
               TextField(
                 enabled: false,
@@ -40,6 +42,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   labelText: userMahasiswaProfil.data?.nik,
                 ),
               ),
+              SizedBox(height: 8),
               Text('NPWP'),
               TextField(
                 enabled: false,
@@ -49,6 +52,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   labelText: userMahasiswaProfil.data?.npwp,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Tempat Tanggal Lahir'),
               TextField(
                 enabled: false,
@@ -59,6 +63,7 @@ class BiodataDiriProfile extends StatelessWidget {
                       '${userMahasiswaProfil.data?.kotaKodeLahir}, ${userMahasiswaProfil.data?.tanggalLahir}',
                 ),
               ),
+              SizedBox(height: 8),
               Text('Jenis Kelamin'),
               TextField(
                 enabled: false,
@@ -68,6 +73,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   labelText: userMahasiswaProfil.data?.jenisKelamin,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Agama'),
               TextField(
                 enabled: false,
@@ -77,6 +83,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Status Pernikahan'),
               TextField(
                 enabled: false,
@@ -86,6 +93,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Nomor Telepon/HP'),
               TextField(
                 enabled: false,
@@ -95,6 +103,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   labelText: userMahasiswaProfil.data?.noTelp,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Email'),
               TextField(
                 enabled: false,
@@ -117,9 +126,10 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  // labelText: userMahasiswaProfil.data?.agmrId,
+                  labelText: userMahasiswaProfil.data?.alamatMhs,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Kelurahan/Desa'),
               TextField(
                 enabled: false,
@@ -137,6 +147,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Kabupaten/Kota'),
               TextField(
                 enabled: false,
@@ -146,6 +157,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Kodepos'),
               TextField(
                 enabled: false,
@@ -155,6 +167,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   labelText: userMahasiswaProfil.data?.kodePos,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Status Alamat Rumah'),
               TextField(
                 enabled: false,
@@ -164,6 +177,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Pembiayaan Kuliah Oleh'),
               TextField(
                 enabled: false,
@@ -173,6 +187,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   // labelText: userMahasiswaProfil.data?.agmrId,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Jumlah Saudara Kandung'),
               TextField(
                 enabled: false,
@@ -182,6 +197,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   labelText: userMahasiswaProfil.data?.jumlahSaudara,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Tinggi Badan(cm)'),
               TextField(
                 enabled: false,
@@ -191,6 +207,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   labelText: userMahasiswaProfil.data?.tinggiBadan,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Berat Badan(kg)'),
               TextField(
                 enabled: false,
@@ -200,6 +217,7 @@ class BiodataDiriProfile extends StatelessWidget {
                   labelText: userMahasiswaProfil.data?.beratBadan,
                 ),
               ),
+              SizedBox(height: 8),
               Text('Golongan Darah'),
               TextField(
                 enabled: false,
