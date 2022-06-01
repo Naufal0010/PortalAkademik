@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final UserModelMahasiswaEditable = UserModelMahasiswaEditableFromMap(jsonString);
+
 import 'dart:convert';
 
 class UserModelMahasiswa {
@@ -70,7 +74,7 @@ class UserModelMahasiswa {
     required this.konsentrasi,
     required this.konsentrasiAsing,
     required this.feedback,
-    required this.prodi
+    required this.prodi,
   });
 
   final String nim;
@@ -84,7 +88,7 @@ class UserModelMahasiswa {
   final String isAsing;
   final String jenisKelamin;
   final String kotaKodeLahir;
-  final DateTime? tanggalLahir;
+  final String tanggalLahir;
   final String agmrId;
   final String stnkrId;
   final String jumlahSaudara;
@@ -141,7 +145,7 @@ class UserModelMahasiswa {
   final dynamic konsentrasi;
   final dynamic konsentrasiAsing;
   final dynamic feedback;
-  final Prodi? prodi;
+  final ProdiProfil? prodi;
 
   factory UserModelMahasiswa.fromJson(String str) =>
       UserModelMahasiswa.fromMap(json.decode(str));
@@ -165,9 +169,8 @@ class UserModelMahasiswa {
             json["jenisKelamin"] == null ? null : json["jenisKelamin"],
         kotaKodeLahir:
             json["kotaKodeLahir"] == null ? null : json["kotaKodeLahir"],
-        tanggalLahir: json["tanggalLahir"] == null
-            ? null
-            : DateTime.parse(json["tanggalLahir"]),
+        tanggalLahir:
+            json["tanggalLahir"] == null ? null : json["tanggalLahir"],
         agmrId: json["agmrId"] == null ? null : json["agmrId"],
         stnkrId: json["stnkrId"] == null ? null : json["stnkrId"],
         jumlahSaudara:
@@ -236,7 +239,8 @@ class UserModelMahasiswa {
         konsentrasi: json["konsentrasi"],
         konsentrasiAsing: json["konsentrasiAsing"],
         feedback: json["feedback"],
-        prodi: json["prodi"] == null ? null : Prodi.fromMap(json["prodi"]),
+        prodi:
+            json["prodi"] == null ? null : ProdiProfil.fromMap(json["prodi"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -253,9 +257,10 @@ class UserModelMahasiswa {
         "isAsing": isAsing == null ? null : isAsing,
         "jenisKelamin": jenisKelamin == null ? null : jenisKelamin,
         "kotaKodeLahir": kotaKodeLahir == null ? null : kotaKodeLahir,
-        "tanggalLahir": tanggalLahir == null
-            ? null
-            : "${tanggalLahir?.year.toString().padLeft(4, '0')}-${tanggalLahir?.month.toString().padLeft(2, '0')}-${tanggalLahir?.day.toString().padLeft(2, '0')}",
+        // "tanggalLahir": tanggalLahir == null
+        //     ? null
+        //     : "${tanggalLahir?.year.toString().padLeft(4, '0')}-${tanggalLahir?.month.toString().padLeft(2, '0')}-${tanggalLahir?.day.toString().padLeft(2, '0')}",
+        "tanggalLahir": tanggalLahir == null ? null : tanggalLahir,
         "agmrId": agmrId == null ? null : agmrId,
         "stnkrId": stnkrId == null ? null : stnkrId,
         "jumlahSaudara": jumlahSaudara == null ? null : jumlahSaudara,
@@ -316,8 +321,8 @@ class UserModelMahasiswa {
       };
 }
 
-class Prodi {
-  Prodi({
+class ProdiProfil {
+  ProdiProfil({
     required this.kode,
     required this.nama,
     required this.gelar,
@@ -349,41 +354,56 @@ class Prodi {
   final String programPendidikan;
   final String pendidikanLanjutan;
 
-  factory Prodi.fromJson(String str) => Prodi.fromMap(json.decode(str));
+  factory ProdiProfil.fromJson(String str) =>
+      ProdiProfil.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Prodi.fromMap(Map<String, dynamic> json) => Prodi(
-    kode: json["kode"] == null ? null : json["kode"],
-    nama: json["nama"] == null ? null : json["nama"],
-    gelar: json["gelar"] == null ? null : json["gelar"],
-    jenjang: json["jenjang"] == null ? null : json["jenjang"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    namaAsing: json["namaAsing"] == null ? null : json["namaAsing"],
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    gelarAsing: json["gelarAsing"] == null ? null : json["gelarAsing"],
-    statusProfesi: json["statusProfesi"] == null ? null : json["statusProfesi"],
-    gelarKelulusan: json["gelarKelulusan"] == null ? null : json["gelarKelulusan"],
-    jenisPendidikan: json["jenisPendidikan"] == null ? null : json["jenisPendidikan"],
-    syaratPenerimaan: json["syaratPenerimaan"] == null ? null : json["syaratPenerimaan"],
-    programPendidikan: json["programPendidikan"] == null ? null : json["programPendidikan"],
-    pendidikanLanjutan: json["pendidikanLanjutan"] == null ? null : json["pendidikanLanjutan"],
-  );
+  factory ProdiProfil.fromMap(Map<String, dynamic> json) => ProdiProfil(
+        kode: json["kode"] == null ? null : json["kode"],
+        nama: json["nama"] == null ? null : json["nama"],
+        gelar: json["gelar"] == null ? null : json["gelar"],
+        jenjang: json["jenjang"] == null ? null : json["jenjang"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        namaAsing: json["namaAsing"] == null ? null : json["namaAsing"],
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        gelarAsing: json["gelarAsing"] == null ? null : json["gelarAsing"],
+        statusProfesi:
+            json["statusProfesi"] == null ? null : json["statusProfesi"],
+        gelarKelulusan:
+            json["gelarKelulusan"] == null ? null : json["gelarKelulusan"],
+        jenisPendidikan:
+            json["jenisPendidikan"] == null ? null : json["jenisPendidikan"],
+        syaratPenerimaan:
+            json["syaratPenerimaan"] == null ? null : json["syaratPenerimaan"],
+        programPendidikan: json["programPendidikan"] == null
+            ? null
+            : json["programPendidikan"],
+        pendidikanLanjutan: json["pendidikanLanjutan"] == null
+            ? null
+            : json["pendidikanLanjutan"],
+      );
 
   Map<String, dynamic> toMap() => {
-    "kode": kode == null ? null : kode,
-    "nama": nama == null ? null : nama,
-    "gelar": gelar == null ? null : gelar,
-    "jenjang": jenjang == null ? null : jenjang,
-    "createdAt": createdAt == null ? null : createdAt?.toIso8601String(),
-    "namaAsing": namaAsing == null ? null : namaAsing,
-    "updatedAt": updatedAt == null ? null : updatedAt?.toIso8601String(),
-    "gelarAsing": gelarAsing == null ? null : gelarAsing,
-    "statusProfesi": statusProfesi == null ? null : statusProfesi,
-    "gelarKelulusan": gelarKelulusan == null ? null : gelarKelulusan,
-    "jenisPendidikan": jenisPendidikan == null ? null : jenisPendidikan,
-    "syaratPenerimaan": syaratPenerimaan == null ? null : syaratPenerimaan,
-    "programPendidikan": programPendidikan == null ? null : programPendidikan,
-    "pendidikanLanjutan": pendidikanLanjutan == null ? null : pendidikanLanjutan,
-  };
+        "kode": kode == null ? null : kode,
+        "nama": nama == null ? null : nama,
+        "gelar": gelar == null ? null : gelar,
+        "jenjang": jenjang == null ? null : jenjang,
+        "createdAt": createdAt == null ? null : createdAt?.toIso8601String(),
+        "namaAsing": namaAsing == null ? null : namaAsing,
+        "updatedAt": updatedAt == null ? null : updatedAt?.toIso8601String(),
+        "gelarAsing": gelarAsing == null ? null : gelarAsing,
+        "statusProfesi": statusProfesi == null ? null : statusProfesi,
+        "gelarKelulusan": gelarKelulusan == null ? null : gelarKelulusan,
+        "jenisPendidikan": jenisPendidikan == null ? null : jenisPendidikan,
+        "syaratPenerimaan": syaratPenerimaan == null ? null : syaratPenerimaan,
+        "programPendidikan":
+            programPendidikan == null ? null : programPendidikan,
+        "pendidikanLanjutan":
+            pendidikanLanjutan == null ? null : pendidikanLanjutan,
+      };
 }

@@ -5,10 +5,13 @@ import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 
-class BiodataOrangTuaProfile extends StatelessWidget {
+class BiodataEditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    UserMahasiswaProfilEditableState userMahasiswaProfil =
+    UserMahasiswaState userMahasiswaProfil =
+        Provider.of<UserMahasiswaState>(context, listen: true);
+
+    UserMahasiswaProfilEditableState userMahasiswaProfile =
         Provider.of<UserMahasiswaProfilEditableState>(context, listen: true);
 
     return Container(
@@ -18,31 +21,27 @@ class BiodataOrangTuaProfile extends StatelessWidget {
         color: Color(0xFFF5F6F9),
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
-      // decoration: BoxDecoration(
-      //   color: Colors.white,
-      //   borderRadius: BorderRadius.circular(4.0),
-      //   border: Border.all(width: 1, color: Colors.white),
-      // ),
       child: Column(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Nama Ayah',
+                'Nama',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
                 enabled: false,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                // style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ayahNama?.value,
+
+                initialValue: userMahasiswaProfil.data?.nama,
               ),
               SizedBox(height: 8),
               Text(
-                'Status Ayah',
+                'NIK',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -51,11 +50,11 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ayahKematian?.value,
+                initialValue: userMahasiswaProfil.data?.nik,
               ),
               SizedBox(height: 8),
               Text(
-                'Nomor Induk Kependudukan (NIK)',
+                'NPWP',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -64,11 +63,11 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ayahNik?.value,
+                initialValue: userMahasiswaProfil.data?.npwp,
               ),
               SizedBox(height: 8),
               Text(
-                'Pekerjaan Ayah',
+                'Tempat Tanggal Lahir',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -77,11 +76,12 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ayahPekerjaan?.value,
+                initialValue:
+                    '${userMahasiswaProfil.data?.kotaKodeLahir}, ${userMahasiswaProfil.data?.tanggalLahir}',
               ),
               SizedBox(height: 8),
               Text(
-                'Nama Ibu',
+                'Jenis Kelamin',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -90,11 +90,11 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ibuNama?.value,
+                initialValue: userMahasiswaProfil.data?.jenisKelamin,
               ),
               SizedBox(height: 8),
               Text(
-                'Status Ibu',
+                'Agama',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -103,11 +103,11 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ibuKematian?.value,
+                initialValue: userMahasiswaProfile.data?.agama?.value,
               ),
               SizedBox(height: 8),
               Text(
-                'Nomor Induk Kependudukan (NIK)',
+                'Status Pernikahan',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -116,11 +116,11 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ibuNik?.value,
+                initialValue: userMahasiswaProfile.data?.statusNikah?.value,
               ),
               SizedBox(height: 8),
               Text(
-                'Pekerjaan Ibu',
+                'Nomor Telepon/HP',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -129,11 +129,35 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ibuPekerjaan?.value,
+                initialValue: userMahasiswaProfil.data?.noTelp,
               ),
               SizedBox(height: 8),
               Text(
-                'Agama Orang Tua',
+                'Email',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                  enabled: false,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                  initialValue: userMahasiswaProfil.data?.email),
+              SizedBox(height: 8),
+              Text(
+                'Jalur Masuk Kuliah',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                  enabled: false,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                  initialValue: userMahasiswaProfil.data?.jlrrKode),
+              SizedBox(height: 8),
+              Text(
+                'Alamat Tinggal Saat Ini',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -142,11 +166,23 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ortuAgama?.value,
+                initialValue: userMahasiswaProfil.data?.alamatMhs,
               ),
               SizedBox(height: 8),
               Text(
-                'Alamat Orang Tua',
+                'Kelurahan/Desa',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                  enabled: false,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                  initialValue: userMahasiswaProfil.data?.kelurahan),
+              SizedBox(height: 8),
+              Text(
+                'Kecamatan',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -155,7 +191,8 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ortuAlamat?.value,
+                initialValue:
+                    userMahasiswaProfile.data?.alamatMhsKecamatan?.value,
               ),
               SizedBox(height: 8),
               Text(
@@ -168,7 +205,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ortuAlamatKota?.value,
+                initialValue: userMahasiswaProfile.data?.alamatMhsKota?.value,
               ),
               SizedBox(height: 8),
               Text(
@@ -181,12 +218,11 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue:
-                    userMahasiswaProfil.data?.ortuAlamatKodepos?.value,
+                initialValue: userMahasiswaProfil.data?.kodePos,
               ),
               SizedBox(height: 8),
               Text(
-                'Rata-rata penghasilan orang tua/wali per bulan',
+                'Status Alamat Rumah',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -195,11 +231,11 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ortuPenghasilan?.value,
+                initialValue: userMahasiswaProfile.data?.statusRumah?.value,
               ),
               SizedBox(height: 8),
               Text(
-                'Jumlah orang yang ditanggung biayanya oleh orang tua/wali',
+                'Pembiayaan Kuliah Oleh',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
@@ -208,7 +244,59 @@ class BiodataOrangTuaProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.ortuTanggungan?.value,
+                initialValue: userMahasiswaProfile.data?.pembiayaan?.value,
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Jumlah Saudara Kandung',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                initialValue: userMahasiswaProfil.data?.jumlahSaudara,
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Tinggi Badan(cm)',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                initialValue: userMahasiswaProfil.data?.tinggiBadan,
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Berat Badan(kg)',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                initialValue: userMahasiswaProfil.data?.beratBadan,
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Golongan Darah',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                enabled: false,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                initialValue: userMahasiswaProfil.data?.golDarah,
               ),
               SizedBox(height: 16),
             ],

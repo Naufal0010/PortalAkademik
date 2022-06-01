@@ -3,6 +3,7 @@ import 'package:portal_akademik/pages/profile/component/biodata_diri.dart';
 import 'package:portal_akademik/pages/profile/component/biodata_header.dart';
 import 'package:portal_akademik/pages/profile/component/biodata_orangTua.dart';
 import 'package:portal_akademik/pages/profile/component/biodata_riwayatPendidikan.dart';
+import 'package:portal_akademik/pages/profile/subpages/biodata_edit.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 // import 'package:portal_akademik/pages/profile/component/biodata_menu.dart';
@@ -24,10 +25,19 @@ class BiodataMenuPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          // leading: const Icon(Icons.settings),
           actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
+            IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
           ],
+          // leading: const Icon(Icons.settings),
+
+          // actions: [
+          //   IconButton(
+          //       onPressed: () {
+          //         Navigator.of(context).push(MaterialPageRoute(
+          //             builder: (context) => BiodataEditProfile()));
+          //       },
+          //       icon: const Icon(Icons.edit))
+          // ],
           backgroundColor: Colors.white,
           foregroundColor: const Color(0xff4848),
           elevation: 0,
@@ -40,7 +50,7 @@ class BiodataMenuPage extends StatelessWidget {
           child: SingleChildScrollView(
             physics: AlwaysScrollableScrollPhysics(),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
