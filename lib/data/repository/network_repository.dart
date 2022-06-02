@@ -36,7 +36,29 @@ class NetworkRepository {
 
   // getUser() untuk mengambil data mahasiswa dengan program studi dari API
   Future<ApiModel> getUser() async {
-    return await consumer.execute(url: '/mahasiswa/$username?with[]=prodi');
+    return await consumer.execute(
+        url:
+            '/mahasiswa/$username?with[]=prodi&with[]=jurusan&with[]=fakultas');
+  }
+
+  // getUserAgama() untuk mengambil list data agama
+  Future<ApiModel> getUserAgama() async {
+    return await consumer.execute(url: '/akademik/agama');
+  }
+
+  // getUserStatusNikah() untuk mengambil list data status nikah
+  Future<ApiModel> getUserStatusNikah() async {
+    return await consumer.execute(url: '/akademik/statusNikah');
+  }
+
+  // getUserStatusAlamatRumah() untuk mengambil list data status alamat rumah
+  Future<ApiModel> getUserStatusAlamatRumah() async {
+    return await consumer.execute(url: '/akademik/statusRumah');
+  }
+
+  // getUserPembiayaanKuliah() untuk mengambil list data pembiayaan kuliah
+  Future<ApiModel> getUserPembiayaanKuliah() async {
+    return await consumer.execute(url: '/akademik/hubunganBiaya');
   }
 
   // getTranskripHasilStudiMahasiswa(jenjang, angkatan) untuk mengambil data
@@ -104,6 +126,18 @@ class NetworkRepository {
         url: '/simari/semesterAktif?with[]=semester&with[]=namaSemester');
   }
 
+  /*
+  *
+  * ----------------------------- KRS ------------------------------------------
+  *
+  * */
+
+  // getSemesterTawar() untuk mengambil list data paket semester
+  Future<ApiModel> getSemesterTawar() async {
+    return await consumer.execute(
+        url: '/akademik/krs/semesterTawar/mahasiswa/$username');
+  }
+
   // getListKrsMahasiswa(semester) untuk mengambil data rencana studi semester baru
   Future<ApiModel> getListKrsMahasiswa(String semester) async {
     return await consumer.execute(
@@ -115,12 +149,24 @@ class NetworkRepository {
     return await consumer.execute(url: '/akademik/krs/header/mahasiswa');
   }
 
+  /*
+  *
+  * ----------------------------------------------------------------------------
+  *
+  * */
+
   // getRiwayatRegistrasiMahasiswa() untuk mengambil data Riwayat Registrasi
   // mahasiswa
   Future<ApiModel> getRiwayatRegistrasiMahasiswa() async {
     return await consumer.execute(
         url: '/akademik/statusBayar/riwayatRegistrasi/$username');
   }
+
+  /*
+  *
+  * ----------------------------- Kuesioner ------------------------------------
+  *
+  * */
 
   // getDataKelasKuesioner() untuk mengambil data kuesioner berdasarkan NIM
   Future<ApiModel> getDataKelasKuesioner() async {
@@ -142,7 +188,8 @@ class NetworkRepository {
 
   // tambahDataKuesionerEvaluasiaDosen() untuk menambah atau menyimpan kuesioner
   // evaluasi dosen ke database
-  Future<ApiModel> tambahDataKuesionerEvaluasiDosen(ModelEvaluasiDosenTambahData evaluasiDosen) async {
+  Future<ApiModel> tambahDataKuesionerEvaluasiDosen(
+      ModelEvaluasiDosenTambahData evaluasiDosen) async {
     FormData formData = FormData.fromMap(evaluasiDosen.toMap());
     return await consumer.execute(
         url: '/akademik/kuisionerPenilaian/createBatchKuisionerMahasiswa',
@@ -152,7 +199,8 @@ class NetworkRepository {
 
   // tambahDataKuesionerPelayanan() untuk menambah atau menyimpan kuesioner
   // pelayanan ke database
-  Future<ApiModel> tambahDataKuesionerPelayanan(ModelPelayananUlmTambahData pelayanan) async {
+  Future<ApiModel> tambahDataKuesionerPelayanan(
+      ModelPelayananUlmTambahData pelayanan) async {
     FormData formData = FormData.fromMap(pelayanan.toMap());
     UtilLogger.log('pelayanan', pelayanan.toMap());
     return await consumer.execute(
@@ -160,6 +208,12 @@ class NetworkRepository {
         method: MethodRequest.POST,
         formData: formData);
   }
+
+  /*
+  *
+  * ----------------------------------------------------------------------------
+  *
+  * */
 
   // refreshToken() jika access token expired
   Future refreshToken() async {
@@ -173,7 +227,8 @@ class NetworkRepository {
     if (response.code == CODE.SUCCESS) {
       return response.data['accessToken'];
     } else {
-      Provider.of<AuthState>(App.navigatorKey.currentContext!, listen: false).logout();
+      Provider.of<AuthState>(App.navigatorKey.currentContext!, listen: false)
+          .logout();
       return null;
     }
   }

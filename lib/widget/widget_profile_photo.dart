@@ -68,15 +68,39 @@ Widget getProdi(BuildContext context, UserMahasiswaState state) {
     return Text('Loading');
   }
 
-  return Text(
-    'Prodi. ${state.data!.prodi!.nama}\n ${state.data!.angkatan}',
-    textAlign: TextAlign.center,
-    overflow: TextOverflow.ellipsis,
-    style: TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.bold,
-      color: Color(0xffFFE8D1),
-    ),
+  return Column(
+    children: [
+      Text(
+        '${state.data!.fakultas!.namaResmi}',
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: Color(0xffFFE8D1),
+        ),
+      ),
+      Text(
+        '${state.data!.prodi!.nama}',
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: Color(0xffFFE8D1),
+        ),
+      ),
+      Text(
+        '${state.data!.angkatan}',
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: Color(0xffFFE8D1),
+        ),
+      ),
+    ],
   );
 }
 

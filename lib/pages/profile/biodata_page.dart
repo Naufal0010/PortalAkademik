@@ -3,22 +3,23 @@ import 'package:portal_akademik/pages/profile/component/biodata_diri.dart';
 import 'package:portal_akademik/pages/profile/component/biodata_header.dart';
 import 'package:portal_akademik/pages/profile/component/biodata_orangTua.dart';
 import 'package:portal_akademik/pages/profile/component/biodata_riwayatPendidikan.dart';
-import 'package:portal_akademik/pages/profile/subpages/biodata_edit.dart';
+import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
-// import 'package:portal_akademik/pages/profile/component/biodata_menu.dart';
+import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:provider/provider.dart';
-import 'package:portal_akademik/states/state.dart';
-
-// import '../../../../util/color_pallete.dart';
 
 class BiodataMenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    UserMahasiswaState userMahasiswa =
+        Provider.of<UserMahasiswaState>(context, listen: false);
+
     UserMahasiswaProfilEditableState userMahasiswaProfil =
-        Provider.of<UserMahasiswaProfilEditableState>(context, listen: true);
+        Provider.of<UserMahasiswaProfilEditableState>(context, listen: false);
 
     Future<void> refresh() {
+      userMahasiswa.refreshData();
       userMahasiswaProfil.refreshData();
       return userMahasiswaProfil.refreshData();
     }
@@ -56,11 +57,38 @@ class BiodataMenuPage extends StatelessWidget {
                 children: [
                   BiodataHeaderProfile(),
                   LabelSubHeader('Biodata Pribadi', 20),
-                  BiodataDiriProfile(),
+                  Consumer<UserMahasiswaState>(
+                    builder: (context, value, child) {
+                      return value.isLoading
+                          ? ShimmerWidget(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                            )
+                          : BiodataDiriProfile();
+                    },
+                  ),
                   LabelSubHeader('Riwayat Pendidikan Terakhir', 20),
-                  RiwayatPendidikanProfile(),
+                  Consumer<UserMahasiswaProfilEditableState>(
+                    builder: (context, value, child) {
+                      return value.isLoading
+                          ? ShimmerWidget(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                            )
+                          : RiwayatPendidikanProfile();
+                    },
+                  ),
                   LabelSubHeader('Biodata Orang Tua/Wali', 20),
-                  BiodataOrangTuaProfile(),
+                  Consumer<UserMahasiswaProfilEditableState>(
+                    builder: (context, value, child) {
+                      return value.isLoading
+                          ? ShimmerWidget(
+                              height: 50,
+                              width: MediaQuery.of(context).size.width,
+                            )
+                          : BiodataOrangTuaProfile();
+                    },
+                  ),
                 ],
               ),
             ),

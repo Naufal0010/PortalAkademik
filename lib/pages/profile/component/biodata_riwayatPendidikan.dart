@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 // import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
-import 'package:portal_akademik/util/color_pallete.dart';
 
 class RiwayatPendidikanProfile extends StatelessWidget {
   @override
@@ -68,7 +67,7 @@ class RiwayatPendidikanProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfile.data?.sekolahKota?.value,
+                initialValue: userMahasiswaProfile.data!.sekolahKota!.value,
               ),
               SizedBox(height: 8),
               Text(

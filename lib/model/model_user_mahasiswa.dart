@@ -74,7 +74,9 @@ class UserModelMahasiswa {
     required this.konsentrasi,
     required this.konsentrasiAsing,
     required this.feedback,
+    required this.fakultas,
     required this.prodi,
+    required this.jurusan,
   });
 
   final String nim;
@@ -145,7 +147,9 @@ class UserModelMahasiswa {
   final dynamic konsentrasi;
   final dynamic konsentrasiAsing;
   final dynamic feedback;
+  final FakultasProfil? fakultas;
   final ProdiProfil? prodi;
+  final JurusanProfil? jurusan;
 
   factory UserModelMahasiswa.fromJson(String str) =>
       UserModelMahasiswa.fromMap(json.decode(str));
@@ -239,8 +243,14 @@ class UserModelMahasiswa {
         konsentrasi: json["konsentrasi"],
         konsentrasiAsing: json["konsentrasiAsing"],
         feedback: json["feedback"],
+        fakultas: json["fakultas"] == null
+            ? null
+            : FakultasProfil.fromMap(json["fakultas"]),
         prodi:
             json["prodi"] == null ? null : ProdiProfil.fromMap(json["prodi"]),
+        jurusan: json["jurusan"] == null
+            ? null
+            : JurusanProfil.fromMap(json["jurusan"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -317,7 +327,151 @@ class UserModelMahasiswa {
         "konsentrasi": konsentrasi,
         "konsentrasiAsing": konsentrasiAsing,
         "feedback": feedback,
+        "fakultas": fakultas == null ? null : fakultas?.toMap(),
         "prodi": prodi == null ? null : prodi?.toMap(),
+        "jurusan": jurusan == null ? null : jurusan?.toMap(),
+      };
+}
+
+class FakultasProfil {
+  FakultasProfil({
+    required this.fax,
+    required this.kode,
+    required this.kota,
+    required this.telp,
+    required this.dekan,
+    required this.email,
+    required this.aDekan,
+    required this.alamat,
+    required this.kodeUniv,
+    required this.createdAt,
+    required this.namaAsing,
+    required this.namaResmi,
+    required this.updatedAt,
+    required this.namaSingkat,
+  });
+
+  final String fax;
+  final int kode;
+  final String kota;
+  final String telp;
+  final String dekan;
+  final String email;
+  final String aDekan;
+  final String alamat;
+  final String kodeUniv;
+  final DateTime? createdAt;
+  final String namaAsing;
+  final String namaResmi;
+  final DateTime? updatedAt;
+  final String namaSingkat;
+
+  factory FakultasProfil.fromJson(String str) =>
+      FakultasProfil.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory FakultasProfil.fromMap(Map<String, dynamic> json) => FakultasProfil(
+        fax: json["fax"] == null ? null : json["fax"],
+        kode: json["kode"] == null ? null : json["kode"],
+        kota: json["kota"] == null ? null : json["kota"],
+        telp: json["telp"] == null ? null : json["telp"],
+        dekan: json["dekan"] == null ? null : json["dekan"],
+        email: json["email"] == null ? null : json["email"],
+        aDekan: json["aDekan"] == null ? null : json["aDekan"],
+        alamat: json["alamat"] == null ? null : json["alamat"],
+        kodeUniv: json["kodeUniv"] == null ? null : json["kodeUniv"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        namaAsing: json["namaAsing"] == null ? null : json["namaAsing"],
+        namaResmi: json["namaResmi"] == null ? null : json["namaResmi"],
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        namaSingkat: json["namaSingkat"] == null ? null : json["namaSingkat"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "fax": fax == null ? null : fax,
+        "kode": kode == null ? null : kode,
+        "kota": kota == null ? null : kota,
+        "telp": telp == null ? null : telp,
+        "dekan": dekan == null ? null : dekan,
+        "email": email == null ? null : email,
+        "aDekan": aDekan == null ? null : aDekan,
+        "alamat": alamat == null ? null : alamat,
+        "kodeUniv": kodeUniv == null ? null : kodeUniv,
+        "createdAt": createdAt == null ? null : createdAt?.toIso8601String(),
+        "namaAsing": namaAsing == null ? null : namaAsing,
+        "namaResmi": namaResmi == null ? null : namaResmi,
+        "updatedAt": updatedAt == null ? null : updatedAt?.toIso8601String(),
+        "namaSingkat": namaSingkat == null ? null : namaSingkat,
+      };
+}
+
+class JurusanProfil {
+  JurusanProfil({
+    required this.fax,
+    required this.kode,
+    required this.telp,
+    required this.email,
+    required this.kajur,
+    required this.alamat,
+    required this.fakKode,
+    required this.createdAt,
+    required this.namaResmi,
+    required this.updatedAt,
+    required this.namaSingkat,
+  });
+
+  final dynamic fax;
+  final int kode;
+  final dynamic telp;
+  final dynamic email;
+  final dynamic kajur;
+  final dynamic alamat;
+  final int fakKode;
+  final DateTime? createdAt;
+  final String namaResmi;
+  final DateTime? updatedAt;
+  final String namaSingkat;
+
+  factory JurusanProfil.fromJson(String str) =>
+      JurusanProfil.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory JurusanProfil.fromMap(Map<String, dynamic> json) => JurusanProfil(
+        fax: json["fax"],
+        kode: json["kode"] == null ? null : json["kode"],
+        telp: json["telp"],
+        email: json["email"],
+        kajur: json["kajur"],
+        alamat: json["alamat"],
+        fakKode: json["fakKode"] == null ? null : json["fakKode"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        namaResmi: json["namaResmi"] == null ? null : json["namaResmi"],
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        namaSingkat: json["namaSingkat"] == null ? null : json["namaSingkat"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "fax": fax,
+        "kode": kode == null ? null : kode,
+        "telp": telp,
+        "email": email,
+        "kajur": kajur,
+        "alamat": alamat,
+        "fakKode": fakKode == null ? null : fakKode,
+        "createdAt": createdAt == null ? null : createdAt?.toIso8601String(),
+        "namaResmi": namaResmi == null ? null : namaResmi,
+        "updatedAt": updatedAt == null ? null : updatedAt?.toIso8601String(),
+        "namaSingkat": namaSingkat == null ? null : namaSingkat,
       };
 }
 

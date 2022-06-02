@@ -47,8 +47,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 MaterialPageRoute(builder: (context) => BiodataMenuPage()),
               );
             }),
-            ButtonProfile('Pengaturan', Icons.settings, () {}),
-            ButtonProfile('Bantuan', Icons.help_outline, () {}),
+            // ButtonProfile('Pengaturan', Icons.settings, () {}),
+            // ButtonProfile('Bantuan', Icons.help_outline, () {}),
             ButtonProfile('Keluar', Icons.logout, () {
               showAnimatedDialog(
                   context: context,

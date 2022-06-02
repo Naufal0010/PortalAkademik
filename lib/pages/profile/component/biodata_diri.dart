@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:portal_akademik/widget/widget_profile_photo.dart';
-// import 'package:portal_akademik/widget/shimmer_widget.dart';
+import 'package:portal_akademik/pages/profile/component/kabupaten_text.dart';
+import 'package:portal_akademik/pages/profile/component/kecamatan_text.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
-import 'package:portal_akademik/util/color_pallete.dart';
+import 'package:portal_akademik/widget/shimmer_widget.dart';
 
 class BiodataDiriProfile extends StatelessWidget {
   @override
@@ -13,6 +13,14 @@ class BiodataDiriProfile extends StatelessWidget {
 
     UserMahasiswaProfilEditableState userMahasiswaProfile =
         Provider.of<UserMahasiswaProfilEditableState>(context, listen: true);
+
+    String isJenisKelamin(String? jenisKelamin) {
+      if (jenisKelamin == 'L') {
+        return 'Laki-laki';
+      }
+
+      return 'Perempuan';
+    }
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -32,7 +40,7 @@ class BiodataDiriProfile extends StatelessWidget {
               ),
               TextFormField(
                 enabled: false,
-                // style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
@@ -89,7 +97,8 @@ class BiodataDiriProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfil.data?.jenisKelamin,
+                initialValue:
+                    isJenisKelamin(userMahasiswaProfil.data?.jenisKelamin),
               ),
               SizedBox(height: 8),
               Text(
@@ -102,7 +111,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfile.data?.agama?.value,
+                initialValue: userMahasiswaProfil.getAgamaValue(),
               ),
               SizedBox(height: 8),
               Text(
@@ -115,7 +124,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfile.data?.statusNikah?.value,
+                initialValue: userMahasiswaProfil.getStatusNikahValue(),
               ),
               SizedBox(height: 8),
               Text(
@@ -184,28 +193,17 @@ class BiodataDiriProfile extends StatelessWidget {
                 'Kecamatan',
                 style: TextStyle(fontSize: 16),
               ),
-              TextFormField(
-                enabled: false,
-                style: TextStyle(fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue:
-                    userMahasiswaProfile.data?.alamatMhsKecamatan?.value,
-              ),
+              userMahasiswaProfile.isLoading
+                  ? ShimmerWidget(height: 10)
+                  : kecamatanText(context, userMahasiswaProfile),
               SizedBox(height: 8),
               Text(
                 'Kabupaten/Kota',
                 style: TextStyle(fontSize: 16),
               ),
-              TextFormField(
-                enabled: false,
-                style: TextStyle(fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfile.data?.alamatMhsKota?.value,
-              ),
+              userMahasiswaProfile.isLoading
+                  ? ShimmerWidget(height: 10)
+                  : kabupatenText(context, userMahasiswaProfile),
               SizedBox(height: 8),
               Text(
                 'Kodepos',
@@ -230,7 +228,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfile.data?.statusRumah?.value,
+                initialValue: userMahasiswaProfil.getStatusAlamatRumahValue(),
               ),
               SizedBox(height: 8),
               Text(
@@ -243,7 +241,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfile.data?.pembiayaan?.value,
+                initialValue: userMahasiswaProfil.getPembiayaanKuliahValue(),
               ),
               SizedBox(height: 8),
               Text(
