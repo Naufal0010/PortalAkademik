@@ -8,10 +8,10 @@ class RiwayatPendidikanProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserMahasiswaState userMahasiswaProfil =
-        Provider.of<UserMahasiswaState>(context, listen: true);
+        Provider.of<UserMahasiswaState>(context, listen: false);
 
     UserMahasiswaProfilEditableState userMahasiswaProfile =
-        Provider.of<UserMahasiswaProfilEditableState>(context, listen: true);
+        Provider.of<UserMahasiswaProfilEditableState>(context, listen: false);
 
     return Container(
       width: MediaQuery.of(context).size.width,

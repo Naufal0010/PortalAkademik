@@ -10,7 +10,7 @@ class BiodataOrangTuaProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserMahasiswaProfilEditableState userMahasiswaProfil =
-        Provider.of<UserMahasiswaProfilEditableState>(context, listen: true);
+        Provider.of<UserMahasiswaProfilEditableState>(context, listen: false);
 
     return Container(
       width: MediaQuery.of(context).size.width,
