@@ -6,9 +6,11 @@ import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/util/api_local_store.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
+import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 
 import '../../states/khs/state_user_mahasiswa_khs.dart';
 import '../../states/khs/state_user_mahasiswa_khs_semester.dart';
+import '../../util/color_pallete.dart';
 
 class HasilStudiPage extends StatefulWidget {
   @override
@@ -29,6 +31,9 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
     UserMahasiswaRekapHasilStudiState userRhs =
         Provider.of<UserMahasiswaRekapHasilStudiState>(context, listen: false);
 
+    SimpleFontelicoProgressDialog _dialog =
+    SimpleFontelicoProgressDialog(context: context, barrierDimisable: true);
+
     Future<void> refresh() {
       user.refreshData();
       return userKhs.refreshData();
@@ -36,6 +41,16 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
 
     userKhs.initData(_valSemester.toString());
     userRhs.initData();
+
+    void initDataSemester(Object? value) async {
+      _dialog.show(
+          message: 'Loading...',
+          type: SimpleFontelicoProgressDialogType.normal,
+          indicatorColor: ColorPallete.primary);
+      await Future.delayed(Duration(seconds: 1));
+      userKhs.initData(value.toString());
+      _dialog.hide();
+    }
 
     return SafeArea(
       child: RefreshIndicator(
@@ -89,6 +104,7 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                                   icon: Icon(Icons.keyboard_arrow_down),
                                   iconSize: 28,
                                   value: _valSemester,
+                                  isExpanded: true,
                                   items: user.data?.data?.map((value) {
                                     return DropdownMenuItem(
                                       child: Text(
@@ -104,7 +120,7 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
                                   onChanged: (value) {
                                     setState(() {
                                       _valSemester = value.toString();
-                                      userKhs.initData(value.toString());
+                                      initDataSemester(value);
                                     });
                                   },
                                 ),
