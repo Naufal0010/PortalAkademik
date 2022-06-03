@@ -18,9 +18,9 @@ class ModelUserMahasiswaPaketSemester {
 
   factory ModelUserMahasiswaPaketSemester.fromMap(Map<String, dynamic> json) =>
       ModelUserMahasiswaPaketSemester(
-        data: json["data"] == null
+        data: json == null
             ? null
-            : Map.from(json["data"])
+            : Map.from(json)
                 .map((k, v) => MapEntry<String, String>(k, v)),
       );
 

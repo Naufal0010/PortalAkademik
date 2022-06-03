@@ -1,5 +1,6 @@
+import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
-import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/component/krs_list_sudah_ambil.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/subpages/tambah_mata_kuliah_page.dart';
 import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +8,30 @@ import 'package:provider/provider.dart';
 import '../../../../states/krs/state_user_mahasiswa_krs_header.dart';
 import '../../../../util/color_pallete.dart';
 
-class RencanaStudiPage extends StatelessWidget {
+class RencanaStudiPage extends StatefulWidget {
+  @override
+  State<RencanaStudiPage> createState() => _RencanaStudiPageState();
+}
+
+class _RencanaStudiPageState extends State<RencanaStudiPage>
+    with SingleTickerProviderStateMixin {
+  late Animation<double> _animation;
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 260),
+    );
+
+    final curvedAnimation =
+        CurvedAnimation(curve: Curves.easeInOut, parent: _animationController);
+    _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
+
+    super.initState();
+  }
+
   Widget isDisetujui(String? disetujui) {
     if (disetujui == "1") {
       return Text(
@@ -29,7 +53,7 @@ class RencanaStudiPage extends StatelessWidget {
         Provider.of<UserMahasiswaKrsHeaderState>(context, listen: true);
 
     UserMahasiswaKrsState userKrs =
-        Provider.of<UserMahasiswaKrsState>(context, listen: true);
+    Provider.of<UserMahasiswaKrsState>(context, listen: true);
 
     Future<void> refresh() {
       user.refreshData();
@@ -166,9 +190,9 @@ class RencanaStudiPage extends StatelessWidget {
                           child: Center(
                             child: user.isLoading
                                 ? ShimmerWidget(
-                              width: 80,
-                              height: 20,
-                            )
+                                    width: 80,
+                                    height: 20,
+                                  )
                                 : isDisetujui(user.data!.krs!.isSetujui),
                           ),
                         ),
@@ -178,56 +202,89 @@ class RencanaStudiPage extends StatelessWidget {
                   SizedBox(
                     height: 8,
                   ),
-                  userKrs.isLoading
-                      ? ShimmerWidget(
-                          width: double.infinity,
-                          height: 100,
-                        )
-                      : KrsListSudahAmbil(
-                          list: userKrs.data!.mkReguler!.krsListMk),
-                  Container(
-                    padding: EdgeInsets.all(10.0),
-                    // decoration: BoxDecoration(
-                    //   borderRadius: BorderRadius.circular(10.0),
-                    //   border: Border.all(
-                    //       width: 1, color: ColorPallete.primary),
-                    //   // color: Colors.amber,
-                    // ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Total SKS',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            userKrs.isLoading
-                                ? ShimmerWidget(
-                                    width: 60,
-                                    height: 20,
-                                  )
-                                : Text(
-                                    '${userKrs.data?.mkReguler!.krsTotalSks}',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
+                  // userKrs.isLoading
+                  //     ? ShimmerWidget(
+                  //         width: double.infinity,
+                  //         height: 100,
+                  //       )
+                  //     : KrsListSudahAmbil(
+                  //         list: userKrs.data!.mkReguler!.krsListMk),
+                  // Container(
+                  //   padding: EdgeInsets.all(10.0),
+                  //   // decoration: BoxDecoration(
+                  //   //   borderRadius: BorderRadius.circular(10.0),
+                  //   //   border: Border.all(
+                  //   //       width: 1, color: ColorPallete.primary),
+                  //   //   // color: Colors.amber,
+                  //   // ),
+                  //   child: Column(
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //         children: [
+                  //           Text(
+                  //             'Total SKS',
+                  //             style: TextStyle(
+                  //               fontSize: 16,
+                  //               fontWeight: FontWeight.bold,
+                  //             ),
+                  //           ),
+                  //           userKrs.isLoading
+                  //               ? ShimmerWidget(
+                  //                   width: 60,
+                  //                   height: 20,
+                  //                 )
+                  //               : Text(
+                  //                   '${userKrs.data?.mkReguler!.krsTotalSks}',
+                  //                   style: TextStyle(
+                  //                     fontSize: 16,
+                  //                     fontWeight: FontWeight.bold,
+                  //                   ),
+                  //                 ),
+                  //         ],
+                  //       ),
+                  //     ],
+                  //   ),
+                  // )
                 ],
               ),
             ),
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionBubble(
+        items: [
+          Bubble(
+              icon: Icons.add,
+              iconColor: Colors.white,
+              title: 'Tambah',
+              titleStyle: TextStyle(fontSize: 12, color: Colors.white),
+              bubbleColor: ColorPallete.primary,
+              onPress: () {
+                _animationController.reverse();
+                userKrs.initDataPaketSemester();
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                    TambahMataKuliahPage()));
+              }),
+          Bubble(
+              icon: Icons.upload_sharp,
+              iconColor: Colors.white,
+              title: 'Ajukan',
+              titleStyle: TextStyle(fontSize: 12, color: Colors.white),
+              bubbleColor: ColorPallete.primary,
+              onPress: () {
+                _animationController.reverse();
+              })
+        ],
+        animation: _animation,
+        onPress: () => _animationController.isCompleted
+                        ? _animationController.reverse()
+                        : _animationController.forward(),
+        iconColor: Colors.white,
+        iconData: Icons.add,
+        backGroundColor: ColorPallete.primary,
       ),
     );
   }
