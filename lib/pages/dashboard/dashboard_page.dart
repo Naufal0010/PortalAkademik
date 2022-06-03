@@ -99,55 +99,53 @@ class _DashboardPageState extends State<DashboardPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Ink(
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                        BiodataMenuPage()));
-                  },
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                      BiodataMenuPage()));
+                },
+                child: Container(
+                  height: 80.0,
+                  padding: EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFF9F43),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
                   child: Container(
-                    height: 80.0,
-                    padding: EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFF9F43),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Flexible(
-                            flex: 1,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                userMahasiswa.isLoading
-                                    ? ShimmerWidget(
-                                        height: 25,
-                                      )
-                                    : getName(context, userMahasiswa),
-                                userMahasiswa.isLoading
-                                    ? ShimmerWidget(
-                                        height: 15,
-                                      )
-                                    : getNimProdiJenjang(context, userMahasiswa),
-                              ],
-                            ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Flexible(
+                          flex: 1,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              userMahasiswa.isLoading
+                                  ? ShimmerWidget(
+                                      height: 25,
+                                    )
+                                  : getName(context, userMahasiswa),
+                              userMahasiswa.isLoading
+                                  ? ShimmerWidget(
+                                      height: 15,
+                                    )
+                                  : getNimProdiJenjang(context, userMahasiswa),
+                            ],
                           ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          semesterAktif.isLoading ? SizedBox() : SizedBox(),
-                          userMahasiswa.isLoading
-                              ? ShimmerWidget(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  height: 50,
-                                  width: 50,
-                                )
-                              : getPhoto(context, userMahasiswa)
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          width: 30,
+                        ),
+                        semesterAktif.isLoading ? SizedBox() : SizedBox(),
+                        userMahasiswa.isLoading
+                            ? ShimmerWidget(
+                                borderRadius: BorderRadius.circular(30.0),
+                                height: 50,
+                                width: 50,
+                              )
+                            : getPhoto(context, userMahasiswa)
+                      ],
                     ),
                   ),
                 ),
