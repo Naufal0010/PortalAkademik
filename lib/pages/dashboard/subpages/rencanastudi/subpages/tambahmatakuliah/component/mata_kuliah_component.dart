@@ -12,6 +12,23 @@ class MataKuliahComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    Widget isSudahAmbil(String sudahAmbil) {
+      if (sudahAmbil == "0") {
+        return ElevatedButton(
+          onPressed: () {},
+          child: Icon(Icons.add, color: Colors.white),
+          style: ElevatedButton.styleFrom(
+            shape: CircleBorder(),
+            padding: EdgeInsets.all(6),
+            primary: Colors.green,
+            onPrimary: Colors.black,
+          ),
+        );
+      }
+      return Container();
+    }
+    
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Card(
@@ -64,16 +81,7 @@ class MataKuliahComponent extends StatelessWidget {
                   ],
                 ),
                 Spacer(),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Icon(Icons.add, color: Colors.white),
-                  style: ElevatedButton.styleFrom(
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(6),
-                    primary: Colors.green,
-                    onPrimary: Colors.black,
-                  ),
-                )
+                isSudahAmbil(data.isSudahAmbil)
               ],
             ),
           ),
