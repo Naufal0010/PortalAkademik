@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
+import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 
-import '../../../../../model/krs/model_user_mahasiswa_paket_semester_list.dart';
-import '../../../../../states/krs/state_user_mahasiswa_krs.dart';
-import '../../../../../states/state.dart';
+import '../../../../../../model/krs/model_user_mahasiswa_paket_semester_list.dart';
+import '../../../../../../states/krs/state_user_mahasiswa_krs.dart';
+import '../../../../../../states/krs/state_user_mahasiswa_krs_paket_semester.dart';
+import '../../../../../../states/state.dart';
+import '../../../../../../util/color_pallete.dart';
+import '../../../../../presensi/component/shimmer_list_detail_tile.dart';
+import 'component/list_mata_kuliah.dart';
 
 class TambahMataKuliahPage extends StatefulWidget {
   const TambahMataKuliahPage({Key? key}) : super(key: key);
@@ -14,14 +19,28 @@ class TambahMataKuliahPage extends StatefulWidget {
 }
 
 class _TambahMataKuliahPageState extends State<TambahMataKuliahPage> {
-  String _valPaketSemester = "1";
+  String _valPaketSemester = "6";
 
   @override
   Widget build(BuildContext context) {
-
-
     UserMahasiswaKrsState userKrs =
-        Provider.of<UserMahasiswaKrsState>(context, listen: true);
+        Provider.of<UserMahasiswaKrsState>(context, listen: false);
+
+    UserMahasiswaKrsPaketSemesterState userPaketSemester =
+        Provider.of<UserMahasiswaKrsPaketSemesterState>(context, listen: false);
+
+    SimpleFontelicoProgressDialog _dialog =
+    SimpleFontelicoProgressDialog(context: context, barrierDimisable: true);
+
+    void initDataPaketSemester(Object? value) async {
+      _dialog.show(
+          message: 'Loading...',
+          type: SimpleFontelicoProgressDialogType.normal,
+          indicatorColor: ColorPallete.primary);
+      await Future.delayed(Duration(seconds: 1));
+      userPaketSemester.initData(value.toString());
+      _dialog.hide();
+    }
 
     List<ModelMahasiswaPaketSemester>? list = userKrs
         .dataPaketSemester?.data?.entries
@@ -29,6 +48,8 @@ class _TambahMataKuliahPageState extends State<TambahMataKuliahPage> {
         .toList();
 
     UtilLogger.log('value paket semester', list);
+
+    userPaketSemester.initData(_valPaketSemester);
 
     return Scaffold(
       appBar: AppBar(
@@ -84,12 +105,29 @@ class _TambahMataKuliahPageState extends State<TambahMataKuliahPage> {
                           onChanged: (newValue) {
                             setState(() {
                               _valPaketSemester = newValue.toString();
+                              initDataPaketSemester(newValue.toString());
                             });
                           },
                         ),
                       ),
                     ),
                   ),
+            SizedBox(height: 16),
+            Expanded(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                child:  SingleChildScrollView(
+                  child: Consumer<UserMahasiswaKrsPaketSemesterState>(
+                    builder: (context, value, child) {
+                      return value.isLoading
+                          ? ShimmerListDetailTile()
+                          : ListMataKuliahPaket(context, value);
+                    },
+                  ),
+                ),
+
+              ),
+            )
           ],
         ),
       ),

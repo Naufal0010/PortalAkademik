@@ -144,6 +144,13 @@ class NetworkRepository {
         url: '/akademik/krs/perSemester/$username/$semester');
   }
 
+  // getListMataKuliahPaketSemester(paketId) untuk mengambil list data mata
+  // kuliah berdasarkan paket
+  Future<ApiModel> getListMataKuliahPaketSemester(String paketId) async {
+    return await consumer.execute(
+        url: '/akademik/krs/matakuliahTawar/mahasiswa/$paketId/$username');
+  }
+
   // getHeaderKrsMahasiswa() untuk mengambil data KRS Mahasiswa
   Future<ApiModel> getHeaderKrsMahasiswa() async {
     return await consumer.execute(url: '/akademik/krs/header/mahasiswa');

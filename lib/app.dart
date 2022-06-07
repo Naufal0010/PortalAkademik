@@ -11,6 +11,7 @@ import 'package:portal_akademik/states/khs/state_user_mahasiswa_khs_semester.dar
 import 'package:portal_akademik/states/khs/state_user_mahasiswa_rekap_hasil_studi.dart';
 import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs.dart';
 import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs_header.dart';
+import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs_paket_semester.dart';
 import 'package:portal_akademik/states/kuesioner/state_user_mahasiswa_data_detail_kuesioner.dart';
 import 'package:portal_akademik/states/kuesioner/state_user_mahasiswa_data_kelas_kuesioner.dart';
 import 'package:portal_akademik/states/kuesioner/state_user_mahasiswa_data_pelayanan.dart';
@@ -48,6 +49,7 @@ class App extends StatelessWidget {
             create: (_) => UserMahasiswaSemesterAktifState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaKrsState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaKrsHeaderState()),
+        ChangeNotifierProvider(create: (_) => UserMahasiswaKrsPaketSemesterState()),
         ChangeNotifierProvider(create: (_) => UserMahasiswaKhsState()),
         ChangeNotifierProvider(
             create: (_) => UserMahasiswaRekapHasilStudiState()),

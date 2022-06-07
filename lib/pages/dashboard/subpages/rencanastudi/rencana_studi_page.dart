@@ -1,6 +1,6 @@
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
-import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/subpages/tambah_mata_kuliah_page.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/subpages/tambahmatakuliah/tambah_mata_kuliah_page.dart';
 import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:provider/provider.dart';
