@@ -30,6 +30,7 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   flutter_cached_pdfview: ^0.4.1
   floating_action_bubble: ^1.1.4
+  bottom_sheet: ^3.1.1
 
 dev_dependencies:
   flutter_test:

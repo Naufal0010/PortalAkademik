@@ -1,4 +1,6 @@
+import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/subpages/tambahmatakuliah/component/bottomsheet_detail_matakuliah.dart';
 import 'package:portal_akademik/util/color_pallete.dart';
 
 import '../../../../../../../model/krs/model_user_mahasiswa_krs_paket_semester.dart';
@@ -18,7 +20,23 @@ class MataKuliahComponent extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(6)),
         ),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            showFlexibleBottomSheet(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(10.0),
+                        topLeft: Radius.circular(10.0))),
+                isExpand: false,
+                initHeight: 0.7,
+                maxHeight: 0.7,
+                context: context,
+                bottomSheetColor: Colors.transparent,
+                builder: (context, controller, offset) {
+                  return BottomSheetDetailMataKuliah(
+                      data: data, controller: controller);
+                });
+          },
           splashColor: ColorPallete.primary,
           borderRadius: BorderRadius.all(Radius.circular(6)),
           child: Padding(

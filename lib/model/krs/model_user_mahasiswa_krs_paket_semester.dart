@@ -129,6 +129,18 @@ class DetailKrs {
 
   factory DetailKrs.fromJson(String str) => DetailKrs.fromMap(json.decode(str));
 
+  String getDosenAmpu() {
+    String dosen = '';
+    dosenAmpu!.forEach((element) {dosen += '${element.nip} - ${element.nama}\n';  });
+    return dosen;
+  }
+  
+  String getMkPrasyarat() {
+    String mataKuliah = '';
+    mkPrasyarat!.forEach((element) {mataKuliah += '${element.syarat} ${element.nama}\n'; });
+    return mataKuliah;
+  }
+
   String toJson() => json.encode(toMap());
 
   factory DetailKrs.fromMap(Map<String, dynamic> json) => DetailKrs(
