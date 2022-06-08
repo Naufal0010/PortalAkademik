@@ -7,8 +7,9 @@ import '../../../../../../../model/krs/model_user_mahasiswa_krs_paket_semester.d
 
 class MataKuliahComponent extends StatelessWidget {
   final DataKrs data;
+  final Function() onPressed;
 
-  MataKuliahComponent({required this.data});
+  MataKuliahComponent({required this.data, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class MataKuliahComponent extends StatelessWidget {
     Widget isSudahAmbil(String sudahAmbil) {
       if (sudahAmbil == "0") {
         return ElevatedButton(
-          onPressed: () {},
+          onPressed: onPressed,
           child: Icon(Icons.add, color: Colors.white),
           style: ElevatedButton.styleFrom(
             shape: CircleBorder(),

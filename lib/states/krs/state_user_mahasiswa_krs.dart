@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:portal_akademik/data/repository/network_repository.dart';
 import 'package:portal_akademik/model/krs/model_user_mahasiswa_krs.dart';
 import 'package:portal_akademik/model/krs/model_user_mahasiswa_paket_semester.dart';
@@ -44,6 +45,22 @@ class UserMahasiswaKrsState with ChangeNotifier, DiagnosticableTreeMixin {
     } else {
       isLoading = false;
       error = res.message;
+      notifyListeners();
+    }
+  }
+
+  Future<void> postDataBatalkanKrs(BuildContext context, String idKelas) async {
+    final res = await NetworkRepository().doBatalkanKrs(idKelas);
+    UtilLogger.log('Post data batalkan KRS', res);
+    if (res.code == CODE.SUCCESS) {
+      refreshData();
+      final snackBar = SnackBar(content: Text('Item berhasil dihapus'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      UtilLogger.log('Post data batalkan', data);
+    } else {
+      final snackBar =
+      SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
       notifyListeners();
     }
   }

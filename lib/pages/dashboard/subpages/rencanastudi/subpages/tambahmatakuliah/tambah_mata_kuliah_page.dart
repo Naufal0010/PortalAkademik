@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/util/api_local_store.dart';
 import 'package:portal_akademik/util/service/logger.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
@@ -19,7 +20,7 @@ class TambahMataKuliahPage extends StatefulWidget {
 }
 
 class _TambahMataKuliahPageState extends State<TambahMataKuliahPage> {
-  String _valPaketSemester = "6";
+  String _valPaketSemester = "0";
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +47,18 @@ class _TambahMataKuliahPageState extends State<TambahMataKuliahPage> {
         .dataPaketSemester?.data?.entries
         .map((e) => ModelMahasiswaPaketSemester(e.key, e.value))
         .toList();
-
+    
+    list?.insert(0, ModelMahasiswaPaketSemester("0", "Pilih Semester"));
+    
     UtilLogger.log('value paket semester', list);
 
     userPaketSemester.initData(_valPaketSemester);
+
+    Future<void> refresh() {
+      userKrs.refreshData();
+      userPaketSemester.refreshData();
+      return userPaketSemester.refreshData();
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -106,6 +115,7 @@ class _TambahMataKuliahPageState extends State<TambahMataKuliahPage> {
                             setState(() {
                               _valPaketSemester = newValue.toString();
                               initDataPaketSemester(newValue.toString());
+                              ApiLocalStorage.idKelasPaketMataKuliah = newValue.toString();
                             });
                           },
                         ),
@@ -116,13 +126,17 @@ class _TambahMataKuliahPageState extends State<TambahMataKuliahPage> {
             Expanded(
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                child:  SingleChildScrollView(
-                  child: Consumer<UserMahasiswaKrsPaketSemesterState>(
-                    builder: (context, value, child) {
-                      return value.isLoading
-                          ? ShimmerListDetailTile()
-                          : ListMataKuliahPaket(context, value);
-                    },
+                child:  RefreshIndicator(
+                  onRefresh: refresh,
+                  child: SingleChildScrollView(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    child: Consumer<UserMahasiswaKrsPaketSemesterState>(
+                      builder: (context, value, child) {
+                        return value.isLoading
+                            ? ShimmerListDetailTile()
+                            : ListMataKuliahPaket(context, value);
+                      },
+                    ),
                   ),
                 ),
 

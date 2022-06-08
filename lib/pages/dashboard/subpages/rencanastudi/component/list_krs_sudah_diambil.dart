@@ -7,8 +7,8 @@ import '../../../../../util/color_pallete.dart';
 import 'empty_rencanastudi.dart';
 import 'krs_list_sudah_ambil.dart';
 
-Widget ListKrsSudahDiambil(
-    BuildContext context, UserMahasiswaKrsHeaderState stateHeader, UserMahasiswaKrsState stateKrs) {
+Widget ListKrsSudahDiambil(BuildContext context,
+    UserMahasiswaKrsHeaderState stateHeader, UserMahasiswaKrsState stateKrs) {
   if (stateHeader.error != null) {
     Fluttertoast.showToast(
         msg: "${stateHeader.error!['content']}",
@@ -33,7 +33,9 @@ Widget ListKrsSudahDiambil(
 
   if (stateKrs.data?.mkReguler?.krsListMk?.length == 0) {
     return Container(
-        width: MediaQuery.of(context).size.width, height: 500, child: EmptyRencanaStudi());
+        width: MediaQuery.of(context).size.width,
+        height: 500,
+        child: EmptyRencanaStudi());
   }
 
   if (stateKrs.data == null) {
@@ -43,8 +45,14 @@ Widget ListKrsSudahDiambil(
   return Column(
     children: stateKrs.data!.mkReguler!.krsListMk!
         .map(
-          (e) => KrsListSudahAmbil(data: e, dataKrs: stateHeader.data!.krs!),
-    )
+          (e) => KrsListSudahAmbil(
+            data: e,
+            dataKrs: stateHeader.data!.krs!,
+            onPressed: () {
+              stateKrs.postDataBatalkanKrs(context, e.klsId);
+            },
+          ),
+        )
         .toList(),
   );
 }

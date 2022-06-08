@@ -1,9 +1,9 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/subpages/tambahmatakuliah/tambah_mata_kuliah_page.dart';
 import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs.dart';
-import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -133,8 +133,7 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold)),
                                   user.isLoading
-                                      ? ShimmerWidget(
-                                          height: 20, width: 100)
+                                      ? ShimmerWidget(height: 20, width: 100)
                                       : Text(
                                           '${user.data?.semester}',
                                           style: TextStyle(
@@ -168,7 +167,38 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
                       ),
                     ),
                   ),
-                  LabelSubHeader('Rencana Mata Kuliah', 18),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Total SKS dipilih',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            userKrs.isLoading
+                                ? ShimmerWidget(
+                                    width: 60,
+                                    height: 20,
+                                  )
+                                : Text(
+                                    '${userKrs.data?.mkReguler!.krsTotalSks}',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                   userKrs.isLoading && user.isLoading
                       ? ShimmerWidget(
                           width: double.infinity,
@@ -206,6 +236,21 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
               bubbleColor: ColorPallete.primary,
               onPress: () {
                 _animationController.reverse();
+                showAnimatedDialog(context: context, builder: (BuildContext context) {
+                  return ClassicGeneralDialogWidget(
+                    titleText: 'Ajukan Krs',
+                    contentText: 'Anda yakin mengajukan KRS ini?',
+                    negativeText: 'Tidak',
+                    positiveText: 'Ya',
+                    positiveTextStyle: TextStyle(color: ColorPallete.primary),
+                    onPositiveClick: () {
+                      Navigator.of(context).pop();
+                    },
+                    onNegativeClick: () {
+                      Navigator.of(context).pop();
+                    },
+                  );
+                });
               })
         ],
         animation: _animation,

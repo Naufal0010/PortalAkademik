@@ -157,15 +157,21 @@ class NetworkRepository {
   }
 
   // doAmbilKelas() untuk melakukan memilih dan ambil kelas
-  Future<ApiModel> doAmbilKelas() async {
+  Future<ApiModel> doAmbilKelas(String kelasId) async {
+    FormData formData = FormData.fromMap({"klsId": kelasId});
     return await consumer.execute(
-        url: '/akademik/krs/ambil', method: MethodRequest.POST);
+        url: '/akademik/krs/ambil',
+        method: MethodRequest.POST,
+        formData: formData);
   }
 
   // doBatalkanKrs() untuk melakukan batal mengambil kelas
-  Future<ApiModel> doBatalkanKrs() async {
+  Future<ApiModel> doBatalkanKrs(String kelasId) async {
+    FormData formData = FormData.fromMap({"klsId": kelasId});
     return await consumer.execute(
-        url: '/akademik/krs/batal', method: MethodRequest.POST);
+        url: '/akademik/krs/batal',
+        method: MethodRequest.POST,
+        formData: formData);
   }
 
   // doAjukanDosenPA() untuk melakukan ajukan KRS ke dosen PA

@@ -32,13 +32,20 @@ Widget ListMataKuliahPaket(
 
   if (state.data?.data?.length == 0) {
     return Container(
-        width: MediaQuery.of(context).size.width, height: 500, child: EmptyMataKuliah());
+        width: MediaQuery.of(context).size.width,
+        height: 500,
+        child: EmptyMataKuliah());
   }
 
   return Column(
     children: state.data!.data!
         .map(
-          (e) => MataKuliahComponent(data: e),
+          (e) => MataKuliahComponent(
+            data: e,
+            onPressed: () {
+              state.postDataAmbilKelas(context, e.idKls);
+            },
+          ),
         )
         .toList(),
   );

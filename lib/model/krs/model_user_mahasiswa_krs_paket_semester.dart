@@ -44,7 +44,7 @@ class DataKrs {
     required this.detail,
   });
 
-  final String idKls;
+  String idKls;
   final String idMk;
   final String kodeMk;
   final String mk;

@@ -9,8 +9,9 @@ import 'bottomsheet_detail_krs.dart';
 class KrsListSudahAmbil extends StatelessWidget {
   final KrsListMk data;
   final Krs dataKrs;
+  final Function() onPressed;
 
-  KrsListSudahAmbil({required this.data, required this.dataKrs});
+  KrsListSudahAmbil({required this.data, required this.dataKrs, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class KrsListSudahAmbil extends StatelessWidget {
     Widget isSudahAmbil(String sudahAmbil) {
       if (sudahAmbil == "0") {
         return ElevatedButton(
-          onPressed: () {},
+          onPressed: onPressed,
           child: Icon(Icons.remove, color: Colors.white),
           style: ElevatedButton.styleFrom(
             shape: CircleBorder(),
