@@ -1,3 +1,4 @@
+import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/subpages/tambahmatakuliah/tambah_mata_kuliah_page.dart';
@@ -7,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../states/krs/state_user_mahasiswa_krs_header.dart';
 import '../../../../util/color_pallete.dart';
+import 'component/bottomsheet_krs_header.dart';
 
 class RencanaStudiPage extends StatefulWidget {
   @override
@@ -49,11 +51,11 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
 
   @override
   Widget build(BuildContext context) {
-    UserMahasiswaKrsHeaderState user =
+    UserMahasiswaKrsHeaderState? user =
         Provider.of<UserMahasiswaKrsHeaderState>(context, listen: true);
 
     UserMahasiswaKrsState userKrs =
-    Provider.of<UserMahasiswaKrsState>(context, listen: true);
+        Provider.of<UserMahasiswaKrsState>(context, listen: true);
 
     Future<void> refresh() {
       user.refreshData();
@@ -81,172 +83,78 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Stack(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.all(36.0),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(4.0),
-                          border:
-                              Border.all(width: 1, color: ColorPallete.primary),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Semester',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold)),
-                            user.isLoading
-                                ? ShimmerWidget(
-                                    height: 20, width: double.infinity)
-                                : Text(
-                                    '${user.data?.semester}',
-                                    style: TextStyle(
-                                        overflow: TextOverflow.ellipsis,
-                                        fontSize: 12.0),
-                                  ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Text('Dosen PA',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold)),
-                            user.isLoading
-                                ? ShimmerWidget(
-                                    height: 20, width: double.infinity)
-                                : Text(
-                                    '${user.data?.dosenAmpu}',
-                                    style: TextStyle(
-                                        overflow: TextOverflow.ellipsis,
-                                        fontSize: 12.0),
-                                  ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Text('IPS / SKS Maksimal',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold)),
-                            user.isLoading
-                                ? ShimmerWidget(
-                                    height: 20, width: double.infinity)
-                                : Text(
-                                    '${user.data?.ips} / ${user.data?.sksMax}',
-                                    style: TextStyle(
-                                        overflow: TextOverflow.ellipsis,
-                                        fontSize: 12.0),
-                                  ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Text('Komentar',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold)),
-                            ...?user.data?.krs?.komentar
-                                ?.map(
-                                  (e) => Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        height: 16,
-                                        child: Text(
-                                          e.tanggal,
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color: ColorPallete.primary),
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          showFlexibleBottomSheet(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(10.0),
+                                      topLeft: Radius.circular(10.0))),
+                              isExpand: false,
+                              initHeight: 0.7,
+                              maxHeight: 0.7,
+                              context: context,
+                              bottomSheetColor: Colors.transparent,
+                              builder: (context, controller, offset) {
+                                return BottomSheetKrsHeader(
+                                    data: user.data!, controller: controller);
+                              });
+                        },
+                        splashColor: ColorPallete.primary,
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
+                        child: Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Semester',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold)),
+                                  user.isLoading
+                                      ? ShimmerWidget(
+                                          height: 20, width: double.infinity)
+                                      : Text(
+                                          '${user.data?.semester}',
                                           style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 10),
+                                              overflow: TextOverflow.ellipsis,
+                                              fontSize: 12.0),
                                         ),
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        decoration: BoxDecoration(
-                                            color: ColorPallete.primary,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                      ),
-                                      Text(
-                                        e.teks,
-                                        style: TextStyle(fontSize: 12.0),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                                .toList(),
-                          ],
-                        ),
-                      ),
-                      Positioned(
-                        top: 0,
-                        right: 0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: ColorPallete.primary,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                            ),
-                          ),
-                          width: 120,
-                          height: 32,
-                          child: Center(
-                            child: user.isLoading
-                                ? ShimmerWidget(
-                                    width: 80,
-                                    height: 20,
-                                  )
-                                : isDisetujui(user.data!.krs!.isSetujui),
+                                ],
+                              ),
+                              Spacer(),
+                              Container(
+                                padding: EdgeInsets.all(16.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4.0),
+                                  color: ColorPallete.primary,
+                                ),
+                                child: Center(
+                                  child: user.isLoading
+                                      ? ShimmerWidget(
+                                          width: 80,
+                                          height: 20,
+                                        )
+                                      : isDisetujui(user.data!.krs!.isSetujui),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  // userKrs.isLoading
-                  //     ? ShimmerWidget(
-                  //         width: double.infinity,
-                  //         height: 100,
-                  //       )
-                  //     : KrsListSudahAmbil(
-                  //         list: userKrs.data!.mkReguler!.krsListMk),
-                  // Container(
-                  //   padding: EdgeInsets.all(10.0),
-                  //   // decoration: BoxDecoration(
-                  //   //   borderRadius: BorderRadius.circular(10.0),
-                  //   //   border: Border.all(
-                  //   //       width: 1, color: ColorPallete.primary),
-                  //   //   // color: Colors.amber,
-                  //   // ),
-                  //   child: Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: [
-                  //       Row(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //         children: [
-                  //           Text(
-                  //             'Total SKS',
-                  //             style: TextStyle(
-                  //               fontSize: 16,
-                  //               fontWeight: FontWeight.bold,
-                  //             ),
-                  //           ),
-                  //           userKrs.isLoading
-                  //               ? ShimmerWidget(
-                  //                   width: 60,
-                  //                   height: 20,
-                  //                 )
-                  //               : Text(
-                  //                   '${userKrs.data?.mkReguler!.krsTotalSks}',
-                  //                   style: TextStyle(
-                  //                     fontSize: 16,
-                  //                     fontWeight: FontWeight.bold,
-                  //                   ),
-                  //                 ),
-                  //         ],
-                  //       ),
-                  //     ],
-                  //   ),
-                  // )
+                    ),
+                  )
                 ],
               ),
             ),
@@ -265,8 +173,10 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
               onPress: () {
                 _animationController.reverse();
                 userKrs.initDataPaketSemester();
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                    TambahMataKuliahPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TambahMataKuliahPage()));
               }),
           Bubble(
               icon: Icons.upload_sharp,
@@ -280,8 +190,8 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
         ],
         animation: _animation,
         onPress: () => _animationController.isCompleted
-                        ? _animationController.reverse()
-                        : _animationController.forward(),
+            ? _animationController.reverse()
+            : _animationController.forward(),
         iconColor: Colors.white,
         iconData: Icons.add,
         backGroundColor: ColorPallete.primary,
