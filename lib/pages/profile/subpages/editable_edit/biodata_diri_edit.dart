@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/profile/component/kabupaten_text.dart';
 import 'package:portal_akademik/pages/profile/component/kecamatan_text.dart';
-import 'package:portal_akademik/pages/profile/component/provinsi_text.dart';
+import 'package:portal_akademik/pages/profile/subpages/editable_edit/kabupaten_edit.dart';
+import 'package:portal_akademik/pages/profile/subpages/editable_edit/kecamatan_edit.dart';
+import 'package:portal_akademik/pages/profile/subpages/editable_edit/provinsi_edit.dart';
 import 'package:portal_akademik/states/state.dart';
 import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 
-class BiodataDiriProfile extends StatelessWidget {
+class BiodataDiriEdit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserMahasiswaState userMahasiswaProfil =
@@ -40,7 +42,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -53,7 +55,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -66,7 +68,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -79,7 +81,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -93,7 +95,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -107,7 +109,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -120,7 +122,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -133,7 +135,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -146,7 +148,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                  enabled: false,
+                  enabled: true,
                   style: TextStyle(fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -158,7 +160,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                  enabled: false,
+                  enabled: true,
                   style: TextStyle(fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -170,7 +172,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -184,7 +186,7 @@ class BiodataDiriProfile extends StatelessWidget {
               ),
               userMahasiswaProfile.isLoading
                   ? ShimmerWidget(height: 10)
-                  : provinsiText(context, userMahasiswaProfile),
+                  : provinsiEdit(context, userMahasiswaProfile),
               SizedBox(height: 8),
               Text(
                 'Kabupaten/Kota',
@@ -192,7 +194,7 @@ class BiodataDiriProfile extends StatelessWidget {
               ),
               userMahasiswaProfile.isLoading
                   ? ShimmerWidget(height: 10)
-                  : kabupatenText(context, userMahasiswaProfile),
+                  : kabupatenEdit(context, userMahasiswaProfile),
               SizedBox(height: 8),
               Text(
                 'Kecamatan',
@@ -200,14 +202,14 @@ class BiodataDiriProfile extends StatelessWidget {
               ),
               userMahasiswaProfile.isLoading
                   ? ShimmerWidget(height: 10)
-                  : kecamatanText(context, userMahasiswaProfile),
+                  : kecamatanEdit(context, userMahasiswaProfile),
               SizedBox(height: 8),
               Text(
                 'Kelurahan/Desa',
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                  enabled: false,
+                  enabled: true,
                   style: TextStyle(fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -219,7 +221,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -232,7 +234,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -245,7 +247,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -258,7 +260,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -271,7 +273,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -284,7 +286,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -297,7 +299,7 @@ class BiodataDiriProfile extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               TextFormField(
-                enabled: false,
+                enabled: true,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
