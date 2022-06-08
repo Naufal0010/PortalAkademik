@@ -3,12 +3,14 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/subpages/tambahmatakuliah/tambah_mata_kuliah_page.dart';
 import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs.dart';
+import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../states/krs/state_user_mahasiswa_krs_header.dart';
 import '../../../../util/color_pallete.dart';
 import 'component/bottomsheet_krs_header.dart';
+import 'component/list_krs_sudah_diambil.dart';
 
 class RencanaStudiPage extends StatefulWidget {
   @override
@@ -49,6 +51,13 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
     );
   }
 
+  Color isColorDisetujui(String? disetujui) {
+    if (disetujui == "1") {
+      return ColorPallete.greenPastel;
+    }
+    return ColorPallete.primary;
+  }
+
   @override
   Widget build(BuildContext context) {
     UserMahasiswaKrsHeaderState? user =
@@ -59,6 +68,7 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
 
     Future<void> refresh() {
       user.refreshData();
+      userKrs.refreshData();
       return user.refreshData();
     }
 
@@ -124,7 +134,7 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
                                           fontWeight: FontWeight.bold)),
                                   user.isLoading
                                       ? ShimmerWidget(
-                                          height: 20, width: double.infinity)
+                                          height: 20, width: 100)
                                       : Text(
                                           '${user.data?.semester}',
                                           style: TextStyle(
@@ -138,7 +148,10 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
                                 padding: EdgeInsets.all(16.0),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4.0),
-                                  color: ColorPallete.primary,
+                                  color: user.isLoading
+                                      ? Colors.white
+                                      : isColorDisetujui(
+                                          user.data!.krs!.isSetujui),
                                 ),
                                 child: Center(
                                   child: user.isLoading
@@ -154,7 +167,14 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  LabelSubHeader('Rencana Mata Kuliah', 18),
+                  userKrs.isLoading && user.isLoading
+                      ? ShimmerWidget(
+                          width: double.infinity,
+                          height: 100,
+                        )
+                      : ListKrsSudahDiambil(context, user, userKrs),
                 ],
               ),
             ),
