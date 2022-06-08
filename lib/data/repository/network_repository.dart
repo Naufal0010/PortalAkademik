@@ -156,6 +156,30 @@ class NetworkRepository {
     return await consumer.execute(url: '/akademik/krs/header/mahasiswa');
   }
 
+  // doAmbilKelas() untuk melakukan memilih dan ambil kelas
+  Future<ApiModel> doAmbilKelas() async {
+    return await consumer.execute(
+        url: '/akademik/krs/ambil', method: MethodRequest.POST);
+  }
+
+  // doBatalkanKrs() untuk melakukan batal mengambil kelas
+  Future<ApiModel> doBatalkanKrs() async {
+    return await consumer.execute(
+        url: '/akademik/krs/batal', method: MethodRequest.POST);
+  }
+
+  // doAjukanDosenPA() untuk melakukan ajukan KRS ke dosen PA
+  Future<ApiModel> doAjukanDosenPA() async {
+    return await consumer.execute(
+        url: '/akademik/krs/ajukan', method: MethodRequest.POST);
+  }
+
+  // doRevisiKRS() untuk melakukan revisi KRS
+  Future<ApiModel> doRevisiKRS() async {
+    return await consumer.execute(
+        url: '/akademik/krs/revisi', method: MethodRequest.POST);
+  }
+
   /*
   *
   * ----------------------------------------------------------------------------
