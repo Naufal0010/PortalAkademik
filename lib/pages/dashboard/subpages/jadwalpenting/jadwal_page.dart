@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portal_akademik/pages/presensi/component/shimmer_list_tile.dart';
+import 'package:portal_akademik/widget/shimmer_widget.dart';
 
 import '../../../../states/jadwal/state_user_mahasiswa_jadwal_penting.dart';
 import '../../../../states/state.dart';
@@ -33,7 +33,7 @@ class JadwalPage extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(16.0),
             child: jadwalPenting.isLoading
-                ? ShimmerListTile()
+                ? ShimmerWidget(width: MediaQuery.of(context).size.width, height: 40,)
                 : JadwalPentingListTable(),
           ),
         ),
