@@ -20,7 +20,7 @@ class RencanaStudiPage extends StatefulWidget {
 class _RencanaStudiPageState extends State<RencanaStudiPage> {
 
   Widget stateKrs(String? disetujui, String? dikirim, String? direvisi) {
-    if (disetujui == "1" && dikirim == "0" && direvisi == "0") {
+    if (disetujui == "1" && dikirim == "1" && direvisi == "0") {
       return Text(
         'Disetujui',
         style: TextStyle(color: Colors.white),
