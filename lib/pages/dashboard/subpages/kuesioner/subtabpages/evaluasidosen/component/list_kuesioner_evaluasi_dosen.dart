@@ -38,6 +38,10 @@ Widget getListKuesionerEvaluasiDosen(
     return EmptyEvaluasiDosen();
   }
 
+  if (state.data == null) {
+    return EmptyEvaluasiDosen();
+  }
+
   return ListView.builder(
     physics: AlwaysScrollableScrollPhysics(),
     shrinkWrap: true,

@@ -15,6 +15,7 @@ class UserMahasiswaDataKelasKuesionerState
   ModelEvaluasiDosenTambahData? evaluasiDosenTambahData;
   String kelasId = ApiLocalStorage.kelasId;
   Map<String, dynamic>? error;
+  String errorMessage = '';
   bool isLoading = true;
 
   UserMahasiswaDataKelasKuesionerState() {
@@ -29,9 +30,13 @@ class UserMahasiswaDataKelasKuesionerState
       isLoading = false;
       checkEvaluasiDosenKosong();
       notifyListeners();
-    } else {
+    } else if (res.code == CODE.ERROR) {
       isLoading = false;
       error = res.message;
+      notifyListeners();
+    } else {
+      isLoading = false;
+      errorMessage = res.message;
       notifyListeners();
     }
   }
