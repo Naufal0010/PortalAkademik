@@ -119,6 +119,8 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   String getAgamaValue() {
     if (dataAgama == null) {
       return "";
+    } else if (data == null) {
+      return "";
     }
     return dataAgama!.rows!
         .where((element) => element.kode == data!.agmrId)
@@ -128,6 +130,8 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
 
   String getStatusNikahValue() {
     if (dataStatusNikah == null) {
+      return "";
+    } else if (data == null) {
       return "";
     }
 
@@ -140,6 +144,8 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   String getStatusAlamatRumahValue() {
     if (dataStatusAlamatRumah == null) {
       return "";
+    } else if (data == null) {
+      return "";
     }
 
     return dataStatusAlamatRumah!.rows!
@@ -150,6 +156,8 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
 
   String getPembiayaanKuliahValue() {
     if (dataPembiayaanKuliah == null) {
+      return "";
+    } else if (data == null) {
       return "";
     }
 

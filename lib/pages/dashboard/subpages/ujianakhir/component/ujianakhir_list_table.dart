@@ -25,7 +25,7 @@ class UjianAkhirListTable extends StatelessWidget {
             headerWidgets: _getTitleWidget(),
             leftSideItemBuilder: _generateFirstColumnRow,
             rightSideItemBuilder: _generateRightHandSideColumnRow,
-            itemCount: userUas.data!.data!.length,
+            itemCount: userUas.data == null ? 0 : userUas.data!.data!.length,
             rowSeparatorWidget: const Divider(
               color: Colors.orange,
               height: 1.0,

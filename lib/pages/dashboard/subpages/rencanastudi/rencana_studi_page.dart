@@ -239,13 +239,13 @@ class _RencanaStudiPageState extends State<RencanaStudiPage> {
                                 padding: EdgeInsets.all(16.0),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4.0),
-                                  color: user.isLoading
+                                  color: user.isLoading || user.data == null
                                       ? Colors.white
                                       : isColorDisetujui(
                                           user.data!.krs!.isSetujui),
                                 ),
                                 child: Center(
-                                  child: user.isLoading
+                                  child: user.isLoading || user.data == null
                                       ? ShimmerWidget(
                                           width: 80,
                                           height: 20,

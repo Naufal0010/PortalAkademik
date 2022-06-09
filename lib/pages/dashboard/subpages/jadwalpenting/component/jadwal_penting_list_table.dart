@@ -29,7 +29,7 @@ class JadwalPentingListTable extends StatelessWidget {
             headerWidgets: _getTitleWidget(),
             leftSideItemBuilder: _generateFirstColumnRow,
             rightSideItemBuilder: _generateRightHandSideColumnRow,
-            itemCount: jadwalPenting.data!.data!.length,
+            itemCount: jadwalPenting.data == null ? 0 : jadwalPenting.data!.data!.length,
             rowSeparatorWidget: const Divider(
               color: Colors.orange,
               height: 1.0,
