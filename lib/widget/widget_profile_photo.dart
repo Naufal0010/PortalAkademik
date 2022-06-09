@@ -16,6 +16,10 @@ Widget getName(BuildContext context, UserMahasiswaState state) {
     return Text('Loading');
   }
 
+  if (state.data == null) {
+    return Text('Loading');
+  }
+
   return Text(
     '${state.data!.nama}',
     overflow: TextOverflow.ellipsis,
@@ -42,6 +46,10 @@ Widget getNim(BuildContext context, UserMahasiswaState state) {
     return Text('Loading');
   }
 
+  if (state.data == null) {
+    return Text('Loading');
+  }
+
   return Text(
     'Nim. ${state.data!.nim}',
     overflow: TextOverflow.ellipsis,
@@ -65,6 +73,10 @@ Widget getProdi(BuildContext context, UserMahasiswaState state) {
         textColor: Colors.white,
         fontSize: 16.0);
 
+    return Text('Loading');
+  }
+
+  if (state.data == null) {
     return Text('Loading');
   }
 
@@ -120,6 +132,10 @@ Widget getPhoto(BuildContext context, UserMahasiswaState state) {
       backgroundColor: Colors.grey,
       foregroundColor: Colors.grey,
     );
+  }
+
+  if (state.data == null) {
+    return Text('Loading');
   }
 
   return ClipRRect(

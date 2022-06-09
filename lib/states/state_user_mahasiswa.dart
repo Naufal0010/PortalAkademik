@@ -117,6 +117,9 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   String getAgamaValue() {
+    if (dataAgama == null) {
+      return "";
+    }
     return dataAgama!.rows!
         .where((element) => element.kode == data!.agmrId)
         .first
@@ -124,6 +127,10 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   String getStatusNikahValue() {
+    if (dataStatusNikah == null) {
+      return "";
+    }
+
     return dataStatusNikah!.rows!
         .where((element) => element.kode == data!.stnkrId)
         .first
@@ -131,6 +138,10 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   String getStatusAlamatRumahValue() {
+    if (dataStatusAlamatRumah == null) {
+      return "";
+    }
+
     return dataStatusAlamatRumah!.rows!
         .where((element) => element.kode == data!.statrumahId)
         .first
@@ -138,6 +149,10 @@ class UserMahasiswaState with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   String getPembiayaanKuliahValue() {
+    if (dataPembiayaanKuliah == null) {
+      return "";
+    }
+
     return dataPembiayaanKuliah!.rows!
         .where((element) => element.kode == data!.hubbiayaId)
         .first

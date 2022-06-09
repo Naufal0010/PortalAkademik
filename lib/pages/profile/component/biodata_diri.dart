@@ -19,8 +19,10 @@ class BiodataDiriProfile extends StatelessWidget {
       if (jenisKelamin == 'L') {
         return 'Laki-laki';
       }
-
-      return 'Perempuan';
+      else if (jenisKelamin == "P") {
+        return 'Perempuan';
+      }
+      return '';
     }
 
     return Container(

@@ -25,7 +25,7 @@ class HasilStudiList extends StatelessWidget {
           headerWidgets: _getTitleWidget(),
           leftSideItemBuilder: _generateFirstColumnRow,
           rightSideItemBuilder: _generateRightHandSideColumnRow,
-          itemCount: khs!.length,
+          itemCount: khs!.length == null ? 0 : khs!.length,
           rowSeparatorWidget: const Divider(
             color: Colors.orange,
             height: 1.0,

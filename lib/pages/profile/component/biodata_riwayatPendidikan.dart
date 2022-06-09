@@ -67,7 +67,7 @@ class RiwayatPendidikanProfile extends StatelessWidget {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-                initialValue: userMahasiswaProfile.data!.sekolahKota!.value,
+                initialValue: userMahasiswaProfile.data != null ? userMahasiswaProfile.data!.sekolahKota!.value : "",
               ),
               SizedBox(height: 8),
               Text(
