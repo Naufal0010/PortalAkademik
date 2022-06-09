@@ -1,11 +1,11 @@
 import 'package:bottom_sheet/bottom_sheet.dart';
-import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:portal_akademik/pages/dashboard/subpages/rencanastudi/subpages/tambahmatakuliah/tambah_mata_kuliah_page.dart';
 import 'package:portal_akademik/states/krs/state_user_mahasiswa_krs.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 
 import '../../../../states/krs/state_user_mahasiswa_krs_header.dart';
 import '../../../../util/color_pallete.dart';
@@ -17,29 +17,24 @@ class RencanaStudiPage extends StatefulWidget {
   State<RencanaStudiPage> createState() => _RencanaStudiPageState();
 }
 
-class _RencanaStudiPageState extends State<RencanaStudiPage>
-    with SingleTickerProviderStateMixin {
-  late Animation<double> _animation;
-  late AnimationController _animationController;
+class _RencanaStudiPageState extends State<RencanaStudiPage> {
 
-  @override
-  void initState() {
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 260),
-    );
-
-    final curvedAnimation =
-        CurvedAnimation(curve: Curves.easeInOut, parent: _animationController);
-    _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
-
-    super.initState();
-  }
-
-  Widget isDisetujui(String? disetujui) {
-    if (disetujui == "1") {
+  Widget stateKrs(String? disetujui, String? dikirim, String? direvisi) {
+    if (disetujui == "1" && dikirim == "0" && direvisi == "0") {
       return Text(
         'Disetujui',
+        style: TextStyle(color: Colors.white),
+        textAlign: TextAlign.center,
+      );
+    } else if (disetujui == "0" && dikirim == "0" && direvisi == "1") {
+      return Text(
+        'Direvisi',
+        style: TextStyle(color: Colors.white),
+        textAlign: TextAlign.center,
+      );
+    } else if (disetujui == "0" && dikirim == "1" && direvisi == "0") {
+      return Text(
+        'Dikirim',
         style: TextStyle(color: Colors.white),
         textAlign: TextAlign.center,
       );
@@ -66,14 +61,111 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
     UserMahasiswaKrsState userKrs =
         Provider.of<UserMahasiswaKrsState>(context, listen: true);
 
+    SimpleFontelicoProgressDialog _dialog =
+    SimpleFontelicoProgressDialog(context: context, barrierDimisable: true);
+
     Future<void> refresh() {
       user.refreshData();
       userKrs.refreshData();
       return user.refreshData();
     }
 
+    void initDataAjukanKrs() async {
+      _dialog.show(
+          message: 'Loading...',
+          type: SimpleFontelicoProgressDialogType.normal,
+          indicatorColor: ColorPallete.primary);
+      await Future.delayed(Duration(seconds: 1));
+      userKrs.postDataAjukanKrs(context);
+      _dialog.hide();
+    }
+
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          PopupMenuButton(
+              // add icon, by default "3 dot" icon
+              // icon: Icon(Icons.menu),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem<int>(
+                    value: 0,
+                    enabled: user.data!.krs!.isDikirim == "0" ? true : false,
+                    child: Row(
+                      children: [
+                        Icon(Icons.add),
+                        SizedBox(width: 4),
+                        Text("Tambah"),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    enabled: user.data!.krs!.isDikirim == "0" ? true : false,
+                    child: Row(
+                      children: [
+                        Icon(Icons.upload_sharp),
+                        SizedBox(width: 4),
+                        Text("Ajukan"),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 2,
+                    enabled: user.data!.krs!.isDikirim == "1" &&
+                            user.data!.krs!.isDirevisi == "0"
+                        ? true
+                        : false,
+                    child: Row(
+                      children: [
+                        Icon(Icons.send_sharp),
+                        SizedBox(width: 4),
+                        Text("Revisi"),
+                      ],
+                    ),
+                  ),
+                ];
+              },
+              onSelected: (value) {
+                if (value == 0) {
+                  userKrs.initDataPaketSemester();
+                  Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TambahMataKuliahPage()))
+                      .then((value) => {refresh()});
+                  print("Tambah KRS.");
+                } else if (value == 1) {
+                  showAnimatedDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ClassicGeneralDialogWidget(
+                          titleText: 'Ajukan Krs',
+                          contentText: 'Anda yakin mengajukan KRS ini?',
+                          negativeText: 'Tidak',
+                          positiveText: 'Ya',
+                          positiveTextStyle:
+                              TextStyle(color: ColorPallete.primary),
+                          onPositiveClick: () {
+                            Navigator.of(context).pop();
+                            initDataAjukanKrs();
+                            refresh();
+                          },
+                          onNegativeClick: () {
+                            Navigator.of(context).pop();
+                          },
+                        );
+                      });
+                  print("Ajukan KRS.");
+                } else if (value == 2) {
+                  userKrs.postDataRevisiKrs(context);
+                  refresh();
+                  print("Revisi KRS.");
+                }
+              }),
+        ],
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
@@ -158,7 +250,10 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
                                           width: 80,
                                           height: 20,
                                         )
-                                      : isDisetujui(user.data!.krs!.isSetujui),
+                                      : stateKrs(
+                                          user.data!.krs!.isSetujui,
+                                          user.data!.krs!.isDikirim,
+                                          user.data!.krs!.isDirevisi),
                                 ),
                               ),
                             ],
@@ -168,7 +263,8 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -210,56 +306,6 @@ class _RencanaStudiPageState extends State<RencanaStudiPage>
             ),
           ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionBubble(
-        items: [
-          Bubble(
-              icon: Icons.add,
-              iconColor: Colors.white,
-              title: 'Tambah',
-              titleStyle: TextStyle(fontSize: 12, color: Colors.white),
-              bubbleColor: ColorPallete.primary,
-              onPress: () {
-                _animationController.reverse();
-                userKrs.initDataPaketSemester();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TambahMataKuliahPage()));
-              }),
-          Bubble(
-              icon: Icons.upload_sharp,
-              iconColor: Colors.white,
-              title: 'Ajukan',
-              titleStyle: TextStyle(fontSize: 12, color: Colors.white),
-              bubbleColor: ColorPallete.primary,
-              onPress: () {
-                _animationController.reverse();
-                showAnimatedDialog(context: context, builder: (BuildContext context) {
-                  return ClassicGeneralDialogWidget(
-                    titleText: 'Ajukan Krs',
-                    contentText: 'Anda yakin mengajukan KRS ini?',
-                    negativeText: 'Tidak',
-                    positiveText: 'Ya',
-                    positiveTextStyle: TextStyle(color: ColorPallete.primary),
-                    onPositiveClick: () {
-                      Navigator.of(context).pop();
-                    },
-                    onNegativeClick: () {
-                      Navigator.of(context).pop();
-                    },
-                  );
-                });
-              })
-        ],
-        animation: _animation,
-        onPress: () => _animationController.isCompleted
-            ? _animationController.reverse()
-            : _animationController.forward(),
-        iconColor: Colors.white,
-        iconData: Icons.add,
-        backGroundColor: ColorPallete.primary,
       ),
     );
   }

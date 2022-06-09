@@ -22,7 +22,8 @@ class UserMahasiswaKrsState with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   Future<void> initData() async {
-    final res = await NetworkRepository().getListKrsMahasiswa(ApiLocalStorage.semesterAktif!.rows![0].semesterAktif);
+    final res = await NetworkRepository().getListKrsMahasiswa(
+        ApiLocalStorage.semesterAktif!.rows![0].semesterAktif);
     if (res.code == CODE.SUCCESS) {
       data = UserModelMahasiswaKrs.fromMap(res.data);
       UtilLogger.log('KRS', data?.toJson());
@@ -59,7 +60,41 @@ class UserMahasiswaKrsState with ChangeNotifier, DiagnosticableTreeMixin {
       UtilLogger.log('Post data batalkan', data);
     } else {
       final snackBar =
-      SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi'));
+          SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      notifyListeners();
+    }
+  }
+
+  Future<void> postDataAjukanKrs(BuildContext context) async {
+    final res = await NetworkRepository().doAjukanDosenPA();
+    UtilLogger.log('Post data Ajukan KRS', res);
+    if (res.code == CODE.SUCCESS) {
+      refreshData();
+      final snackBar = SnackBar(
+          content: Text(
+              'KRS berhasil diajukan. Silakan tunggu hasil koreksi rencana studi dari dosen PA anda.'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      UtilLogger.log('Post data Ajukan KRS', data);
+    } else {
+      final snackBar =
+          SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      notifyListeners();
+    }
+  }
+
+  Future<void> postDataRevisiKrs(BuildContext context) async {
+    final res = await NetworkRepository().doRevisiKRS();
+    UtilLogger.log('Post data Revisi KRS', res);
+    if (res.code == CODE.SUCCESS) {
+      refreshData();
+      final snackBar = SnackBar(content: Text('KRS berhasil direvisi'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      UtilLogger.log('Post data Ajukan KRS', data);
+    } else {
+      final snackBar =
+          SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       notifyListeners();
     }

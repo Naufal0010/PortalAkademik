@@ -176,14 +176,20 @@ class NetworkRepository {
 
   // doAjukanDosenPA() untuk melakukan ajukan KRS ke dosen PA
   Future<ApiModel> doAjukanDosenPA() async {
+    FormData formData = FormData.fromMap({});
     return await consumer.execute(
-        url: '/akademik/krs/ajukan', method: MethodRequest.POST);
+        url: '/akademik/krs/ajukan',
+        method: MethodRequest.POST,
+        formData: formData);
   }
 
   // doRevisiKRS() untuk melakukan revisi KRS
   Future<ApiModel> doRevisiKRS() async {
+    FormData formData = FormData.fromMap({});
     return await consumer.execute(
-        url: '/akademik/krs/revisi', method: MethodRequest.POST);
+        url: '/akademik/krs/revisi',
+        method: MethodRequest.POST,
+        formData: formData);
   }
 
   /*
