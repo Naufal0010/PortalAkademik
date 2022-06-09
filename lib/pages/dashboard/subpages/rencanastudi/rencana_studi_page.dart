@@ -18,7 +18,6 @@ class RencanaStudiPage extends StatefulWidget {
 }
 
 class _RencanaStudiPageState extends State<RencanaStudiPage> {
-
   Widget stateKrs(String? disetujui, String? dikirim, String? direvisi) {
     if (disetujui == "1" && dikirim == "1" && direvisi == "0") {
       return Text(
@@ -62,7 +61,7 @@ class _RencanaStudiPageState extends State<RencanaStudiPage> {
         Provider.of<UserMahasiswaKrsState>(context, listen: true);
 
     SimpleFontelicoProgressDialog _dialog =
-    SimpleFontelicoProgressDialog(context: context, barrierDimisable: true);
+        SimpleFontelicoProgressDialog(context: context, barrierDimisable: true);
 
     Future<void> refresh() {
       user.refreshData();
@@ -126,8 +125,11 @@ class _RencanaStudiPageState extends State<RencanaStudiPage> {
                   ),
                   PopupMenuItem<int>(
                     value: 2,
-                    enabled: user.data!.krs!.isDikirim == "1" &&
-                            user.data!.krs!.isDirevisi == "0"
+                    enabled: (user.data!.krs!.isDikirim == "1" &&
+                                user.data!.krs!.isDirevisi == "0" &&
+                                user.data!.krs!.isSetujui == "0") ||
+                            (user.data!.krs!.isSetujui == "0" &&
+                                user.data!.krs!.isDikirim == "1")
                         ? true
                         : false,
                     child: Row(
@@ -180,7 +182,7 @@ class _RencanaStudiPageState extends State<RencanaStudiPage> {
                           negativeText: 'Tidak',
                           positiveText: 'Ya',
                           positiveTextStyle:
-                          TextStyle(color: ColorPallete.primary),
+                              TextStyle(color: ColorPallete.primary),
                           onPositiveClick: () {
                             Navigator.of(context).pop();
                             initDataRevisiKrs();
