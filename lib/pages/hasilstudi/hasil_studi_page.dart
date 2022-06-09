@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:portal_akademik/model/model.dart';
 import 'package:portal_akademik/pages/hasilstudi/component/hasil_studi_list.dart';
 import 'package:portal_akademik/pages/hasilstudi/component/rekap_hasil_studi_list.dart';
 import 'package:portal_akademik/states/khs/state_user_mahasiswa_rekap_hasil_studi.dart';
 import 'package:portal_akademik/states/state.dart';
-import 'package:portal_akademik/util/api_local_store.dart';
 import 'package:portal_akademik/widget/label_sub_header_widget.dart';
 import 'package:portal_akademik/widget/shimmer_widget.dart';
 import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
@@ -18,7 +18,7 @@ class HasilStudiPage extends StatefulWidget {
 }
 
 class _HasilStudiPageState extends State<HasilStudiPage> {
-  String _valSemester = ApiLocalStorage.semesterAktif!.rows![0].semesterAktif;
+  String _valSemester = "0";
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,10 @@ class _HasilStudiPageState extends State<HasilStudiPage> {
 
     SimpleFontelicoProgressDialog _dialog =
     SimpleFontelicoProgressDialog(context: context, barrierDimisable: true);
+
+    if (user.data?.data?.first.semId != "0") {
+      user.data?.data?.insert(0, KhsSemester(semId: "0", semTahun: "0", semNama: "Pilih Semester", semAktif: "0"));
+    }
 
     Future<void> refresh() {
       user.refreshData();
