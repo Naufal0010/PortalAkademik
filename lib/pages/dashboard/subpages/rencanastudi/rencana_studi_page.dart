@@ -75,8 +75,20 @@ class _RencanaStudiPageState extends State<RencanaStudiPage> {
           message: 'Loading...',
           type: SimpleFontelicoProgressDialogType.normal,
           indicatorColor: ColorPallete.primary);
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(Duration(seconds: 2));
       userKrs.postDataAjukanKrs(context);
+      refresh();
+      _dialog.hide();
+    }
+
+    void initDataRevisiKrs() async {
+      _dialog.show(
+          message: 'Loading...',
+          type: SimpleFontelicoProgressDialogType.normal,
+          indicatorColor: ColorPallete.primary);
+      await Future.delayed(Duration(seconds: 2));
+      userKrs.postDataRevisiKrs(context);
+      refresh();
       _dialog.hide();
     }
 
@@ -151,7 +163,6 @@ class _RencanaStudiPageState extends State<RencanaStudiPage> {
                           onPositiveClick: () {
                             Navigator.of(context).pop();
                             initDataAjukanKrs();
-                            refresh();
                           },
                           onNegativeClick: () {
                             Navigator.of(context).pop();
@@ -160,8 +171,25 @@ class _RencanaStudiPageState extends State<RencanaStudiPage> {
                       });
                   print("Ajukan KRS.");
                 } else if (value == 2) {
-                  userKrs.postDataRevisiKrs(context);
-                  refresh();
+                  showAnimatedDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ClassicGeneralDialogWidget(
+                          titleText: 'Revisi Krs',
+                          contentText: 'Anda yakin merevisi KRS ini?',
+                          negativeText: 'Tidak',
+                          positiveText: 'Ya',
+                          positiveTextStyle:
+                          TextStyle(color: ColorPallete.primary),
+                          onPositiveClick: () {
+                            Navigator.of(context).pop();
+                            initDataRevisiKrs();
+                          },
+                          onNegativeClick: () {
+                            Navigator.of(context).pop();
+                          },
+                        );
+                      });
                   print("Revisi KRS.");
                 }
               }),

@@ -70,11 +70,11 @@ class UserMahasiswaKrsState with ChangeNotifier, DiagnosticableTreeMixin {
     final res = await NetworkRepository().doAjukanDosenPA();
     UtilLogger.log('Post data Ajukan KRS', res);
     if (res.code == CODE.SUCCESS) {
-      refreshData();
       final snackBar = SnackBar(
           content: Text(
               'KRS berhasil diajukan. Silakan tunggu hasil koreksi rencana studi dari dosen PA anda.'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      refreshData();
       UtilLogger.log('Post data Ajukan KRS', data);
     } else {
       final snackBar =
