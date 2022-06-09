@@ -27,7 +27,7 @@ class RekapHasilStudiList extends StatelessWidget {
             headerWidgets: _getTitleWidget(),
             leftSideItemBuilder: _generateFirstColumnRow,
             rightSideItemBuilder: _generateRightHandSideColumnRow,
-            itemCount: transkrip!.length,
+            itemCount: transkrip == null ? 0 : transkrip!.length,
             rowSeparatorWidget: const Divider(
               color: Colors.orange,
               height: 1.0,
