@@ -15,7 +15,7 @@ class JadwalPentingListTable extends StatelessWidget {
 
     return Container(
         width: MediaQuery.of(context).size.width,
-        height: 200,
+        height: 250,
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: ColorPallete.primary),
           // color: Colors.amber,
@@ -136,6 +136,7 @@ class JadwalPentingListTable extends StatelessWidget {
 
         SizedBox(
           width: 150,
+          height: 100,
           child: Container(
             child: Text(jadwalPenting.data!.data![index].semester.toString(),
                 style: TextStyle(fontSize: 12.0)),

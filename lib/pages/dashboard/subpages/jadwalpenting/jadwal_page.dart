@@ -11,6 +11,10 @@ class JadwalPage extends StatelessWidget {
     UserMahasiswaJadwalPentingState jadwalPenting =
     Provider.of<UserMahasiswaJadwalPentingState>(context, listen: true);
 
+    Future<void> onRefresh() {
+      return jadwalPenting.refreshData();
+    }
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -22,11 +26,17 @@ class JadwalPage extends StatelessWidget {
                 color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
             overflow: TextOverflow.ellipsis),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: jadwalPenting.isLoading
-            ? ShimmerListTile()
-            : JadwalPentingListTable(),
+      body: RefreshIndicator(
+        onRefresh: onRefresh,
+        child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: jadwalPenting.isLoading
+                ? ShimmerListTile()
+                : JadwalPentingListTable(),
+          ),
+        ),
       ),
     );
   }
