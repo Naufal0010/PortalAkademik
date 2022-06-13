@@ -86,6 +86,7 @@ class UserModelMahasiswaEditable {
     this.waliAlamatProvKode,
     this.waliAlamatKodepos,
     this.waliTelp,
+    this.isAdaWali,
   });
 
   final ValueClass? jenjang;
@@ -168,6 +169,7 @@ class UserModelMahasiswaEditable {
   final ValueClass? waliAlamatProvKode;
   final ValueClass? waliAlamatKodepos;
   final ValueClass? waliTelp;
+  final ValueClass? isAdaWali;
 
   factory UserModelMahasiswaEditable.fromJson(String str) =>
       UserModelMahasiswaEditable.fromMap(json.decode(str));

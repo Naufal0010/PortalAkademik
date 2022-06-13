@@ -178,33 +178,6 @@ Widget listBiodataOrangTuaEdit(
             contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
         initialValue: state.data!.ortuAlamatKodepos!.value,
       ),
-      SizedBox(height: 8),
-      Text(
-        'Rata-rata penghasilan orang tua/wali per bulan',
-        style: TextStyle(fontSize: 16),
-      ),
-      TextFormField(
-        enabled: true,
-        style: TextStyle(fontWeight: FontWeight.bold),
-        decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-        initialValue: state.data!.ortuPenghasilan!.value,
-      ),
-      SizedBox(height: 8),
-      Text(
-        'Jumlah orang yang ditanggung biayanya oleh orang tua/wali',
-        style: TextStyle(fontSize: 16),
-      ),
-      TextFormField(
-        enabled: true,
-        style: TextStyle(fontWeight: FontWeight.bold),
-        decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-        initialValue: state.data!.ortuTanggungan!.value,
-      ),
-      SizedBox(height: 16),
     ],
   );
 }
