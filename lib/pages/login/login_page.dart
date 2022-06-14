@@ -47,14 +47,42 @@ class _LoginState extends State<Login> {
               maxWidth: MediaQuery.of(context).size.width,
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                colors: [
+                  Colors.orange[900]!,
+                  Colors.orange[100]!,
+                ],
+              ),
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  flex: 0,
+                SizedBox(
+                  height: 60,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
-                    children: [Image.asset('assets/images/login_image.png')],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'SIMARI',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 42.0,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      Text(
+                        'Selamat Datang',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
@@ -64,8 +92,8 @@ class _LoginState extends State<Login> {
                     decoration: BoxDecoration(
                       color: Color(0xFFF5F5F5),
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
+                        topLeft: Radius.circular(60),
+                        topRight: Radius.circular(60),
                       ),
                     ),
                     child: Padding(
@@ -75,11 +103,6 @@ class _LoginState extends State<Login> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Selamat Datang',
-                              style: TextStyle(
-                                  fontSize: 24.0, fontWeight: FontWeight.bold),
-                            ),
                             SizedBox(
                               height: 50.0,
                             ),
@@ -87,55 +110,65 @@ class _LoginState extends State<Login> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                TextField(
-                                  controller: usernameController,
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide.none,
+                                buildBoxShadow(
+                                  TextField(
+                                    controller: usernameController,
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                      filled: true,
+                                      fillColor: Color(0xFFFFFFFF),
+                                      hintText: 'Username',
+                                      hintStyle: TextStyle(
+                                        color: Color.fromRGBO(0, 0, 0, 0.3),
+                                      ),
                                     ),
-                                    filled: true,
-                                    fillColor: Color(0xFFFFFFFF),
-                                    hintText: 'Username',
                                   ),
                                 ),
                                 SizedBox(
                                   height: 16.0,
                                 ),
-                                TextField(
+                                buildBoxShadow(TextField(
                                   controller: passwordController,
                                   keyboardType: TextInputType.text,
                                   obscureText: _isObscure,
                                   decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        borderSide: BorderSide.none,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    filled: true,
+                                    fillColor: Color(0xFFFFFFFF),
+                                    hintText: 'Password',
+                                    hintStyle: TextStyle(
+                                      color: Color.fromRGBO(0, 0, 0, 0.3),
+                                    ),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        _isObscure
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
                                       ),
-                                      filled: true,
-                                      fillColor: Color(0xFFFFFFFF),
-                                      hintText: 'Password',
-                                      suffixIcon: IconButton(
-                                        icon: Icon(
-                                          _isObscure
-                                              ? Icons.visibility_off
-                                              : Icons.visibility,
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
+                                      onPressed: () {
+                                        setState(
+                                          () {
                                             _isObscure = !_isObscure;
-                                          });
-                                        },
-                                      )),
-                                ),
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                )),
                                 SizedBox(
                                   height: 50.0,
                                 ),
                               ],
                             ),
                             Container(
-                              width: double.infinity,
+                              margin: EdgeInsets.symmetric(horizontal: 60),
                               child: ElevatedButton(
                                 child: Text(
                                   'Masuk',
@@ -145,9 +178,13 @@ class _LoginState extends State<Login> {
                                   login();
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    fixedSize: Size(330, 50),
-                                    primary: ColorPallete.primary,
-                                    onPrimary: Colors.white),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  fixedSize: Size(330, 50),
+                                  primary: ColorPallete.primary,
+                                  onPrimary: Colors.white,
+                                ),
                               ),
                             )
                           ],
@@ -163,4 +200,18 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+
+  Container buildBoxShadow(Widget widget) => Container(
+        child: widget,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromRGBO(225, 159, 67, 0.5),
+              blurRadius: 20,
+              offset: Offset(0, 15),
+            ),
+          ],
+        ),
+      );
 }
