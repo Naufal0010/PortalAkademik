@@ -1,7 +1,8 @@
+// import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart';
-
+// import 'package:dropdown_search/dropdown_search.dart';
+// import 'package:portal_akademik/model/model.dart';
 import '../../../../states/state_user_mahasiswa_profil_editable.dart';
 import '../../../../widget/shimmer_widget.dart';
 
@@ -23,6 +24,19 @@ Widget provinsiEdit(
   if (state.data?.alamatMhsProv?.value == null) {
     return ShimmerWidget(height: 10, width: 100);
   }
+
+  // return DropdownSearch<UserModelMahasiswa>(
+  //   asyncItems: (String) async {
+  //     var response = await Dio().get(
+  //       (''),
+  //     );
+  //     var models = UserModelMahasiswa.fromJsonList(response.data);
+  //     return models;
+  //   },
+  //   onChanged: (UserModelMahasiswa? data) {
+  //     print(data);
+  //   },
+  // );
 
   return TextFormField(
     enabled: true,

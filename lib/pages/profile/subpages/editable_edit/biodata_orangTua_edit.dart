@@ -6,17 +6,18 @@ import 'package:portal_akademik/states/state_user_mahasiswa_profil_editable.dart
 
 import 'list_biodata_orang_tua_edit.dart';
 
-class BiodataOrangTuaEdit extends StatefulWidget {
+class BiodataOrangTuaWaliEdit extends StatefulWidget {
   @override
-  State<BiodataOrangTuaEdit> createState() => _BiodataOrangTuaEditState();
+  State<BiodataOrangTuaWaliEdit> createState() => _BiodataOrangTuaEditState();
 }
 
-class _BiodataOrangTuaEditState extends State<BiodataOrangTuaEdit> {
+class _BiodataOrangTuaEditState extends State<BiodataOrangTuaWaliEdit> {
   @override
   Widget build(BuildContext context) {
+    UserMahasiswaProfilEditableState userMahasiswaProfile =
+        Provider.of<UserMahasiswaProfilEditableState>(context, listen: true);
     UserMahasiswaProfilEditableState userMahasiswaProfil =
         Provider.of<UserMahasiswaProfilEditableState>(context, listen: true);
-    bool? isChecked = false;
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -29,96 +30,92 @@ class _BiodataOrangTuaEditState extends State<BiodataOrangTuaEdit> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           listBiodataOrangTuaEdit(context, userMahasiswaProfil),
-          // TODO: checkbox masih belum bisa di ceklis
-          CheckboxListTile(
-            title: Text('Centang jika ada mempunyai wali.'),
-            controlAffinity: ListTileControlAffinity.leading,
-            value: isChecked,
-            onChanged: (bool? value) {
-              setState(() {
-                isChecked = value;
-              });
-            },
+          ExpansionTile(
+            expandedCrossAxisAlignment: CrossAxisAlignment.start,
+            title: Text('Isi data jika mempunyai wali'),
+            children: [
+              Text(
+                'Nama Wali',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                enabled: true,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                initialValue: userMahasiswaProfile.data!.waliNama!.value,
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Alamat Wali',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                enabled: true,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                initialValue: userMahasiswaProfile.data!.waliAlamat!.value,
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Nomor Telpon/Hp',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                enabled: true,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                initialValue: userMahasiswaProfile.data!.waliTelp!.value,
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Provinsi',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                enabled: true,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                initialValue:
+                    userMahasiswaProfile.data!.waliAlamatProvKode!.value,
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Kabupaten/Kota',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                enabled: true,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                initialValue: userMahasiswaProfile.data!.waliAlamatKota!.value,
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Kodepos',
+                style: TextStyle(fontSize: 16),
+              ),
+              TextFormField(
+                enabled: true,
+                style: TextStyle(fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                initialValue:
+                    userMahasiswaProfile.data!.waliAlamatKodepos!.value,
+              ),
+              SizedBox(height: 20),
+            ],
           ),
-          Text(
-            'Nama Wali',
-            style: TextStyle(fontSize: 16),
-          ),
-          TextFormField(
-            enabled: true,
-            style: TextStyle(fontWeight: FontWeight.bold),
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-            initialValue: userMahasiswaProfil.data!.waliNama!.value,
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Alamat Wali',
-            style: TextStyle(fontSize: 16),
-          ),
-          TextFormField(
-            enabled: true,
-            style: TextStyle(fontWeight: FontWeight.bold),
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-            initialValue: userMahasiswaProfil.data!.waliAlamat!.value,
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Nomor Telpon/Hp',
-            style: TextStyle(fontSize: 16),
-          ),
-          TextFormField(
-            enabled: true,
-            style: TextStyle(fontWeight: FontWeight.bold),
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-            initialValue: userMahasiswaProfil.data!.waliTelp!.value,
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Provinsi',
-            style: TextStyle(fontSize: 16),
-          ),
-          TextFormField(
-            enabled: true,
-            style: TextStyle(fontWeight: FontWeight.bold),
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-            initialValue: userMahasiswaProfil.data!.waliAlamatProvKode!.value,
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Kabupaten/Kota',
-            style: TextStyle(fontSize: 16),
-          ),
-          TextFormField(
-            enabled: true,
-            style: TextStyle(fontWeight: FontWeight.bold),
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-            initialValue: userMahasiswaProfil.data!.waliAlamatKota!.value,
-          ),
-          SizedBox(height: 8),
-          Text(
-            'Kodepos',
-            style: TextStyle(fontSize: 16),
-          ),
-          TextFormField(
-            enabled: true,
-            style: TextStyle(fontWeight: FontWeight.bold),
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10)),
-            initialValue: userMahasiswaProfil.data!.waliAlamatKodepos!.value,
-          ),
-          SizedBox(height: 8),
-          SizedBox(height: 8),
           Text(
             'Rata-rata penghasilan orang tua/wali per bulan',
             style: TextStyle(fontSize: 16),
